@@ -1081,6 +1081,22 @@ body.no-scroll { overflow: hidden; }
 [data-theme="dark"] .mobile-search { background: #1f1d1a; border-color: var(--hairline); color: var(--ink); }
 
 /* =====================================================
+   Page load animation
+   ===================================================== */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.hero-eyebrow    { animation: fadeUp 0.5s ease both; }
+.hero h1         { animation: fadeUp 0.55s 0.07s ease both; }
+.hero-sub        { animation: fadeUp 0.5s 0.14s ease both; }
+.filters         { animation: fadeUp 0.5s 0.2s ease both; }
+.gallery-section { animation: fadeUp 0.6s 0.28s ease both; }
+.coral-band      { animation: fadeUp 0.5s 0.32s ease both; }
+.site-footer     { animation: fadeUp 0.5s 0.36s ease both; }
+
+/* =====================================================
    Hamburger button
    ===================================================== */
 .btn-hamburger {
@@ -1164,6 +1180,7 @@ body.no-scroll { overflow: hidden; }
   font-size: 14px;
   padding: 10px 14px;
 }
+.chip-all { font-weight: 600; }
 
 /* =====================================================
    Mobile responsive

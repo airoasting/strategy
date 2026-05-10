@@ -54,24 +54,51 @@
     </button>
   `).join('');
 
+  const scrollOffset = () => window.innerWidth <= 768 ? 72 : 132;
+
   const bindChipClicks = (container, closeMobile) => {
-    container.querySelectorAll('.chip').forEach(btn => {
+    container.querySelectorAll('.chip[data-cat]').forEach(btn => {
+      if (btn.dataset.cat === 'all') return;
       btn.addEventListener('click', () => {
         setActiveChip(btn.dataset.cat);
-        const target = document.getElementById('cat-' + btn.dataset.cat);
-        if (target) smoothScrollTo(target);
-        if (closeMobile) closeMobileMenu();
+        const catId = btn.dataset.cat;
+        if (closeMobile) {
+          closeMobileMenu();
+          setTimeout(() => {
+            const target = document.getElementById('cat-' + catId);
+            if (target) smoothScrollTo(target, scrollOffset());
+          }, 300);
+        } else {
+          const target = document.getElementById('cat-' + catId);
+          if (target) smoothScrollTo(target, scrollOffset());
+        }
       });
     });
   };
 
   const renderChips = () => {
     const c = counts();
+    const total = state.data.frameworks.length;
     const cats = state.data.categories.map(x => ({ ...x, count: c[x.id] || 0 }));
     const html = chipHTML(cats);
     el.chips.innerHTML = html;
     const mobileChips = document.getElementById('mobile-filter-chips');
-    if (mobileChips) mobileChips.innerHTML = html;
+    if (mobileChips) {
+      const allHTML = `<button class="chip chip-all" type="button" data-cat="all" aria-selected="false">전체<span class="chip-count">${total}</span></button>`;
+      mobileChips.innerHTML = allHTML + html;
+      const allBtn = mobileChips.querySelector('[data-cat="all"]');
+      if (allBtn) {
+        allBtn.addEventListener('click', () => {
+          document.querySelectorAll('.chip').forEach(b => b.setAttribute('aria-selected', 'false'));
+          allBtn.setAttribute('aria-selected', 'true');
+          closeMobileMenu();
+          setTimeout(() => {
+            const target = document.getElementById('library');
+            if (target) smoothScrollTo(target, 72);
+          }, 300);
+        });
+      }
+    }
     const firstCat = cats[0] && cats[0].id;
     if (firstCat) setActiveChip(firstCat);
     bindChipClicks(el.chips, false);
