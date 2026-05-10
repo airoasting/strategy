@@ -65,22 +65,22 @@ ln -s "$(pwd)/strategy/skill" ~/.claude/skills/strategy
 <summary>전체 목록 보기</summary>
 
 ### 문제 해결·사고 도구
-`#19` 이슈 트리 / MECE &nbsp; `#22` 시나리오 플래닝 &nbsp; `#28` 피라미드 원칙 &nbsp; `#30` 디자인 씽킹
+`#1` 이슈 트리 / MECE &nbsp; `#2` 시나리오 플래닝 &nbsp; `#28` 피라미드 원칙 &nbsp; `#30` 디자인 씽킹
 
 ### 시장·경쟁 분석
-`#4` 3C 분석 &nbsp; `#5` SWOT &nbsp; `#6` 5 Forces &nbsp; `#7` PESTEL &nbsp; `#17` BCG 매트릭스 &nbsp; `#18` Ansoff &nbsp; `#21` GE-McKinsey 9Box &nbsp; `#24` 블루오션 전략
+`#3` 3C 분석 &nbsp; `#4` SWOT &nbsp; `#5` 5 Forces &nbsp; `#8` PESTEL &nbsp; `#6` BCG 매트릭스 &nbsp; `#7` Ansoff &nbsp; `#9` GE-McKinsey 9Box &nbsp; `#10` 블루오션 전략
 
 ### 마케팅 전략
-`#8` STP &nbsp; `#9` 4P &nbsp; `#10` Customer Journey Map &nbsp; `#25` JTBD &nbsp; `#27` Kano 모델 &nbsp; `#29` 포지셔닝 맵
+`#15` STP &nbsp; `#16` 4P &nbsp; `#17` Customer Journey Map &nbsp; `#18` JTBD &nbsp; `#19` Kano 모델 &nbsp; `#29` 포지셔닝 맵
 
 ### 비즈니스 모델·수익 구조
-`#1` BMC &nbsp; `#2` 이익 방정식 &nbsp; `#3` 수익 모델 &nbsp; `#26` Lean Canvas
+`#11` BMC &nbsp; `#12` 이익 방정식 &nbsp; `#13` 수익 모델 &nbsp; `#14` Lean Canvas
 
 ### 조직·내부역량 분석
-`#11` 가치 사슬 &nbsp; `#12` 맥킨지 7S &nbsp; `#13` 역량 성숙도 &nbsp; `#20` BSC &nbsp; `#23` OKR
+`#20` 가치 사슬 &nbsp; `#22` 맥킨지 7S &nbsp; `#23` 역량 성숙도 &nbsp; `#21` BSC &nbsp; `#26` OKR
 
 ### 프로세스 분석
-`#14` 프로세스 분해 &nbsp; `#15` SIPOC &nbsp; `#16` RACI
+`#24` 프로세스 분해 &nbsp; `#27` SIPOC &nbsp; `#25` RACI
 
 </details>
 
