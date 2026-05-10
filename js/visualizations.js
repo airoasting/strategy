@@ -1720,7 +1720,7 @@ window.VIZ = (() => {
     const arcBot = cy + ch + 42;
     return `
     <div class="viz">
-      <svg class="viz-svg" viewBox="0 0 760 320" xmlns="http://www.w3.org/2000/svg">
+      <svg class="viz-svg" viewBox="0 0 760 345" xmlns="http://www.w3.org/2000/svg">
         ${cols}
         <path d="M ${sx + total} ${arcTop} Q ${sx + total / 2} ${arcBot} ${sx} ${arcTop}" stroke="${PRIMARY}" stroke-width="1.8" fill="none" stroke-dasharray="6 4"/>
         <polygon points="${sx},${arcTop - 4} ${sx - 5},${arcTop + 3} ${sx + 5},${arcTop + 3}" fill="${PRIMARY}"/>
