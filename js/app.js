@@ -41,30 +41,41 @@
     return m;
   };
 
-  const setActiveChip = (active) => {
-    el.chips.querySelectorAll('.chip').forEach(b =>
-      b.setAttribute('aria-selected', b === active ? 'true' : 'false')
+  const setActiveChip = (catId) => {
+    document.querySelectorAll('.chip').forEach(b =>
+      b.setAttribute('aria-selected', b.dataset.cat === catId ? 'true' : 'false')
     );
+  };
+
+  const chipHTML = (cats) => cats.map(x => `
+    <button class="chip" type="button" data-cat="${x.id}" aria-selected="false">
+      <span class="chip-dot" style="background:${x.color}"></span>
+      ${esc(x.name)}<span class="chip-count">${x.count}</span>
+    </button>
+  `).join('');
+
+  const bindChipClicks = (container, closeMobile) => {
+    container.querySelectorAll('.chip').forEach(btn => {
+      btn.addEventListener('click', () => {
+        setActiveChip(btn.dataset.cat);
+        const target = document.getElementById('cat-' + btn.dataset.cat);
+        if (target) smoothScrollTo(target);
+        if (closeMobile) closeMobileMenu();
+      });
+    });
   };
 
   const renderChips = () => {
     const c = counts();
     const cats = state.data.categories.map(x => ({ ...x, count: c[x.id] || 0 }));
-    el.chips.innerHTML = cats.map(x => `
-      <button class="chip" type="button" data-cat="${x.id}" aria-selected="false">
-        <span class="chip-dot" style="background:${x.color}"></span>
-        ${esc(x.name)}<span class="chip-count">${x.count}</span>
-      </button>
-    `).join('');
-    const allChips = el.chips.querySelectorAll('.chip');
-    setActiveChip(allChips[0]);
-    allChips.forEach(btn => {
-      btn.addEventListener('click', () => {
-        setActiveChip(btn);
-        const target = document.getElementById('cat-' + btn.dataset.cat);
-        if (target) smoothScrollTo(target);
-      });
-    });
+    const html = chipHTML(cats);
+    el.chips.innerHTML = html;
+    const mobileChips = document.getElementById('mobile-filter-chips');
+    if (mobileChips) mobileChips.innerHTML = html;
+    const firstCat = cats[0] && cats[0].id;
+    if (firstCat) setActiveChip(firstCat);
+    bindChipClicks(el.chips, false);
+    if (mobileChips) bindChipClicks(mobileChips, true);
   };
 
   let _spyObserver = null;
@@ -76,8 +87,7 @@
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           const catId = entry.target.id.replace('cat-', '');
-          const chip = el.chips.querySelector(`[data-cat="${catId}"]`);
-          if (chip) setActiveChip(chip);
+          setActiveChip(catId);
         }
       });
     }, { rootMargin: '-112px 0px -50% 0px', threshold: 0 });
@@ -321,14 +331,54 @@
     return { show, hide, move };
   })();
 
+  const toggleTheme = () => {
+    const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+  };
+
   const initTheme = () => {
     const saved = localStorage.getItem('theme');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     document.documentElement.setAttribute('data-theme', saved || (prefersDark ? 'dark' : 'light'));
-    document.getElementById('theme-toggle').addEventListener('click', () => {
-      const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', next);
-      localStorage.setItem('theme', next);
+    document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
+    const mobileToggle = document.getElementById('theme-toggle-mobile');
+    if (mobileToggle) mobileToggle.addEventListener('click', toggleTheme);
+  };
+
+  const closeMobileMenu = () => {
+    const menu = document.getElementById('mobile-menu');
+    const btn  = document.getElementById('hamburger');
+    if (!menu) return;
+    menu.setAttribute('aria-hidden', 'true');
+    if (btn) btn.setAttribute('aria-expanded', 'false');
+  };
+
+  const initMobileMenu = () => {
+    const btn  = document.getElementById('hamburger');
+    const menu = document.getElementById('mobile-menu');
+    const mSearch = document.getElementById('mobile-search');
+    if (!btn || !menu) return;
+
+    btn.addEventListener('click', () => {
+      const open = menu.getAttribute('aria-hidden') === 'false';
+      menu.setAttribute('aria-hidden', open ? 'true' : 'false');
+      btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+    });
+
+    if (mSearch) {
+      mSearch.addEventListener('input', e => {
+        state.query = e.target.value;
+        el.search.value = e.target.value;
+        renderGallery();
+        initScrollSpy();
+      });
+    }
+
+    document.addEventListener('click', e => {
+      if (!menu.contains(e.target) && !btn.contains(e.target)) {
+        closeMobileMenu();
+      }
     });
   };
 
@@ -354,6 +404,7 @@
     bindModal();
     bindSearch();
     bindFooterLinks();
+    initMobileMenu();
   };
 
   init();
