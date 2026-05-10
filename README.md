@@ -1,22 +1,22 @@
-# Strategy Frameworks · 전략 프레임워크 갤러리
+# 30개 전략 프레임워크
 
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Frameworks](https://img.shields.io/badge/frameworks-30-coral.svg)](https://github.com/airoasting/strategy_frameworks)
 [![Static](https://img.shields.io/badge/build-static-brightgreen.svg)](index.html)
 
-> 맥킨지·베인·BCG 현장 도구 30개를 한 자리에.  
-> 카드로 탐색하고, AI가 상황에 맞는 도구를 골라줍니다.
+맥킨지·베인·BCG 현장 도구 30개를 한 자리에 모았습니다.
+카드로 탐색하고, AI가 상황에 맞는 도구를 골라줍니다.
 
 ---
 
 ## 왜 이 프로젝트인가
 
-전략 프레임워크는 많습니다. 문제는 **지금 내 상황에 뭘 써야 하는지** 모른다는 것.
+전략 프레임워크는 많습니다. 문제는 지금 내 상황에 뭘 써야 하는지 모른다는 것입니다.
 
 이 프로젝트는 두 가지를 함께 제공합니다.
 
-- **갤러리** — 30개 프레임워크를 카드로 탐색, 모달에서 구성·절차·예시까지 확인
-- **AI 추천 스킬** — 상황을 말하면 1순위 도구 + 보조 도구 + 첫 적용 단계를 제안
+- **갤러리**: 30개 프레임워크를 카드로 탐색하고, 모달에서 구성·절차·예시까지 확인할 수 있습니다.
+- **AI 추천 스킬**: 상황을 말하면 1순위 도구와 보조 도구, 첫 적용 단계를 함께 제안합니다.
 
 ---
 
@@ -30,7 +30,7 @@ cd strategy_frameworks
 npx http-server . -p 8000
 ```
 
-브라우저에서 [http://localhost:8000](http://localhost:8000) 열기.
+브라우저에서 [http://localhost:8000](http://localhost:8000)을 열면 됩니다.
 
 ### AI 추천 스킬 설치
 
@@ -39,26 +39,24 @@ git clone https://github.com/airoasting/strategy_frameworks.git
 ln -s "$(pwd)/strategy_frameworks/skill" ~/.claude/skills/strategy-framework
 ```
 
-설치 후 Claude Code에서:
+설치 후 Claude Code에서 상황을 설명하면 바로 추천이 시작됩니다.
 
 ```
 어떤 프레임워크 써야 할지 모르겠어. 신사업 초기 시장 분석을 해야 해.
 ```
 
-→ 1순위 추천 + 이유 + 적용 단계 + 보조 도구까지 바로 제안.
-
 ---
 
 ## 기능
 
-| | |
+| 기능 | 설명 |
 |---|---|
-| 30개 프레임워크 | 6개 카테고리, SVG 시각화 |
-| 카테고리 필터 + 검색 | 실시간, 스크롤 스파이 연동 |
+| 30개 프레임워크 | 6개 카테고리, SVG 시각화 포함 |
+| 카테고리 필터 + 검색 | 실시간 필터링, 스크롤 스파이 연동 |
 | 모달 상세 | 개요·구성·절차·예시·한계·관련 도구 |
-| 라이트 / 다크 모드 | 시스템 설정 감지 + 수동 전환 |
-| AI 추천 스킬 | 자연어 → 1순위 도구 추천 |
-| 제로 의존성 | 바닐라 JS, 빌드 없음 |
+| 라이트 / 다크 모드 | 시스템 설정 감지, 수동 전환 가능 |
+| AI 추천 스킬 | 자연어로 상황 설명하면 1순위 도구 추천 |
+| 제로 의존성 | 바닐라 JS, 별도 빌드 없음 |
 
 ---
 
@@ -99,18 +97,11 @@ AI      추천: 3C 분석 (#4)
               방향이 흔들립니다. 3C로 큰 그림부터 잡는 게 맞습니다.
 
         첫 단계
-        1. 자사(Company) — 현재 보유 자원과 핵심 강점 정리
-        2. 고객(Customer) — 타깃 세그먼트와 핵심 니즈 정의
-        3. 경쟁(Competitor) — 주요 플레이어와 포지셔닝 비교
+        1. 자사(Company): 현재 보유 자원과 핵심 강점을 정리합니다.
+        2. 고객(Customer): 타깃 세그먼트와 핵심 니즈를 정의합니다.
+        3. 경쟁(Competitor): 주요 플레이어와 포지셔닝을 비교합니다.
 
-        보조 도구: BMC(#1) — 사업 모델 초안 설계, PESTEL(#7) — 거시환경 점검
-```
-
-```
-사용자  팀 간 책임이 계속 모호해서 협업이 막혀
-
-AI      추천: RACI 차트 (#16)
-        ...
+        보조 도구: BMC(#1)로 사업 모델 초안을 잡고, PESTEL(#7)로 거시환경을 점검합니다.
 ```
 
 ---
@@ -119,15 +110,15 @@ AI      추천: RACI 차트 (#16)
 
 ```
 .
-├── index.html              # 갤러리 진입점
+├── index.html
 ├── css/style.css
 ├── js/
 │   ├── app.js
-│   └── visualizations.js   # 30개 SVG 시각화
-├── data/frameworks.js      # 전체 데이터
+│   └── visualizations.js
+├── data/frameworks.js
 ├── assets/
 ├── skill/
-│   ├── SKILL.md            # AI 추천 스킬 정의
+│   ├── SKILL.md
 │   └── references/
 │       ├── frameworks.md
 │       └── decision-tree.md
@@ -138,12 +129,9 @@ AI      추천: RACI 차트 (#16)
 
 ## 배포
 
-정적 파일이므로 루트 그대로 올리면 됩니다.
+정적 파일이므로 루트 폴더 그대로 올리면 됩니다.
 
 ```bash
-# GitHub Pages
-# Settings → Pages → Deploy from branch (root)
-
 # Vercel
 vercel --prod
 
@@ -151,16 +139,18 @@ vercel --prod
 netlify deploy --prod --dir .
 ```
 
+GitHub Pages는 Settings에서 root 브랜치를 배포 소스로 지정하면 됩니다.
+
 ---
 
 ## 기여
 
-PR 환영합니다. 프레임워크 추가, 번역, 시각화 개선 모두 좋습니다.
+PR을 환영합니다. 프레임워크 추가, 번역, 시각화 개선 모두 좋습니다.
 
-1. Fork → 브랜치 생성
-2. `data/frameworks.js`에 프레임워크 추가
-3. `js/visualizations.js`에 시각화 추가
-4. PR 제출
+1. Fork 후 브랜치를 만듭니다.
+2. `data/frameworks.js`에 프레임워크를 추가합니다.
+3. `js/visualizations.js`에 시각화를 추가합니다.
+4. PR을 제출합니다.
 
 ---
 
