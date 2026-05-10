@@ -59,6 +59,28 @@ ln -s "$(pwd)/strategy/skill" ~/.claude/skills/strategy
 
 ---
 
+## 스크린샷
+
+### 문제 해결·사고 도구
+![문제 해결·사고 도구](assets/screenshots/problem-solving.png)
+
+### 시장·경쟁 분석
+![시장·경쟁 분석](assets/screenshots/market.png)
+
+### 마케팅 전략
+![마케팅 전략](assets/screenshots/marketing.png)
+
+### 비즈니스 모델·수익 구조
+![비즈니스 모델·수익 구조](assets/screenshots/business-model.png)
+
+### 조직·내부역량 분석
+![조직·내부역량 분석](assets/screenshots/organization.png)
+
+### 프로세스 분석
+![프로세스 분석](assets/screenshots/process.png)
+
+---
+
 ## 30개 프레임워크
 
 <details>

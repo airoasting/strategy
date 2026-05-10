@@ -1,0 +1,8 @@
+{
+  "name": "strategy-frameworks",
+  "version": "1.0.0",
+  "private": true,
+  "devDependencies": {
+    "playwright": "^1.59.1"
+  }
+}
