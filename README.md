@@ -35,7 +35,7 @@ npx http-server . -p 8000
 
 ```bash
 git clone https://github.com/airoasting/strategy_frameworks.git
-ln -s "$(pwd)/strategy_frameworks/skill" ~/.claude/skills/strategy-framework
+ln -s "$(pwd)/strategy_frameworks/skill" ~/.claude/skills/strategy_frameworks
 ```
 
 설치하고 나면 상황을 말하는 것만으로 도구 추천이 됩니다.
