@@ -1,13 +1,13 @@
 # 30개 전략 프레임워크
 
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Frameworks](https://img.shields.io/badge/frameworks-30-coral.svg)](https://github.com/airoasting/strategy_frameworks)
+[![Frameworks](https://img.shields.io/badge/frameworks-30-coral.svg)](https://github.com/airoasting/strategy)
 [![Static](https://img.shields.io/badge/build-static-brightgreen.svg)](index.html)
 
 맥킨지·베인·BCG 현장 도구 30개를 한 자리에 모았습니다.
 카드로 탐색하고, AI가 상황에 맞는 도구를 골라줍니다.
 
-**[airoasting.github.io/strategy_frameworks](https://airoasting.github.io/strategy_frameworks/)**
+**[airoasting.github.io/strategy](https://airoasting.github.io/strategy/)**
 
 ---
 
@@ -24,8 +24,8 @@
 ### 갤러리 로컬 실행
 
 ```bash
-git clone https://github.com/airoasting/strategy_frameworks.git
-cd strategy_frameworks
+git clone https://github.com/airoasting/strategy.git
+cd strategy
 npx http-server . -p 8000
 ```
 
@@ -34,8 +34,8 @@ npx http-server . -p 8000
 ### AI 추천 스킬 설치
 
 ```bash
-git clone https://github.com/airoasting/strategy_frameworks.git
-ln -s "$(pwd)/strategy_frameworks/skill" ~/.claude/skills/strategy_frameworks
+git clone https://github.com/airoasting/strategy.git
+ln -s "$(pwd)/strategy/skill" ~/.claude/skills/strategy
 ```
 
 설치하고 나면 상황을 말하는 것만으로 도구 추천이 됩니다.
