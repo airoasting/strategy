@@ -145,12 +145,14 @@ body {
   color: var(--ink);
 }
 .brand-logo {
-  width: 36px;
-  height: 36px;
+  width: 37px;
+  height: 37px;
   border-radius: 50%;
   flex-shrink: 0;
   display: block;
   object-fit: cover;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px #ffffff;
 }
 .brand-text {
   font-family: var(--mono);
