@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>전략 프레임워크 갤러리 · 컨설팅 30개 도구</title>
+  <meta name="description" content="컨설팅 현장에서 가장 많이 쓰이는 30개 전략 사고 도구를 카테고리별로 정리한 에디토리얼 갤러리." />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Top nav -->
+  <nav class="top-nav">
+    <div class="container">
+      <a href="#" class="brand">
+        <img src="assets/logo.png" alt="AI Roasting" class="brand-logo" />
+        <span class="brand-text">AI ROASTING</span>
+      </a>
+      <input type="search" id="search-input" class="search-input nav-search" placeholder="프레임워크 검색…" autocomplete="off" />
+      <div class="nav-right">
+        <a href="#cta" class="btn btn-primary">스킬 받기</a>
+        <button id="theme-toggle" class="btn-theme" type="button" aria-label="테마 전환">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="container">
+      <p class="hero-eyebrow">30 Strategy Frameworks</p>
+      <h1>
+        가장 중요한 비즈니스 질문에<br/>
+        답하는 <em>30가지 전략 도구</em>
+      </h1>
+      <p class="hero-sub">맥킨지·베인·BCG 현장 도구를 6개 영역으로 정리했습니다.</p>
+    </div>
+  </header>
+
+  <!-- Filter band -->
+  <section class="filters" id="categories">
+    <div class="container">
+      <div class="filter-chips" id="filter-chips" role="tablist" aria-label="카테고리 필터"></div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <main class="gallery-section" id="library">
+    <div class="container">
+      <div id="gallery" aria-live="polite"></div>
+      <p id="empty-state" class="empty-state" hidden>일치하는 프레임워크가 없습니다.</p>
+    </div>
+  </main>
+
+  <!-- Coral CTA band -->
+  <section class="coral-band" id="cta">
+    <div class="container">
+      <div class="coral-callout">
+        <div>
+          <h2>상황만 말씀하시면, 도구는 저희가 고릅니다.</h2>
+          <p>
+            지금 풀려는 문제를 자연어로 설명하시면, 30개 중 가장 잘 맞는 프레임워크 한 개와
+            보조 도구 한두 개를 골라드립니다. Claude Code 스킬로 한 번 설치해 두시면, 필요할 때 바로 불러올 수 있습니다.
+          </p>
+        </div>
+        <div class="cta-row">
+          <a href="#" class="btn btn-on-coral">스킬 설치하기</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer" id="about">
+    <div class="container">
+      <div>
+        <a href="#" class="footer-brand">
+          <img src="assets/logo.png" alt="AI Roasting" class="brand-logo" />
+          <span class="brand-text">AI ROASTING <span class="brand-sep">/</span> 전략 프레임워크</span>
+        </a>
+        <p class="footer-tag">
+          맥킨지·베인·BCG 등 글로벌 컨설팅 현장에서 표준으로 쓰이는 전략 사고 도구 30개를 한 자리에 모았습니다. 각 도구를 카테고리별로 시각화하고, 자연어로 도구를 골라주는 스킬도 함께 제공합니다.
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>카테고리</h4>
+        <ul>
+          <li><a href="#cat-problem-solving" data-scroll-cat="problem-solving">문제 해결·사고 도구 <span class="footer-count">4</span></a></li>
+          <li><a href="#cat-market" data-scroll-cat="market">시장·경쟁 분석 <span class="footer-count">8</span></a></li>
+          <li><a href="#cat-marketing" data-scroll-cat="marketing">마케팅 전략 <span class="footer-count">6</span></a></li>
+          <li><a href="#cat-business-model" data-scroll-cat="business-model">비즈니스 모델·수익 구조 분석 <span class="footer-count">4</span></a></li>
+          <li><a href="#cat-organization" data-scroll-cat="organization">조직·내부역량 분석 <span class="footer-count">5</span></a></li>
+          <li><a href="#cat-process" data-scroll-cat="process">프로세스 분석 <span class="footer-count">3</span></a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>리소스</h4>
+        <ul>
+          <li><a href="#">Claude Code 스킬</a></li>
+          <li><a href="#">프레임워크 데이터(JSON)</a></li>
+          <li><a href="#">SVG 다이어그램 소스</a></li>
+        </ul>
+      </div>
+      <div class="footer-bottom" style="grid-column:1/-1">
+        © 2026 전략 프레임워크 갤러리 · Anthropic Claude.com 디자인 언어 기반
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal -->
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-dialog" role="document">
+      <button class="modal-close" type="button" aria-label="닫기" data-close>×</button>
+      <div class="modal-content" id="modal-content"></div>
+    </div>
+  </div>
+
+  <script src="data/frameworks.js"></script>
+  <script src="js/visualizations.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
