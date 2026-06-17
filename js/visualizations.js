@@ -2140,11 +2140,11 @@ window.VIZ = (() => {
           return `
           <g data-tip-title="${a(c.t)}" data-tip="${a(c.tip)}">
             <rect x="${x}" y="${top}" width="${colW}" height="250" rx="10" fill="${c.hot ? PRIMARY_SOFT : PAPER}" stroke="${INK}" stroke-width="${c.hot ? 1.8 : 1.2}"/>
-            <text x="${x + colW/2}" y="${top + 28}" text-anchor="middle" font-size="15" font-weight="700" fill="${c.hot ? PRIMARY : INK}">${a(c.t)}</text>
-            ${c.hot ? `<rect x="${x + colW - 64}" y="${top + 14}" width="52" height="20" rx="10" fill="${PRIMARY}"/><text x="${x + colW - 38}" y="${top + 28}" text-anchor="middle" font-size="11" font-weight="700" fill="${PAPER}">WIP 2</text>` : ''}
+            <text x="${x + colW/2}" y="${top + 26}" text-anchor="middle" font-size="15" font-weight="700" fill="${c.hot ? PRIMARY : INK}">${a(c.t)}</text>
+            ${c.hot ? `<rect x="${x + colW/2 - 28}" y="${top + 36}" width="56" height="20" rx="10" fill="${PRIMARY}"/><text x="${x + colW/2}" y="${top + 50}" text-anchor="middle" font-size="11" font-weight="700" fill="${PAPER}">WIP 2</text>` : ''}
             ${c.cards.map((card,k) => `
-              <rect x="${x + 14}" y="${top + 48 + k*52}" width="${colW - 28}" height="40" rx="6" fill="${CARD}" stroke="${INK}" stroke-width="1"/>
-              <text x="${x + 26}" y="${top + 73 + k*52}" font-size="12" font-weight="600" fill="${INK}">${a(card)}</text>`).join('')}
+              <rect x="${x + 14}" y="${top + 66 + k*52}" width="${colW - 28}" height="40" rx="6" fill="${CARD}" stroke="${INK}" stroke-width="1"/>
+              <text x="${x + 26}" y="${top + 91 + k*52}" font-size="12" font-weight="600" fill="${INK}">${a(card)}</text>`).join('')}
           </g>`;
         }).join('')}
       </svg>
@@ -2738,13 +2738,14 @@ window.VIZ = (() => {
       { n: '직무역량 / Functional', l: '직무역량', e: 'Functional Competency', d: '직무 수행에 필요한 지식·기술', hi: false, tip: '맡은 직무를 잘 수행하기 위해 필요한 전문 지식과 기술이다.' },
       { n: '리더십역량 / Leadership', l: '리더십역량', e: 'Leadership Competency', d: '조직을 이끄는 역량', hi: true, tip: '사람과 조직을 이끌고 성과를 만들어 내는 상위 리더십 역량이다.' }
     ];
-    const cx = 290, baseW = 420, top = 80, sh = 90, gap = 8;
+    const cx = 290, top = 86, bh = 92;
+    const widths = [380, 280, 175, 78]; // 바닥→꼭대기 경계 폭(이어지는 삼각형)
     const steps = L.map((s, i) => {
-      const idx = L.length - 1 - i;
-      const w = baseW - i * 130;
-      const y = top + idx * (sh + gap);
-      const x = cx - w / 2;
-      return `<g data-tip-title="${a(s.n)}" data-tip="${a(s.tip)}"><polygon points="${x},${y + sh} ${x + w},${y + sh} ${cx + (w / 2) * 0.7},${y} ${cx - (w / 2) * 0.7},${y}" fill="${s.hi ? PRIMARY : PAPER}" stroke="${INK}" stroke-width="1.4"/><text x="${cx}" y="${y + sh / 2 - 4}" text-anchor="middle" font-size="16" font-weight="700" fill="${s.hi ? ON_DARK : INK}">${a(s.l)}</text><text x="${cx}" y="${y + sh / 2 + 16}" text-anchor="middle" font-size="12" fill="${s.hi ? ON_DARK : BODY}">${a(s.d)}</text></g>`;
+      const yB = top + (3 - i) * bh;
+      const yT = top + (2 - i) * bh;
+      const wB = widths[i], wT = widths[i + 1];
+      const cy = (yB + yT) / 2;
+      return `<g data-tip-title="${a(s.n)}" data-tip="${a(s.tip)}"><polygon points="${cx - wB / 2},${yB} ${cx + wB / 2},${yB} ${cx + wT / 2},${yT} ${cx - wT / 2},${yT}" fill="${s.hi ? PRIMARY : PAPER}" stroke="${INK}" stroke-width="1.4"/><text x="${cx}" y="${cy - 4}" text-anchor="middle" font-size="16" font-weight="700" fill="${s.hi ? ON_DARK : INK}">${a(s.l)}</text><text x="${cx}" y="${cy + 16}" text-anchor="middle" font-size="12" fill="${s.hi ? ON_DARK : BODY}">${a(s.d)}</text></g>`;
     }).join('');
     const ksa = [
       { k: 'K', t: 'Knowledge / 지식', tip: '직무에 필요한 이론·정보·전문 지식.' },
