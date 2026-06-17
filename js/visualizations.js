@@ -939,23 +939,23 @@ window.VIZ = (() => {
   };
   const jtbdFull = () => {
     const jobs = [
-      { r:250, fill:PAPER, stroke:INK, label:'사회적 Job', sub:'Social', tip:'타인에게 어떻게 보이고 싶은가. "성공한 사람처럼 보이고 싶다", "환경을 생각하는 사람으로 인정받고 싶다" 등.' },
-      { r:175, fill:AMBER_SOFT, stroke:INK, label:'감성적 Job', sub:'Emotional', tip:'그 과정에서 느끼고 싶은 감정. "안전하다는 느낌", "자신감", "편안함" 등. 기능적 Job보다 강력한 구매 동기가 되는 경우가 많습니다.' },
-      { r:100, fill:PRIMARY_SOFT, stroke:INK, label:'기능적 Job', sub:'Functional', tip:'실용적으로 해결해야 할 과제. "A에서 B로 이동한다", "보고서를 빠르게 만든다" 등. 가장 표면적인 니즈입니다.' }
+      { r:150, fill:PAPER, stroke:INK, label:'사회적 Job', sub:'Social', tip:'타인에게 어떻게 보이고 싶은가. "성공한 사람처럼 보이고 싶다", "환경을 생각하는 사람으로 인정받고 싶다" 등.' },
+      { r:103, fill:AMBER_SOFT, stroke:INK, label:'감성적 Job', sub:'Emotional', tip:'그 과정에서 느끼고 싶은 감정. "안전하다는 느낌", "자신감", "편안함" 등. 기능적 Job보다 강력한 구매 동기가 되는 경우가 많습니다.' },
+      { r:58, fill:PRIMARY_SOFT, stroke:INK, label:'기능적 Job', sub:'Functional', tip:'실용적으로 해결해야 할 과제. "A에서 B로 이동한다", "보고서를 빠르게 만든다" 등. 가장 표면적인 니즈입니다.' }
     ];
     return `
     <div class="viz">
       <svg class="viz-svg" viewBox="0 0 760 420" xmlns="http://www.w3.org/2000/svg">
         ${jobs.map(j=>`
           <g data-tip-title="${a(j.label)} (${a(j.sub)})" data-tip="${a(j.tip)}">
-            <circle cx="380" cy="200" r="${j.r}" fill="${j.fill}" stroke="${j.stroke}" stroke-width="1.2"/>
+            <circle cx="380" cy="170" r="${j.r}" fill="${j.fill}" stroke="${j.stroke}" stroke-width="1.2"/>
           </g>`).join('')}
-        <text x="380" y="196" text-anchor="middle" font-size="16" font-weight="700" fill="${INK}">기능적 Job</text>
-        <text x="380" y="216" text-anchor="middle" font-size="12" fill="${MUTED}">Functional</text>
-        <text x="380" y="100" text-anchor="middle" font-size="14" font-weight="600" fill="${INK}">감성적 Job</text>
-        <text x="380" y="118" text-anchor="middle" font-size="11" fill="${MUTED}">Emotional</text>
-        <text x="380" y="318" text-anchor="middle" font-size="14" font-weight="600" fill="${INK}">사회적 Job</text>
-        <text x="380" y="336" text-anchor="middle" font-size="11" fill="${MUTED}">Social</text>
+        <text x="380" y="168" text-anchor="middle" font-size="16" font-weight="700" fill="${INK}">기능적 Job</text>
+        <text x="380" y="186" text-anchor="middle" font-size="11" fill="${MUTED}">Functional</text>
+        <text x="380" y="94" text-anchor="middle" font-size="13" font-weight="600" fill="${INK}">감성적 Job</text>
+        <text x="380" y="110" text-anchor="middle" font-size="10" fill="${MUTED}">Emotional</text>
+        <text x="380" y="44" text-anchor="middle" font-size="13" font-weight="600" fill="${INK}">사회적 Job</text>
+        <text x="380" y="60" text-anchor="middle" font-size="10" fill="${MUTED}">Social</text>
         <rect x="20" y="345" width="720" height="60" rx="6" fill="${CARD}" stroke="${HAIRLINE}" stroke-width="1"/>
         <text x="380" y="368" text-anchor="middle" font-size="12" font-weight="700" fill="${INK}">핵심 원칙: 고객은 제품을 "고용"한다</text>
         <text x="380" y="388" text-anchor="middle" font-size="11" fill="${BODY}">어떤 상황에서 어떤 Job을 해결하기 위해 우리 제품을 고용하는가를 파악하면 진짜 경쟁자가 보입니다</text>
@@ -2183,7 +2183,7 @@ window.VIZ = (() => {
       { label:'왜? 펌프 축이 마모됐다', kind:'원인 4', tip:'네 번째 왜. 펌프 불량의 물리적 원인을 축 마모로 밝힙니다. 거의 근본에 다가섰습니다.' },
       { label:'왜? 흡입구 필터가 없어 쇳가루가 유입됐다', kind:'근본 원인', tip:'다섯 번째 왜. 진짜 원인입니다. 필터를 설치하면 위의 모든 고장 사슬이 끊깁니다. 대책은 여기에 세웁니다.' }
     ];
-    const x0 = 60, indent = 70, top = 70, gap = 64, w = 460, h = 46;
+    const x0 = 40, indent = 42, top = 70, gap = 64, w = 430, h = 46;
     return `
     <div class="viz">
       <svg class="viz-svg" viewBox="0 0 760 470" xmlns="http://www.w3.org/2000/svg">
@@ -2446,7 +2446,8 @@ window.VIZ = (() => {
 
   const vrioThumb = () => {
     const steps = ['V', 'R', 'I', 'O'];
-    const x0 = 22, y = 76, bw = 42, bh = 36, gap = 18;
+    const x0 = 16, y = 76, bw = 36, bh = 36, gap = 10;
+    const advX = x0 + 4 * (bw + gap) - gap + 6, advW = 42;
     return `<svg class="thumb-svg" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
       ${steps.map((s, i) => {
         const x = x0 + i * (bw + gap);
@@ -2455,8 +2456,9 @@ window.VIZ = (() => {
           ${i < 3 ? `<line x1="${x + bw}" y1="${y + bh / 2}" x2="${x + bw + gap}" y2="${y + bh / 2}" stroke="${INK}" stroke-width="1.2" pointer-events="none"/>` : ''}
           <line x1="${x + bw / 2}" y1="${y + bh}" x2="${x + bw / 2}" y2="${y + bh + 16}" stroke="${MUTED}" stroke-width="1" stroke-dasharray="2 2" pointer-events="none"/>`;
       }).join('')}
-      <rect x="${x0 + 4 * (bw + gap) - gap + 4}" y="${y}" width="48" height="${bh}" rx="6" fill="${PRIMARY}" stroke="${PRIMARY}" stroke-width="1.4"/>
-      <text x="${x0 + 4 * (bw + gap) - gap + 28}" y="${y + bh / 2 + 4}" text-anchor="middle" font-size="9" font-weight="700" fill="${ON_DARK}">우위</text>
+      <line x1="${x0 + 4 * (bw + gap) - gap}" y1="${y + bh / 2}" x2="${advX}" y2="${y + bh / 2}" stroke="${INK}" stroke-width="1.2" pointer-events="none"/>
+      <rect x="${advX}" y="${y}" width="${advW}" height="${bh}" rx="6" fill="${PRIMARY}" stroke="${PRIMARY}" stroke-width="1.4"/>
+      <text x="${advX + advW / 2}" y="${y + bh / 2 + 4}" text-anchor="middle" font-size="9" font-weight="700" fill="${ON_DARK}">우위</text>
     </svg>`;
   };
 
@@ -2467,31 +2469,33 @@ window.VIZ = (() => {
       { k: 'I', q: '모방 어려운가?', no: '일시적 우위', tip: '모방·대체가 비싸거나 어려운가? 쉽게 따라잡히면 일시적 우위뿐이다.' },
       { k: 'O', q: '조직이 활용하는가?', no: '미활용 우위', tip: '조직 구조와 프로세스가 자원을 활용하는가? 아니면 잠재력이 사장된다.' }
     ];
-    const x0 = 30, ytop = 70, bw = 150, bh = 84, gap = 28;
+    const x0 = 22, ytop = 74, bw = 116, bh = 84, gap = 18;
     const arrowY = ytop + bh / 2;
+    const outX = x0 + 4 * (bw + gap) - gap + 14, outW = 184;
     return `
     <div class="viz">
       <svg class="viz-svg" viewBox="0 0 760 360" xmlns="http://www.w3.org/2000/svg">
         <defs><marker id="vrioAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><polygon points="0,0 10,5 0,10" fill="${INK}"/></marker></defs>
-        <text x="380" y="30" text-anchor="middle" font-size="17" font-weight="700" fill="${INK}" pointer-events="none">VRIO 분석</text>
+        <text x="380" y="34" text-anchor="middle" font-size="17" font-weight="700" fill="${INK}" pointer-events="none">VRIO 분석</text>
         ${steps.map((s, i) => {
           const x = x0 + i * (bw + gap);
           return `<g data-tip-title="${a(s.k + ' · ' + s.q)}" data-tip="${a(s.tip)}">
             <rect x="${x}" y="${ytop}" width="${bw}" height="${bh}" rx="8" fill="${PAPER}" stroke="${INK}" stroke-width="1.5"/>
-            <text x="${x + bw / 2}" y="${ytop + 30}" text-anchor="middle" font-size="20" font-weight="800" fill="${INK}">${a(s.k)}</text>
-            <text x="${x + bw / 2}" y="${ytop + 56}" text-anchor="middle" font-size="13" fill="${BODY}">${a(s.q)}</text>
+            <text x="${x + bw / 2}" y="${ytop + 32}" text-anchor="middle" font-size="20" font-weight="800" fill="${INK}">${a(s.k)}</text>
+            <text x="${x + bw / 2}" y="${ytop + 56}" text-anchor="middle" font-size="12" fill="${BODY}">${a(s.q)}</text>
           </g>
-          ${i < steps.length - 1 ? `<text x="${x + bw + gap / 2}" y="${arrowY - 8}" text-anchor="middle" font-size="11" font-weight="700" fill="${TEAL}" pointer-events="none">Yes</text><line x1="${x + bw}" y1="${arrowY}" x2="${x + bw + gap}" y2="${arrowY}" stroke="${INK}" stroke-width="1.4" marker-end="url(#vrioAr)" pointer-events="none"/>` : ''}
+          ${i < steps.length - 1 ? `<text x="${x + bw + gap / 2}" y="${arrowY - 8}" text-anchor="middle" font-size="10" font-weight="700" fill="${TEAL}" pointer-events="none">Yes</text><line x1="${x + bw}" y1="${arrowY}" x2="${x + bw + gap}" y2="${arrowY}" stroke="${INK}" stroke-width="1.4" marker-end="url(#vrioAr)" pointer-events="none"/>` : ''}
           <line x1="${x + bw / 2}" y1="${ytop + bh}" x2="${x + bw / 2}" y2="${ytop + bh + 34}" stroke="${MUTED}" stroke-width="1.2" stroke-dasharray="3 3" marker-end="url(#vrioAr)" pointer-events="none"/>
           <text x="${x + bw / 2}" y="${ytop + bh + 14}" text-anchor="middle" font-size="10" font-weight="700" fill="${MUTED}" pointer-events="none">No</text>
-          <text x="${x + bw / 2}" y="${ytop + bh + 50}" text-anchor="middle" font-size="12" fill="${MUTED}" pointer-events="none">${a(s.no)}</text>`;
+          <text x="${x + bw / 2}" y="${ytop + bh + 50}" text-anchor="middle" font-size="11" fill="${MUTED}" pointer-events="none">${a(s.no)}</text>`;
         }).join('')}
+        <text x="${outX - gap / 2}" y="${arrowY - 8}" text-anchor="middle" font-size="10" font-weight="700" fill="${TEAL}" pointer-events="none">Yes</text>
+        <line x1="${outX - gap}" y1="${arrowY}" x2="${outX}" y2="${arrowY}" stroke="${INK}" stroke-width="1.4" marker-end="url(#vrioAr)" pointer-events="none"/>
         <g data-tip-title="지속적 경쟁우위" data-tip="네 질문에 모두 Yes일 때 도달한다. 모방·대체가 어렵고 조직이 충분히 활용하는 자원이다.">
-          <rect x="${x0 + 4 * (bw + gap) - gap + 16}" y="${ytop}" width="156" height="${bh}" rx="8" fill="${PRIMARY}" stroke="${PRIMARY}" stroke-width="1.5"/>
-          <text x="${x0 + 4 * (bw + gap) - gap + 16 + 78}" y="${ytop + 36}" text-anchor="middle" font-size="14" font-weight="700" fill="${ON_DARK}">지속적</text>
-          <text x="${x0 + 4 * (bw + gap) - gap + 16 + 78}" y="${ytop + 58}" text-anchor="middle" font-size="14" font-weight="700" fill="${ON_DARK}">경쟁우위</text>
+          <rect x="${outX}" y="${ytop}" width="${outW}" height="${bh}" rx="8" fill="${PRIMARY}" stroke="${PRIMARY}" stroke-width="1.5"/>
+          <text x="${outX + outW / 2}" y="${ytop + 36}" text-anchor="middle" font-size="15" font-weight="700" fill="${ON_DARK}">지속적</text>
+          <text x="${outX + outW / 2}" y="${ytop + 58}" text-anchor="middle" font-size="15" font-weight="700" fill="${ON_DARK}">경쟁우위</text>
         </g>
-        <text x="${x0 + 4 * (bw + gap) - gap + 16 - 8}" y="${arrowY - 8}" text-anchor="middle" font-size="11" font-weight="700" fill="${TEAL}" pointer-events="none">Yes</text>
       </svg>
       <div class="viz-caption">자원이 가치·희소성·모방곤란성·조직 활용을 모두 충족할 때 지속적 경쟁우위가 된다.</div>
     </div>`;
@@ -2878,7 +2882,7 @@ window.VIZ = (() => {
           ${bars.map((b, i) => `<circle cx="${(bx(i) + bw / 2).toFixed(1)}" cy="${cumY(b.cum).toFixed(1)}" r="4" fill="${PAPER}" stroke="${INK}" stroke-width="2"/>`).join('')}
         </g>
       </svg>
-      <div class="viz-caption">상위 핵심 소수(PRIMARY)에 자원을 집중해 개선 효과를 극대화합니다</div>
+      <div class="viz-caption">상위 핵심 소수(누적 80%)에 자원을 집중해 개선 효과를 극대화합니다</div>
     </div>`;
   };
 
@@ -2956,7 +2960,7 @@ window.VIZ = (() => {
           <text x="${cx}" y="${cyT + 50}" text-anchor="middle" font-size="13" font-weight="700" fill="${ON_DARK}">역량</text>
         </g>
       </svg>
-      <div class="viz-caption">세 원이 겹치는 중심(PRIMARY)에 전략 자원을 집중 투입합니다</div>
+      <div class="viz-caption">세 원이 겹치는 중심에 전략 자원을 집중 투입합니다</div>
     </div>`;
   };
 
@@ -3024,7 +3028,7 @@ window.VIZ = (() => {
         <path d="M${sx0 + (steps.length - 1) * sStep} ${sy + 24} q0 28 -${(steps.length - 1) * sStep / 2} 28 q-${(steps.length - 1) * sStep / 2} 0 ${(steps.length - 1) * sStep / 2 - 6} -22" fill="none" stroke="${MUTED_SOFT}" stroke-width="1.5" stroke-dasharray="5 4" pointer-events="none"/>
         <text x="${sx0}" y="${sy + 58}" font-size="10" fill="${MUTED}" pointer-events="none">반복</text>
       </svg>
-      <div class="viz-caption">약한 고리(제약·PRIMARY)를 찾아 5단계 집중 개선을 순환합니다</div>
+      <div class="viz-caption">약한 고리(제약)를 찾아 5단계 집중 개선을 순환합니다</div>
     </div>`;
   };
 
