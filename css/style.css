@@ -145,6 +145,13 @@ body {
   text-decoration: none;
   color: var(--ink);
 }
+.brand-logo-wrap {
+  position: relative;
+  display: inline-flex;
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+}
 .brand-logo {
   width: 30px;
   height: 30px;
@@ -154,6 +161,35 @@ body {
   object-fit: cover;
   background: #ffffff;
   box-shadow: 0 0 0 2px #ffffff;
+  transition: transform 0.4s ease;
+}
+/* 호버 시 로고가 360도 회전 */
+@keyframes brand-spin {
+  to { transform: rotate(360deg); }
+}
+.brand:hover .brand-logo {
+  animation: brand-spin 1.2s linear infinite;
+}
+/* 호버 시 로고에서 퍼지는 물결(ripple) */
+.brand-logo-wrap::before,
+.brand-logo-wrap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid #e8772e;
+  opacity: 0;
+  pointer-events: none;
+}
+@keyframes brand-ripple {
+  0%   { opacity: 0.6; transform: scale(1); }
+  100% { opacity: 0; transform: scale(2.6); }
+}
+.brand:hover .brand-logo-wrap::before {
+  animation: brand-ripple 1.6s ease-out infinite;
+}
+.brand:hover .brand-logo-wrap::after {
+  animation: brand-ripple 1.6s ease-out infinite 0.8s;
 }
 .brand-text {
   font-family: var(--mono);
