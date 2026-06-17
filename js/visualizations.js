@@ -2119,8 +2119,8 @@ window.VIZ = (() => {
         return `
         <rect x="${x}" y="26" width="${colW}" height="138" rx="5" fill="${c.hot ? PRIMARY_SOFT : PAPER}" stroke="${INK}" stroke-width="${c.hot ? 1.3 : 0.8}"/>
         <text x="${x + colW/2}" y="42" text-anchor="middle" font-size="9" font-weight="700" fill="${c.hot ? PRIMARY : INK}">${c.t}</text>
-        ${c.hot ? `<rect x="${x + colW - 30}" y="30" width="26" height="11" rx="5" fill="${PRIMARY}"/><text x="${x + colW - 17}" y="38" text-anchor="middle" font-size="7" font-weight="700" fill="${PAPER}">WIP2</text>` : ''}
-        ${Array.from({length:c.cards}).map((_,k) => `<rect x="${x + 8}" y="${50 + k*26}" width="${colW - 16}" height="20" rx="3" fill="${CARD}" stroke="${INK}" stroke-width="0.6"/>`).join('')}`;
+        ${c.hot ? `<rect x="${x + colW/2 - 13}" y="46" width="26" height="11" rx="5.5" fill="${PRIMARY}"/><text x="${x + colW/2}" y="54" text-anchor="middle" font-size="7" font-weight="700" fill="${PAPER}">WIP2</text>` : ''}
+        ${Array.from({length:c.cards}).map((_,k) => `<rect x="${x + 8}" y="${(c.hot ? 64 : 50) + k*26}" width="${colW - 16}" height="20" rx="3" fill="${CARD}" stroke="${INK}" stroke-width="0.6"/>`).join('')}`;
       }).join('')}
     </svg>`;
   };
