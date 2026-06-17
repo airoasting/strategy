@@ -2709,7 +2709,7 @@ window.VIZ = (() => {
     const cx = 300, baseW = 360, top = 70, sh = 70, gap = 6;
     const steps = L.map((s, i) => {
       const w = baseW - i * 80;
-      const y = top + i * (sh + gap);
+      const y = top + (L.length - 1 - i) * (sh + gap);
       const x = cx - w / 2;
       return `<g data-tip-title="${a(s.n)}" data-tip="${a(s.tip)}"><rect x="${x}" y="${y}" width="${w}" height="${sh}" rx="3" fill="${s.hi ? PRIMARY : PAPER}" stroke="${INK}" stroke-width="1.4"/><text x="${cx}" y="${y + 30}" text-anchor="middle" font-size="16" font-weight="700" fill="${s.hi ? ON_DARK : INK}">${a('Lv' + s.k + ' ' + s.l)} <tspan font-size="13" font-weight="400" fill="${s.hi ? ON_DARK : MUTED}">${a(s.e)}</tspan></text><text x="${cx}" y="${y + 52}" text-anchor="middle" font-size="12" fill="${s.hi ? ON_DARK : BODY}">${a(s.d)}</text></g>`;
     }).join('');
@@ -2724,7 +2724,7 @@ window.VIZ = (() => {
     const cx = 110, baseW = 150, top = 50, sh = 32, gap = 6;
     const steps = L.map((s, i) => {
       const idx = L.length - 1 - i;
-      const w = baseW - idx * 45;
+      const w = baseW - i * 45;
       const y = top + idx * (sh + gap);
       const x = cx - w / 2;
       return `<rect x="${x}" y="${y}" width="${w}" height="${sh}" fill="${s.hi ? PRIMARY : PAPER}" stroke="${INK}" stroke-width="1.2"/><text x="${cx}" y="${y + 21}" text-anchor="middle" font-size="11" font-weight="700" fill="${s.hi ? ON_DARK : INK}">${a(s.l)}</text>`;
@@ -2741,7 +2741,7 @@ window.VIZ = (() => {
     const cx = 290, baseW = 420, top = 80, sh = 90, gap = 8;
     const steps = L.map((s, i) => {
       const idx = L.length - 1 - i;
-      const w = baseW - idx * 130;
+      const w = baseW - i * 130;
       const y = top + idx * (sh + gap);
       const x = cx - w / 2;
       return `<g data-tip-title="${a(s.n)}" data-tip="${a(s.tip)}"><polygon points="${x},${y + sh} ${x + w},${y + sh} ${cx + (w / 2) * 0.7},${y} ${cx - (w / 2) * 0.7},${y}" fill="${s.hi ? PRIMARY : PAPER}" stroke="${INK}" stroke-width="1.4"/><text x="${cx}" y="${y + sh / 2 - 4}" text-anchor="middle" font-size="16" font-weight="700" fill="${s.hi ? ON_DARK : INK}">${a(s.l)}</text><text x="${cx}" y="${y + sh / 2 + 16}" text-anchor="middle" font-size="12" fill="${s.hi ? ON_DARK : BODY}">${a(s.d)}</text></g>`;

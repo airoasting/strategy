@@ -1102,6 +1102,9 @@ body.no-scroll { overflow: hidden; }
 [data-theme="dark"] .site-footer { background: var(--surface-dark); }
 [data-theme="dark"] .mobile-menu { background: var(--canvas); border-color: var(--hairline); }
 [data-theme="dark"] .mobile-search { background: #1f1d1a; border-color: var(--hairline); color: var(--ink); }
+/* SVG 차트는 밝은색(PAPER/INK)으로 고정되어 있으므로, 다크 모드에서도 차트 면을 항상 종이색으로 유지해 대비를 보존한다 */
+[data-theme="dark"] .card-thumb { background: #faf9f5; }
+[data-theme="dark"] .m-stage .viz { background: #faf9f5; border-color: #e6dfd8; }
 
 /* =====================================================
    Page load animation
