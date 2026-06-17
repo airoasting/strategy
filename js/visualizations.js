@@ -1732,7 +1732,1323 @@ window.VIZ = (() => {
     </div>`;
   };
 
+  /* ============================================================
+     AARRR — 해적 지표 (5단계 깔때기)
+     ============================================================ */
+  const aarrrThumb = () => {
+    const rows = [200, 168, 136, 104, 72];
+    return `
+    <svg class="thumb-svg" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
+      ${rows.map((w, i) => {
+        const x = 140 - w / 2, y = 18 + i * 30;
+        return `<rect x="${x}" y="${y}" width="${w}" height="24" rx="3" fill="${i === 3 ? PRIMARY_SOFT : CARD}" stroke="${i === 3 ? PRIMARY : INK}" stroke-width="1.1"/>`;
+      }).join('')}
+    </svg>`;
+  };
+  const aarrrFull = () => {
+    const S = [
+      { ko: '획득', en: 'Acquisition', tip: '사용자가 어떤 경로로 우리를 처음 만나는가. 광고·검색·추천 등 유입 채널과 획득 비용을 본다.', m: '지표: 방문자 수 · CAC · 채널별 유입' },
+      { ko: '활성화', en: 'Activation', tip: '첫 방문에서 핵심 가치를 경험했는가. 가입 완료·첫 액션 등 "아하 모먼트" 도달률을 본다.', m: '지표: 가입 전환율 · 온보딩 완료율' },
+      { ko: '유지', en: 'Retention', tip: '사용자가 다시 돌아오는가. 재방문 주기와 이탈 시점을 추적해 리텐션 커브를 그린다.', m: '지표: 리텐션 커브 · DAU/MAU · 이탈률' },
+      { ko: '수익', en: 'Revenue', tip: '사용자가 실제로 돈을 내는가. 결제 전환과 객단가, 고객 생애가치(LTV)를 본다.', m: '지표: 결제 전환율 · ARPU · LTV' },
+      { ko: '추천', en: 'Referral', tip: '사용자가 다른 사용자를 데려오는가. 입소문·초대로 성장 루프가 도는지 본다.', m: '지표: 추천율 · 바이럴 계수(K)' }
+    ];
+    const top = 56, rowH = 56, gap = 8, maxW = 580, minW = 230, cx = 380;
+    return `
+    <div class="viz">
+      <svg class="viz-svg" viewBox="0 0 760 400" xmlns="http://www.w3.org/2000/svg">
+        ${S.map((s, i) => {
+          const w = maxW - (maxW - minW) * (i / (S.length - 1));
+          const y = top + i * (rowH + gap);
+          const x = cx - w / 2;
+          const hi = i === 3;
+          return `
+          <g data-tip-title="${a(s.ko)} (${a(s.en)})" data-tip="${a(s.tip)}">
+            <rect x="${x}" y="${y}" width="${w}" height="${rowH}" rx="6" fill="${hi ? PRIMARY_SOFT : PAPER}" stroke="${hi ? PRIMARY : INK}" stroke-width="${hi ? 1.6 : 1.2}"/>
+            <text x="${cx}" y="${y + 26}" text-anchor="middle" font-size="16" font-weight="700" fill="${INK}">${a(s.ko)} · ${a(s.en)}</text>
+            <text x="${cx}" y="${y + 45}" text-anchor="middle" font-size="11" fill="${MUTED}">${a(s.m)}</text>
+          </g>`;
+        }).join('')}
+        <text x="380" y="38" text-anchor="middle" font-size="13" letter-spacing="0.08em" fill="${MUTED}" pointer-events="none">AARRR · 단계마다 좁아지는 사용자 깔때기</text>
+      </svg>
+      <div class="viz-caption">획득 → 활성화 → 유지 → 수익 → 추천 · 단계별 전환율로 가장 큰 누수 지점을 찾습니다</div>
+    </div>`;
+  };
+
+  /* ============================================================
+     AIDA — 4단계 역삼각 깔때기
+     ============================================================ */
+  const aidaThumb = () => {
+    const rows = [220, 168, 116, 64];
+    return `
+    <svg class="thumb-svg" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
+      ${rows.map((w, i) => {
+        const x = 140 - w / 2, y = 22 + i * 36;
+        return `<rect x="${x}" y="${y}" width="${w}" height="28" rx="3" fill="${i === 3 ? PRIMARY_SOFT : CARD}" stroke="${i === 3 ? PRIMARY : INK}" stroke-width="1.1"/>`;
+      }).join('')}
+    </svg>`;
+  };
+  const aidaFull = () => {
+    const S = [
+      { ko: '주목', en: 'Attention', tip: '고객의 시선을 멈추게 하는 단계. 강한 헤드라인·비주얼로 무관심을 깨고 존재를 알린다.' },
+      { ko: '흥미', en: 'Interest', tip: '관심을 붙드는 단계. 고객의 문제와 연결된 메시지로 "내 얘기다"라고 느끼게 만든다.' },
+      { ko: '욕구', en: 'Desire', tip: '갖고 싶게 만드는 단계. 혜택·증거·차별점을 제시해 감정적 동기를 끌어올린다.' },
+      { ko: '행동', en: 'Action', tip: '실제 전환을 유도하는 단계. 명확한 CTA와 낮은 마찰로 구매·가입을 완성시킨다.' }
+    ];
+    const top = 60, rowH = 64, gap = 10, maxW = 600, minW = 200, cx = 380;
+    return `
+    <div class="viz">
+      <svg class="viz-svg" viewBox="0 0 760 400" xmlns="http://www.w3.org/2000/svg">
+        ${S.map((s, i) => {
+          const w = maxW - (maxW - minW) * (i / (S.length - 1));
+          const y = top + i * (rowH + gap);
+          const x = cx - w / 2;
+          const hi = i === S.length - 1;
+          return `
+          <g data-tip-title="${a(s.ko)} (${a(s.en)})" data-tip="${a(s.tip)}">
+            <rect x="${x}" y="${y}" width="${w}" height="${rowH}" rx="6" fill="${hi ? PRIMARY_SOFT : PAPER}" stroke="${hi ? PRIMARY : INK}" stroke-width="${hi ? 1.6 : 1.2}"/>
+            <text x="${cx}" y="${y + 30}" text-anchor="middle" font-size="18" font-weight="700" fill="${INK}">${a(s.ko)}</text>
+            <text x="${cx}" y="${y + 50}" text-anchor="middle" font-size="12" letter-spacing="0.08em" fill="${hi ? PRIMARY : MUTED}">${a(s.en.toUpperCase())}</text>
+          </g>`;
+        }).join('')}
+        <text x="380" y="40" text-anchor="middle" font-size="13" letter-spacing="0.08em" fill="${MUTED}" pointer-events="none">AIDA · 위가 넓고 행동으로 갈수록 좁아지는 설득 깔때기</text>
+      </svg>
+      <div class="viz-caption">주목 → 흥미 → 욕구 → 행동 · 마지막 행동 단계의 전환을 끝까지 설계합니다</div>
+    </div>`;
+  };
+
+  /* ============================================================
+     Tuckman — 팀 발달 5단계 + 성과 곡선
+     ============================================================ */
+  const tuckmanThumb = () => {
+    const labels = ['F', 'S', 'N', 'P', 'A'];
+    return `
+    <svg class="thumb-svg" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
+      <path d="M 28 80 Q 72 130 116 96 T 200 44 L 252 36" fill="none" stroke="${PRIMARY}" stroke-width="2" pointer-events="none"/>
+      ${labels.map((l, i) => {
+        const x = 20 + i * 50, y = 120;
+        return `<rect x="${x}" y="${y}" width="40" height="40" rx="4" fill="${i === 3 ? PRIMARY_SOFT : CARD}" stroke="${i === 3 ? PRIMARY : INK}" stroke-width="1.1"/><text x="${x + 20}" y="${y + 26}" text-anchor="middle" font-size="15" font-weight="700" fill="${INK}">${l}</text>`;
+      }).join('')}
+    </svg>`;
+  };
+  const tuckmanFull = () => {
+    const S = [
+      { ko: '형성', en: 'Forming', tip: '팀이 막 모인 단계. 서로 탐색하며 예의를 갖추지만 방향과 역할이 불명확하다. 리더의 명확한 안내가 필요하다.' },
+      { ko: '격동', en: 'Storming', tip: '갈등이 표면화되는 단계. 역할·권한·방식에서 충돌이 생기며 성과와 사기가 일시적으로 떨어진다. 가장 위험한 구간.' },
+      { ko: '규범', en: 'Norming', tip: '규칙과 신뢰가 자리잡는 단계. 협업 방식이 합의되고 갈등이 건설적으로 풀리기 시작한다.' },
+      { ko: '성과', en: 'Performing', tip: '자율적으로 고성과를 내는 단계. 신뢰 위에서 팀이 스스로 굴러가며 리더는 지원자로 물러난다.' },
+      { ko: '해산', en: 'Adjourning', tip: '목표 달성 후 해체되는 단계. 성과를 회고하고 학습을 남기며 구성원을 다음으로 전환시킨다.' }
+    ];
+    const n = S.length, x0 = 40, slot = 136, boxW = 116, boxY = 250, boxH = 90;
+    const cxOf = i => x0 + i * slot + boxW / 2;
+    const cy = [150, 215, 170, 90, 110];
+    const pts = cy.map((y, i) => `${cxOf(i)},${y}`).join(' ');
+    return `
+    <div class="viz">
+      <svg class="viz-svg" viewBox="0 0 760 400" xmlns="http://www.w3.org/2000/svg">
+        <text x="40" y="40" font-size="12" letter-spacing="0.08em" fill="${MUTED}" pointer-events="none">성과 · 사기</text>
+        <line x1="40" y1="60" x2="40" y2="225" stroke="${HAIRLINE}" stroke-width="1" pointer-events="none"/>
+        <polyline points="${pts}" fill="none" stroke="${PRIMARY}" stroke-width="2.5" pointer-events="none"/>
+        ${cy.map((y, i) => `<circle cx="${cxOf(i)}" cy="${y}" r="4" fill="${i === 3 ? PRIMARY : PAPER}" stroke="${PRIMARY}" stroke-width="2" pointer-events="none"/>`).join('')}
+        ${S.map((s, i) => {
+          const x = x0 + i * slot, hi = i === 3;
+          return `
+          <g data-tip-title="${a(s.ko)} (${a(s.en)})" data-tip="${a(s.tip)}">
+            <rect x="${x}" y="${boxY}" width="${boxW}" height="${boxH}" rx="6" fill="${hi ? PRIMARY_SOFT : PAPER}" stroke="${hi ? PRIMARY : INK}" stroke-width="${hi ? 1.6 : 1.2}"/>
+            <text x="${x + boxW / 2}" y="${boxY + 38}" text-anchor="middle" font-size="17" font-weight="700" fill="${INK}">${a(s.ko)}</text>
+            <text x="${x + boxW / 2}" y="${boxY + 60}" text-anchor="middle" font-size="11" letter-spacing="0.06em" fill="${hi ? PRIMARY : MUTED}">${a(s.en)}</text>
+          </g>`;
+        }).join('')}
+      </svg>
+      <div class="viz-caption">형성 → 격동 → 규범 → 성과 → 해산 · 격동기 골을 빨리 통과시켜 성과기를 앞당깁니다</div>
+    </div>`;
+  };
+
+  /* ============================================================
+     EJM — 직원 여정 지도 + 감정 곡선
+     ============================================================ */
+  const ejmThumb = () => {
+    return `
+    <svg class="thumb-svg" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
+      <path d="M 30 70 Q 75 40 120 64 T 210 100 L 250 70" fill="none" stroke="${PRIMARY}" stroke-width="2" pointer-events="none"/>
+      ${[0,1,2,3,4].map(i => {
+        const x = 18 + i * 50, y = 116;
+        return `<rect x="${x}" y="${y}" width="42" height="44" rx="4" fill="${i === 1 ? PRIMARY_SOFT : CARD}" stroke="${i === 1 ? PRIMARY : INK}" stroke-width="1.1"/>`;
+      }).join('')}
+    </svg>`;
+  };
+  const ejmFull = () => {
+    const S = [
+      { ko: '채용', en: 'Hiring', tip: '접점: 채용 공고·면접·오퍼. 페인포인트: 느린 회신, 불투명한 처우 안내로 후보 경험이 나빠질 수 있다.' },
+      { ko: '온보딩', en: 'Onboarding', tip: '접점: 입사 첫 주·장비·멘토. 핵심 순간 — 첫인상이 잔류 의사를 좌우한다. 페인포인트: 준비 안 된 환경, 방치된 신규 입사자.' },
+      { ko: '성장', en: 'Growth', tip: '접점: 교육·평가·승진. 페인포인트: 불공정한 평가, 막힌 성장 경로가 동기를 꺾는다.' },
+      { ko: '유지', en: 'Retention', tip: '접점: 보상·1on1·복지. 페인포인트: 번아웃과 인정 부족이 조용한 이탈로 이어진다.' },
+      { ko: '이탈', en: 'Exit', tip: '접점: 퇴사 면담·오프보딩. 페인포인트: 형식적 절차로 끝나면 회고와 알럼나이 관계를 잃는다.' }
+    ];
+    const n = S.length, x0 = 40, slot = 136, boxW = 116, boxY = 250, boxH = 90;
+    const cxOf = i => x0 + i * slot + boxW / 2;
+    const cy = [170, 95, 130, 160, 200];
+    const pts = cy.map((y, i) => `${cxOf(i)},${y}`).join(' ');
+    return `
+    <div class="viz">
+      <svg class="viz-svg" viewBox="0 0 760 400" xmlns="http://www.w3.org/2000/svg">
+        <text x="40" y="40" font-size="12" letter-spacing="0.08em" fill="${MUTED}" pointer-events="none">감정 곡선 (Emotion)</text>
+        <line x1="40" y1="60" x2="40" y2="220" stroke="${HAIRLINE}" stroke-width="1" pointer-events="none"/>
+        <polyline points="${pts}" fill="none" stroke="${MUTED_SOFT}" stroke-width="2.5" pointer-events="none"/>
+        ${cy.map((y, i) => `<circle cx="${cxOf(i)}" cy="${y}" r="4" fill="${i === 1 ? PRIMARY : PAPER}" stroke="${i === 1 ? PRIMARY : MUTED_SOFT}" stroke-width="2" pointer-events="none"/>`).join('')}
+        ${S.map((s, i) => {
+          const x = x0 + i * slot, hi = i === 1;
+          return `
+          <g data-tip-title="${a(s.ko)} (${a(s.en)})" data-tip="${a(s.tip)}">
+            <rect x="${x}" y="${boxY}" width="${boxW}" height="${boxH}" rx="6" fill="${hi ? PRIMARY_SOFT : PAPER}" stroke="${hi ? PRIMARY : INK}" stroke-width="${hi ? 1.6 : 1.2}"/>
+            <text x="${x + boxW / 2}" y="${boxY + 38}" text-anchor="middle" font-size="17" font-weight="700" fill="${INK}">${a(s.ko)}</text>
+            <text x="${x + boxW / 2}" y="${boxY + 60}" text-anchor="middle" font-size="11" letter-spacing="0.06em" fill="${hi ? PRIMARY : MUTED}">${a(s.en)}</text>
+          </g>`;
+        }).join('')}
+      </svg>
+      <div class="viz-caption">채용 → 온보딩 → 성장 → 유지 → 이탈 · 감정이 꺾이는 핵심 순간을 찾아 경험을 설계합니다</div>
+    </div>`;
+  };
+
+  /* ============================================================
+     VSM — 가치 흐름 지도
+     ============================================================ */
+  const vsmThumb = () => {
+    return `
+    <svg class="thumb-svg" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
+      <line x1="24" y1="44" x2="256" y2="44" stroke="${INK}" stroke-width="1" pointer-events="none"/>
+      ${[0,1,2,3].map(i => {
+        const x = 28 + i * 58, y = 64;
+        return `<rect x="${x}" y="${y}" width="44" height="40" rx="3" fill="${i === 2 ? PRIMARY_SOFT : CARD}" stroke="${i === 2 ? PRIMARY : INK}" stroke-width="1.1"/>`;
+      }).join('')}
+      <path d="M 28 150 h 22 v -14 h 36 v 14 h 22 v -14 h 36 v 14 h 22 v -14 h 36 v 14 h 22" fill="none" stroke="${MUTED}" stroke-width="1.4" pointer-events="none"/>
+    </svg>`;
+  };
+  const vsmFull = () => {
+    const S = [
+      { ko: '공급', en: 'Supplier', tip: '원자재·부품을 공급하는 외부 주체. 사이클타임: 입고 0.5일, 이후 대기 2일이 쌓인다.', ct: 'CT 0.5d', wt: '대기 2d' },
+      { ko: '가공', en: 'Process A', tip: '1차 가공 공정. 사이클타임은 짧지만 다음 공정 앞에서 재고가 대기한다.', ct: 'CT 0.3d', wt: '대기 1.5d' },
+      { ko: '조립', en: 'Process B', tip: '병목 공정. 처리 능력이 부족해 앞단 재고가 가장 길게 쌓이는 대기 지점이다.', ct: 'CT 0.4d', wt: '대기 4d' },
+      { ko: '검사', en: 'Process C', tip: '품질 검사·재작업. 불량 재투입으로 변동이 크고 출하 전 대기가 발생한다.', ct: 'CT 0.3d', wt: '대기 1d' },
+      { ko: '고객', en: 'Customer', tip: '최종 고객 출하. 정보 흐름(주문)이 여기서 시작해 공급 측으로 거슬러 올라간다.', ct: '출하', wt: '' }
+    ];
+    const n = S.length, x0 = 30, slot = 144, boxW = 120, boxY = 130, boxH = 76;
+    const cxOf = i => x0 + i * slot + boxW / 2;
+    // 타임라인 톱니: 가치(위, 짧음) + 대기(아래, 김)
+    const tlY = 300, valY = 286, waitY = 314;
+    let cursor = x0;
+    const segs = [];
+    S.forEach((s, i) => {
+      const valW = 26;
+      const waitW = i === 2 ? 96 : (i === n - 1 ? 0 : 56);
+      segs.push(`<line x1="${cursor}" y1="${valY}" x2="${cursor + valW}" y2="${valY}" stroke="${INK}" stroke-width="2" pointer-events="none"/>`);
+      segs.push(`<line x1="${cursor + valW}" y1="${valY}" x2="${cursor + valW}" y2="${waitY}" stroke="${i === 2 ? PRIMARY : MUTED}" stroke-width="1.2" pointer-events="none"/>`);
+      if (waitW > 0) segs.push(`<line x1="${cursor + valW}" y1="${waitY}" x2="${cursor + valW + waitW}" y2="${waitY}" stroke="${i === 2 ? PRIMARY : MUTED}" stroke-width="${i === 2 ? 2.5 : 1.6}" stroke-dasharray="${i === 2 ? '' : '4 3'}" pointer-events="none"/>`);
+      if (waitW > 0) segs.push(`<line x1="${cursor + valW + waitW}" y1="${waitY}" x2="${cursor + valW + waitW}" y2="${valY}" stroke="${i === 2 ? PRIMARY : MUTED}" stroke-width="1.2" pointer-events="none"/>`);
+      cursor += valW + waitW;
+    });
+    return `
+    <div class="viz">
+      <svg class="viz-svg" viewBox="0 0 760 400" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="vsm-arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <polygon points="0,0 10,5 0,10" fill="${MUTED}"/>
+          </marker>
+        </defs>
+        <text x="30" y="44" font-size="12" letter-spacing="0.06em" fill="${MUTED}" pointer-events="none">정보 흐름 (Information)</text>
+        <line x1="${cxOf(n - 1)}" y1="64" x2="${cxOf(0)}" y2="64" stroke="${MUTED}" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#vsm-arr)" pointer-events="none"/>
+        ${[0,1,2,3].map(i => `<line x1="${cxOf(i)}" y1="${boxY}" x2="${cxOf(i)}" y2="64" stroke="${HAIRLINE}" stroke-width="1" pointer-events="none"/>`).join('')}
+        ${S.map((s, i) => {
+          const x = x0 + i * slot, hi = i === 2;
+          return `
+          <g data-tip-title="${a(s.ko)} (${a(s.en)})" data-tip="${a(s.tip)}">
+            <rect x="${x}" y="${boxY}" width="${boxW}" height="${boxH}" rx="6" fill="${hi ? PRIMARY_SOFT : PAPER}" stroke="${hi ? PRIMARY : INK}" stroke-width="${hi ? 1.6 : 1.2}"/>
+            <text x="${x + boxW / 2}" y="${boxY + 30}" text-anchor="middle" font-size="16" font-weight="700" fill="${INK}">${a(s.ko)}</text>
+            <text x="${x + boxW / 2}" y="${boxY + 48}" text-anchor="middle" font-size="10" letter-spacing="0.05em" fill="${MUTED}">${a(s.en)}</text>
+            <text x="${x + boxW / 2}" y="${boxY + 66}" text-anchor="middle" font-size="10" font-weight="600" fill="${hi ? PRIMARY : BODY}">${a(s.ct)}${s.wt ? ' · ' + a(s.wt) : ''}</text>
+          </g>`;
+        }).join('')}
+        ${segs.join('')}
+        <text x="30" y="276" font-size="11" fill="${MUTED}" pointer-events="none">타임라인 (위=가치 시간 · 아래=대기 시간)</text>
+        <text x="${cxOf(2)}" y="345" text-anchor="middle" font-size="11" font-weight="600" fill="${PRIMARY}" pointer-events="none">병목 · 최대 대기</text>
+      </svg>
+      <div class="viz-caption">공급 → 고객까지 가치·대기 시간을 펼쳐, 대기가 긴 병목을 줄여 리드타임을 단축합니다</div>
+    </div>`;
+  };
+
+  const mudaThumb = () => {
+    const cells = [
+      { k:'T', n:'운송' }, { k:'I', n:'재고' }, { k:'M', n:'동작' }, { k:'W', n:'대기' },
+      { k:'O', n:'과잉생산' }, { k:'O', n:'과잉가공' }, { k:'D', n:'불량' }
+    ];
+    return `
+    <svg class="thumb-svg" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
+      <text x="140" y="24" text-anchor="middle" font-size="13" font-weight="700" fill="${INK}">Muda 7</text>
+      ${cells.map((c,i) => {
+        const row = i < 4 ? 0 : 1;
+        const cols = row === 0 ? 4 : 3;
+        const idx = row === 0 ? i : i - 4;
+        const w = 58, h = 48, gap = 6;
+        const rowW = cols * w + (cols - 1) * gap;
+        const x = (280 - rowW) / 2 + idx * (w + gap);
+        const y = 38 + row * (h + gap);
+        const hot = (i === 6);
+        return `
+        <rect x="${x}" y="${y}" width="${w}" height="${h}" rx="4" fill="${hot ? PRIMARY_SOFT : CARD}" stroke="${INK}" stroke-width="${hot ? 1.4 : 0.8}"/>
+        <text x="${x + w/2}" y="${y + 22}" text-anchor="middle" font-size="15" font-weight="700" fill="${hot ? PRIMARY : INK}">${c.k}</text>
+        <text x="${x + w/2}" y="${y + 38}" text-anchor="middle" font-size="9" fill="${MUTED}">${c.n}</text>`;
+      }).join('')}
+    </svg>`;
+  };
+  const mudaFull = () => {
+    const cells = [
+      { k:'T', n:'운송 (Transport)', tip:'필요 이상의 물품 이동입니다. 라인 배치가 멀거나 동선이 꼬이면 발생합니다. 옮기는 행위 자체는 가치를 만들지 않습니다.' },
+      { k:'I', n:'재고 (Inventory)', tip:'팔리지 않은 원자재·재공품·완제품이 쌓인 상태. 자금이 묶이고 보관 비용과 진부화 위험을 키웁니다.' },
+      { k:'M', n:'동작 (Motion)', tip:'작업자의 불필요한 움직임입니다. 멀리 손을 뻗거나 자세를 자주 바꾸는 등 작업 설계가 나쁠 때 생깁니다.' },
+      { k:'W', n:'대기 (Waiting)', tip:'사람·설비·자재가 다음 공정을 기다리며 멈춘 시간. 흐름이 끊기면 가치가 흐르지 않습니다.' },
+      { k:'O', n:'과잉생산 (Overproduction)', tip:'수요보다 많이, 빨리 만드는 낭비. 7대 낭비의 근원으로 불립니다. 재고·대기 등 다른 낭비를 함께 유발합니다.' },
+      { k:'O', n:'과잉가공 (Over-processing)', tip:'고객이 요구하지 않은 수준까지 가공하는 낭비. 불필요한 검사·과한 사양·중복 승인 등이 해당합니다.' },
+      { k:'D', n:'불량 (Defects)', tip:'재작업·폐기·반품을 부르는 결함입니다. 검출이 늦을수록 비용이 기하급수로 커집니다.' }
+    ];
+    return `
+    <div class="viz">
+      <svg class="viz-svg" viewBox="0 0 760 360" xmlns="http://www.w3.org/2000/svg">
+        <text x="380" y="40" text-anchor="middle" font-size="18" font-weight="700" fill="${INK}" pointer-events="none">Muda 7 · 린 7대 낭비 (TIMWOOD)</text>
+        ${cells.map((c,i) => {
+          const row = i < 4 ? 0 : 1;
+          const cols = row === 0 ? 4 : 3;
+          const idx = row === 0 ? i : i - 4;
+          const w = 160, h = 95, gap = 18;
+          const rowW = cols * w + (cols - 1) * gap;
+          const x = (760 - rowW) / 2 + idx * (w + gap);
+          const y = 70 + row * (h + 24);
+          const hot = (i === 6);
+          const parts = c.n.split(' (');
+          return `
+          <g data-tip-title="${a(c.n)}" data-tip="${a(c.tip)}">
+            <rect x="${x}" y="${y}" width="${w}" height="${h}" rx="8" fill="${hot ? PRIMARY_SOFT : CARD}" stroke="${INK}" stroke-width="${hot ? 1.8 : 1.2}"/>
+            <text x="${x + w/2}" y="${y + 44}" text-anchor="middle" font-size="30" font-weight="700" fill="${hot ? PRIMARY : INK}">${c.k}</text>
+            <text x="${x + w/2}" y="${y + 70}" text-anchor="middle" font-size="13" font-weight="600" fill="${INK}">${a(parts[0])}</text>
+            <text x="${x + w/2}" y="${y + 86}" text-anchor="middle" font-size="10" fill="${MUTED}">${a('(' + parts[1])}</text>
+          </g>`;
+        }).join('')}
+      </svg>
+      <div class="viz-caption">제조·서비스 현장에서 가치를 만들지 않는 7가지 활동을 분류하는 린(Lean) 진단 도구. 셀에 마우스를 올려 정의를 확인하세요.</div>
+    </div>`;
+  };
+
+  const fivesThumb = () => {
+    const items = [
+      { s:'1S', n:'정리' }, { s:'2S', n:'정돈' }, { s:'3S', n:'청소' }, { s:'4S', n:'청결' }, { s:'5S', n:'습관화' }
+    ];
+    const cx = 140, cy = 95, r = 58;
+    return `
+    <svg class="thumb-svg" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="${cx}" cy="${cy}" r="${r + 16}" fill="none" stroke="${HAIRLINE}" stroke-width="1"/>
+      <text x="${cx}" y="${cy + 4}" text-anchor="middle" font-size="13" font-weight="700" fill="${INK}">5S</text>
+      ${items.map((it,i) => {
+        const ang = -Math.PI/2 + i * Math.PI*2/5;
+        const x = cx + r * Math.cos(ang);
+        const y = cy + r * Math.sin(ang);
+        const hot = (i === 4);
+        return `
+        <circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="20" fill="${hot ? PRIMARY_SOFT : CARD}" stroke="${INK}" stroke-width="${hot ? 1.4 : 0.8}"/>
+        <text x="${x.toFixed(1)}" y="${(y - 1).toFixed(1)}" text-anchor="middle" font-size="9" font-weight="700" fill="${hot ? PRIMARY : INK}">${it.s}</text>
+        <text x="${x.toFixed(1)}" y="${(y + 10).toFixed(1)}" text-anchor="middle" font-size="7" fill="${MUTED}">${it.n}</text>`;
+      }).join('')}
+    </svg>`;
+  };
+  const fivesFull = () => {
+    const items = [
+      { s:'정리', en:'Seiri', tip:'필요한 것과 불필요한 것을 구분해, 필요 없는 것을 버립니다. 공간과 판단의 군더더기를 먼저 제거하는 단계입니다.' },
+      { s:'정돈', en:'Seiton', tip:'필요한 것을 누구나 바로 찾도록 제자리에 둡니다. "한 번에, 30초 안에" 꺼낼 수 있는 상태가 목표입니다.' },
+      { s:'청소', en:'Seiso', tip:'작업장과 설비를 깨끗이 합니다. 청소는 곧 점검입니다. 닦으면서 이상·마모·누유를 함께 발견합니다.' },
+      { s:'청결', en:'Seiketsu', tip:'앞의 3S 상태를 표준화해 유지합니다. 색 표시·라벨·체크리스트로 누가 해도 같은 수준이 되게 만듭니다.' },
+      { s:'습관화', en:'Shitsuke', tip:'정해진 표준을 몸에 배게 합니다. 5S가 일회성 캠페인이 아니라 문화로 지속되는지를 가르는 마지막 단계입니다.' }
+    ];
+    const cx = 380, cy = 200, r = 120;
+    const pts = items.map((it,i) => {
+      const ang = -Math.PI/2 + i * Math.PI*2/5;
+      return { x: cx + r * Math.cos(ang), y: cy + r * Math.sin(ang), ang };
+    });
+    const arcs = pts.map((p,i) => {
+      const n = pts[(i+1) % pts.length];
+      const a1 = p.ang + 0.42, a2 = n.ang - 0.42;
+      const x1 = cx + r*Math.cos(a1), y1 = cy + r*Math.sin(a1);
+      const x2 = cx + r*Math.cos(a2), y2 = cy + r*Math.sin(a2);
+      return `<path d="M ${x1.toFixed(1)} ${y1.toFixed(1)} A ${r} ${r} 0 0 1 ${x2.toFixed(1)} ${y2.toFixed(1)}" fill="none" stroke="${MUTED_SOFT}" stroke-width="1.4" marker-end="url(#fivesArrow)" pointer-events="none"/>`;
+    }).join('');
+    return `
+    <div class="viz">
+      <svg class="viz-svg" viewBox="0 0 760 410" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="fivesArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="${MUTED_SOFT}"/>
+          </marker>
+        </defs>
+        <text x="380" y="36" text-anchor="middle" font-size="18" font-weight="700" fill="${INK}" pointer-events="none">5S · 작업장 정돈의 순환</text>
+        <text x="${cx}" y="${cy - 4}" text-anchor="middle" font-size="20" font-weight="700" fill="${INK}" pointer-events="none">5S</text>
+        <text x="${cx}" y="${cy + 18}" text-anchor="middle" font-size="11" fill="${MUTED}" pointer-events="none">지속 개선의 토대</text>
+        ${arcs}
+        ${items.map((it,i) => {
+          const p = pts[i];
+          const hot = (i === 4);
+          return `
+          <g data-tip-title="${a(it.s + ' (' + it.en + ')')}" data-tip="${a(it.tip)}">
+            <circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="38" fill="${hot ? PRIMARY_SOFT : CARD}" stroke="${INK}" stroke-width="${hot ? 1.8 : 1.2}"/>
+            <text x="${p.x.toFixed(1)}" y="${(p.y - 2).toFixed(1)}" text-anchor="middle" font-size="15" font-weight="700" fill="${hot ? PRIMARY : INK}">${a(it.s)}</text>
+            <text x="${p.x.toFixed(1)}" y="${(p.y + 14).toFixed(1)}" text-anchor="middle" font-size="10" fill="${MUTED}">${a(it.en)}</text>
+          </g>`;
+        }).join('')}
+      </svg>
+      <div class="viz-caption">정리·정돈·청소·청결·습관화로 이어지는 작업장 관리의 5단계 순환. 마지막 습관화(Shitsuke)가 5S를 지속 가능한 문화로 만듭니다.</div>
+    </div>`;
+  };
+
+  const kanbanThumb = () => {
+    const cols = [
+      { t:'To Do', cards:2, hot:false },
+      { t:'Doing', cards:2, hot:true },
+      { t:'Done', cards:3, hot:false }
+    ];
+    const colW = 76, gap = 14, startX = (280 - (colW*3 + gap*2)) / 2;
+    return `
+    <svg class="thumb-svg" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
+      ${cols.map((c,i) => {
+        const x = startX + i * (colW + gap);
+        return `
+        <rect x="${x}" y="26" width="${colW}" height="138" rx="5" fill="${c.hot ? PRIMARY_SOFT : PAPER}" stroke="${INK}" stroke-width="${c.hot ? 1.3 : 0.8}"/>
+        <text x="${x + colW/2}" y="42" text-anchor="middle" font-size="9" font-weight="700" fill="${c.hot ? PRIMARY : INK}">${c.t}</text>
+        ${c.hot ? `<rect x="${x + colW - 30}" y="30" width="26" height="11" rx="5" fill="${PRIMARY}"/><text x="${x + colW - 17}" y="38" text-anchor="middle" font-size="7" font-weight="700" fill="${PAPER}">WIP2</text>` : ''}
+        ${Array.from({length:c.cards}).map((_,k) => `<rect x="${x + 8}" y="${50 + k*26}" width="${colW - 16}" height="20" rx="3" fill="${CARD}" stroke="${INK}" stroke-width="0.6"/>`).join('')}`;
+      }).join('')}
+    </svg>`;
+  };
+  const kanbanFull = () => {
+    const cols = [
+      { t:'To Do (대기)', cards:['요건 정의','UI 시안','API 설계'], hot:false, tip:'아직 시작하지 않은 일감의 대기열입니다. 우선순위 순으로 쌓여 있으며, 당기기(pull) 신호가 오면 다음 단계로 넘어갑니다.' },
+      { t:'Doing (진행)', cards:['결제 모듈','로그인 리팩터'], hot:true, tip:'지금 실제로 작업 중인 카드입니다. WIP 제한으로 동시 진행 수를 묶어, 병목과 멀티태스킹 낭비를 드러냅니다.' },
+      { t:'Done (완료)', cards:['스키마 마이그','헬스체크','로깅 정비'], hot:false, tip:'완료 기준(Definition of Done)을 만족해 끝난 카드입니다. 흐름의 산출물이자, 리드타임 측정의 종점입니다.' }
+    ];
+    const colW = 200, gap = 30, startX = (760 - (colW*3 + gap*2)) / 2, top = 80;
+    return `
+    <div class="viz">
+      <svg class="viz-svg" viewBox="0 0 760 380" xmlns="http://www.w3.org/2000/svg">
+        <text x="380" y="40" text-anchor="middle" font-size="18" font-weight="700" fill="${INK}" pointer-events="none">Kanban Board · 흐름의 시각화</text>
+        ${cols.map((c,i) => {
+          const x = startX + i * (colW + gap);
+          return `
+          <g data-tip-title="${a(c.t)}" data-tip="${a(c.tip)}">
+            <rect x="${x}" y="${top}" width="${colW}" height="250" rx="10" fill="${c.hot ? PRIMARY_SOFT : PAPER}" stroke="${INK}" stroke-width="${c.hot ? 1.8 : 1.2}"/>
+            <text x="${x + colW/2}" y="${top + 28}" text-anchor="middle" font-size="15" font-weight="700" fill="${c.hot ? PRIMARY : INK}">${a(c.t)}</text>
+            ${c.hot ? `<rect x="${x + colW - 64}" y="${top + 14}" width="52" height="20" rx="10" fill="${PRIMARY}"/><text x="${x + colW - 38}" y="${top + 28}" text-anchor="middle" font-size="11" font-weight="700" fill="${PAPER}">WIP 2</text>` : ''}
+            ${c.cards.map((card,k) => `
+              <rect x="${x + 14}" y="${top + 48 + k*52}" width="${colW - 28}" height="40" rx="6" fill="${CARD}" stroke="${INK}" stroke-width="1"/>
+              <text x="${x + 26}" y="${top + 73 + k*52}" font-size="12" font-weight="600" fill="${INK}">${a(card)}</text>`).join('')}
+          </g>`;
+        }).join('')}
+      </svg>
+      <div class="viz-caption">일의 흐름을 대기·진행·완료로 시각화하는 보드. 진행 열의 WIP(작업 중) 제한이 병목을 드러내고 끝맺음을 강제합니다.</div>
+    </div>`;
+  };
+
+  const fivewhysThumb = () => {
+    const steps = [
+      { label:'기계 정지', hot:false },
+      { label:'과부하', hot:false },
+      { label:'윤활 부족', hot:false },
+      { label:'펌프 고장', hot:false },
+      { label:'축 마모', hot:false },
+      { label:'필터 미설치', hot:true }
+    ];
+    return `
+    <svg class="thumb-svg" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
+      ${steps.map((s,i) => {
+        const x = 16 + i * 8;
+        const y = 14 + i * 26;
+        const w = 110;
+        return `
+        ${i > 0 ? `<path d="M ${x - 4} ${y - 6} L ${x + 6} ${y}" stroke="${MUTED_SOFT}" stroke-width="1" fill="none"/>` : ''}
+        <rect x="${x}" y="${y}" width="${w}" height="20" rx="3" fill="${s.hot ? PRIMARY_SOFT : (i===0 ? CREAM_STR : PAPER)}" stroke="${INK}" stroke-width="${s.hot ? 1.3 : 0.7}"/>
+        <text x="${x + 8}" y="${y + 14}" font-size="9" font-weight="${s.hot ? 700 : 600}" fill="${s.hot ? PRIMARY : INK}">${s.label}</text>`;
+      }).join('')}
+    </svg>`;
+  };
+  const fivewhysFull = () => {
+    const steps = [
+      { label:'기계가 멈췄다', kind:'문제', tip:'분석의 출발점인 현상입니다. 눈에 보이는 증상일 뿐, 아직 원인이 아닙니다. 여기서 멈추면 대증요법에 그칩니다.' },
+      { label:'왜? 과부하로 퓨즈가 끊겼다', kind:'원인 1', tip:'첫 번째 왜. 표면 원인입니다. 퓨즈만 갈면 같은 고장이 반복되므로 한 단계 더 파고듭니다.' },
+      { label:'왜? 베어링 윤활이 부족했다', kind:'원인 2', tip:'두 번째 왜. 과부하의 직접 원인을 윤활 부족으로 좁힙니다.' },
+      { label:'왜? 윤활 펌프가 제대로 돌지 않았다', kind:'원인 3', tip:'세 번째 왜. 윤활 부족의 기계적 원인을 펌프 작동 불량으로 특정합니다.' },
+      { label:'왜? 펌프 축이 마모됐다', kind:'원인 4', tip:'네 번째 왜. 펌프 불량의 물리적 원인을 축 마모로 밝힙니다. 거의 근본에 다가섰습니다.' },
+      { label:'왜? 흡입구 필터가 없어 쇳가루가 유입됐다', kind:'근본 원인', tip:'다섯 번째 왜. 진짜 원인입니다. 필터를 설치하면 위의 모든 고장 사슬이 끊깁니다. 대책은 여기에 세웁니다.' }
+    ];
+    const x0 = 60, indent = 70, top = 70, gap = 64, w = 460, h = 46;
+    return `
+    <div class="viz">
+      <svg class="viz-svg" viewBox="0 0 760 470" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="fwArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="${MUTED_SOFT}"/>
+          </marker>
+        </defs>
+        <text x="380" y="38" text-anchor="middle" font-size="18" font-weight="700" fill="${INK}" pointer-events="none">5 Whys · 근본 원인 캐스케이드</text>
+        ${steps.map((s,i) => {
+          const x = x0 + i * indent;
+          const y = top + i * gap;
+          const hot = (i === steps.length - 1);
+          const arrow = i > 0 ? `<path d="M ${x0 + (i-1)*indent + 20} ${top + (i-1)*gap + h} L ${x + 18} ${y}" stroke="${MUTED_SOFT}" stroke-width="1.4" fill="none" marker-end="url(#fwArrow)" pointer-events="none"/>` : '';
+          return `
+          ${arrow}
+          <g data-tip-title="${a(s.kind)}" data-tip="${a(s.tip)}">
+            <rect x="${x}" y="${y}" width="${w}" height="${h}" rx="7" fill="${hot ? PRIMARY_SOFT : (i===0 ? CREAM_STR : PAPER)}" stroke="${INK}" stroke-width="${hot ? 1.8 : 1.2}"/>
+            <text x="${x + 14}" y="${y + 20}" font-size="10" font-weight="700" fill="${hot ? PRIMARY : MUTED}">${a(s.kind)}</text>
+            <text x="${x + 14}" y="${y + 37}" font-size="14" font-weight="600" fill="${INK}">${a(s.label)}</text>
+          </g>`;
+        }).join('')}
+      </svg>
+      <div class="viz-caption">"왜?"를 다섯 번 반복해 증상에서 근본 원인까지 파고드는 도요타식 도구. 맨 아래 근본 원인에 대책을 세워야 재발을 막습니다.</div>
+    </div>`;
+  };
+
+  const sixhatsThumb = () => {
+    const hats = [
+      { c:'#ffffff', t:'사실' }, { c:'#c0392b', t:'감정' }, { c:'#2b2b2b', t:'위험' },
+      { c:'#e8a55a', t:'이익' }, { c:'#5db8a6', t:'대안' }, { c:'#4a7fb5', t:'통제' }
+    ];
+    return `
+    <svg class="thumb-svg" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
+      ${hats.map((hh,i) => {
+        const col = i % 3, row = Math.floor(i / 3);
+        const w = 76, h = 56, gap = 10;
+        const x = (280 - (3*w + 2*gap))/2 + col*(w+gap);
+        const y = 24 + row*(h+gap);
+        return `
+        <rect x="${x}" y="${y}" width="${w}" height="${h}" rx="5" fill="${PAPER}" stroke="${INK}" stroke-width="0.8"/>
+        <path d="M ${x+w/2-14} ${y+24} a 14 9 0 0 1 28 0 z" fill="${hh.c}" stroke="${INK}" stroke-width="0.6"/>
+        <ellipse cx="${x+w/2}" cy="${y+24}" rx="22" ry="4" fill="${hh.c}" stroke="${INK}" stroke-width="0.6"/>
+        <text x="${x+w/2}" y="${y+46}" text-anchor="middle" font-size="10" font-weight="600" fill="${INK}">${hh.t}</text>`;
+      }).join('')}
+    </svg>`;
+  };
+  const sixhatsFull = () => {
+    const hats = [
+      { c:'#ffffff', name:'흰 모자', role:'사실', tip:'데이터와 객관적 정보에만 집중합니다. "우리가 아는 사실은 무엇이고, 더 필요한 정보는 무엇인가?" 의견과 해석은 배제합니다.' },
+      { c:'#c0392b', name:'빨강 모자', role:'감정', tip:'직관·느낌·예감을 근거 없이 그대로 말합니다. 설명할 필요 없이 솔직한 감정을 드러내, 숨은 거부감과 끌림을 표면화합니다.' },
+      { c:'#2b2b2b', name:'검정 모자', role:'비판·위험', tip:'위험·약점·실패 가능성을 따집니다. 가장 많이 쓰이는 모자로, 신중함을 담당합니다. 단, 과하면 아이디어를 죽입니다.' },
+      { c:'#e8a55a', name:'노랑 모자', role:'긍정·이익', tip:'장점·가치·실현 가능성을 찾습니다. 검정 모자의 균형추로, "이게 통한다면 어떤 이득이 있는가?"를 묻습니다.' },
+      { c:'#5db8a6', name:'초록 모자', role:'창의·대안', tip:'새로운 아이디어와 대안을 만들어냅니다. 판단을 미루고 발산합니다. 도발·연상·새 선택지를 환영합니다.' },
+      { c:'#4a7fb5', name:'파랑 모자', role:'진행·통제', tip:'사고 자체를 관리합니다. 어떤 모자를 언제 쓸지 정하고, 논의를 정리하며 결론을 요약합니다. 진행자의 모자입니다.' }
+    ];
+    const w = 210, h = 130, gx = 24, gy = 24;
+    const startX = (760 - (3*w + 2*gx))/2, top = 70;
+    return `
+    <div class="viz">
+      <svg class="viz-svg" viewBox="0 0 760 410" xmlns="http://www.w3.org/2000/svg">
+        <text x="380" y="40" text-anchor="middle" font-size="18" font-weight="700" fill="${INK}" pointer-events="none">Six Thinking Hats · 6색 사고모자</text>
+        ${hats.map((hh,i) => {
+          const col = i % 3, row = Math.floor(i / 3);
+          const x = startX + col*(w+gx);
+          const y = top + row*(h+gy);
+          const cx = x + 54, cy = y + h/2;
+          return `
+          <g data-tip-title="${a(hh.name + ' · ' + hh.role)}" data-tip="${a(hh.tip)}">
+            <rect x="${x}" y="${y}" width="${w}" height="${h}" rx="9" fill="${PAPER}" stroke="${INK}" stroke-width="1.2"/>
+            <path d="M ${cx-22} ${cy+4} a 22 14 0 0 1 44 0 z" fill="${hh.c}" stroke="${INK}" stroke-width="1"/>
+            <ellipse cx="${cx}" cy="${cy+4}" rx="34" ry="6" fill="${hh.c}" stroke="${INK}" stroke-width="1"/>
+            <text x="${x + 104}" y="${y + 52}" font-size="15" font-weight="700" fill="${INK}">${a(hh.name)}</text>
+            <text x="${x + 104}" y="${y + 74}" font-size="13" fill="${MUTED}">${a(hh.role)}</text>
+          </g>`;
+        }).join('')}
+      </svg>
+      <div class="viz-caption">하나의 관점에 매몰되지 않도록, 사고를 6가지 색의 모자로 나눠 번갈아 쓰는 회의 기법. 팀 전체가 같은 모자를 동시에 씁니다.</div>
+    </div>`;
+  };
+
+  const hr9boxThumb = () => {
+    const cells = [
+      { c: 0, r: 0 }, { c: 1, r: 0 }, { c: 2, r: 0 },
+      { c: 0, r: 1 }, { c: 1, r: 1 }, { c: 2, r: 1 },
+      { c: 0, r: 2 }, { c: 1, r: 2 }, { c: 2, r: 2 }
+    ];
+    const x0 = 70, y0 = 18, cw = 60, ch = 44, gap = 4;
+    return `<svg class="thumb-svg" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
+      <line x1="${x0 - 10}" y1="${y0}" x2="${x0 - 10}" y2="${y0 + 3 * ch + 2 * gap}" stroke="${MUTED}" stroke-width="1.2" pointer-events="none"/>
+      <line x1="${x0 - 10}" y1="${y0 + 3 * ch + 2 * gap}" x2="${x0 + 3 * cw + 2 * gap}" y2="${y0 + 3 * ch + 2 * gap}" stroke="${MUTED}" stroke-width="1.2" pointer-events="none"/>
+      <text x="${x0 - 24}" y="${y0 + 60}" font-size="9" fill="${MUTED}" transform="rotate(-90 ${x0 - 24} ${y0 + 60})" text-anchor="middle" pointer-events="none">잠재력</text>
+      <text x="${x0 + 90}" y="${y0 + 3 * ch + 2 * gap + 14}" font-size="9" fill="${MUTED}" text-anchor="middle" pointer-events="none">성과</text>
+      ${cells.map(({ c, r }) => {
+        const x = x0 + c * (cw + gap);
+        const y = y0 + r * (ch + gap);
+        const isStar = c === 2 && r === 0;
+        const isLow = c === 0 && r === 2;
+        const fill = isStar ? PRIMARY : (isLow ? CREAM_STR : PAPER);
+        const stroke = isStar ? PRIMARY : HAIRLINE;
+        return `<rect x="${x}" y="${y}" width="${cw}" height="${ch}" rx="4" fill="${fill}" stroke="${stroke}" stroke-width="1.2"/>${isStar ? `<text x="${x + cw / 2}" y="${y + ch / 2 + 4}" font-size="11" font-weight="700" fill="${ON_DARK}" text-anchor="middle">★</text>` : ''}`;
+      }).join('')}
+    </svg>`;
+  };
+
+  const hr9boxFull = () => {
+    const grid = [
+      { c: 0, r: 0, n: '미래리더', tip: '잠재력은 높으나 현재 성과가 낮다. 코칭과 새 과제로 성과를 끌어올린다.' },
+      { c: 1, r: 0, n: '핵심전력', tip: '높은 잠재력과 중간 성과. 더 큰 역할로 검증하며 성장시킨다.' },
+      { c: 2, r: 0, n: '핵심인재', tip: 'Star. 성과와 잠재력 모두 최고. 유지·승계 1순위로 최우선 투자한다.', star: true },
+      { c: 0, r: 1, n: '성장가능', tip: '잠재력 중간, 성과 낮음. 적합도와 동기를 점검하고 재배치를 고려한다.' },
+      { c: 1, r: 1, n: '안정전력', tip: '성과·잠재력 모두 중간. 조직의 허리. 꾸준한 개발로 상향 이동을 노린다.' },
+      { c: 2, r: 1, n: '효과적', tip: '성과 높음, 잠재력 중간. 현 역할의 핵심 기여자로 전문성을 강화한다.' },
+      { c: 0, r: 2, n: '부진', tip: '관리·재배치 대상. 성과·잠재력 모두 낮다. 개선 계획 또는 이동을 결정한다.' },
+      { c: 1, r: 2, n: '딜레마', tip: '잠재력은 낮으나 성과는 보통. 기대치를 명확히 하고 역할을 재설정한다.' },
+      { c: 2, r: 2, n: '안정전력', tip: '성과 높고 잠재력 낮음. 현 직무의 든든한 베테랑. 동기 유지가 관건이다.' }
+    ];
+    const x0 = 200, y0 = 40, cw = 160, ch = 86, gap = 8;
+    const gw = 3 * cw + 2 * gap;
+    const gh = 3 * ch + 2 * gap;
+    return `
+    <div class="viz">
+      <svg class="viz-svg" viewBox="0 0 760 400" xmlns="http://www.w3.org/2000/svg">
+        <text x="380" y="26" text-anchor="middle" font-size="17" font-weight="700" fill="${INK}" pointer-events="none">9-Box 인재 그리드</text>
+        <line x1="${x0 - 14}" y1="${y0}" x2="${x0 - 14}" y2="${y0 + gh}" stroke="${MUTED}" stroke-width="1.4" pointer-events="none"/>
+        <line x1="${x0 - 14}" y1="${y0 + gh}" x2="${x0 + gw}" y2="${y0 + gh}" stroke="${MUTED}" stroke-width="1.4" pointer-events="none"/>
+        <text x="${x0 - 30}" y="${y0 + gh / 2}" font-size="13" font-weight="700" fill="${MUTED}" transform="rotate(-90 ${x0 - 30} ${y0 + gh / 2})" text-anchor="middle" pointer-events="none">잠재력 (저 → 고)</text>
+        <text x="${x0 + gw / 2}" y="${y0 + gh + 28}" font-size="13" font-weight="700" fill="${MUTED}" text-anchor="middle" pointer-events="none">성과 (저 → 고)</text>
+        ${grid.map((g) => {
+          const x = x0 + g.c * (cw + gap);
+          const y = y0 + g.r * (ch + gap);
+          const fill = g.star ? PRIMARY : (g.c === 0 && g.r === 2 ? CREAM_STR : PAPER);
+          const stroke = g.star ? PRIMARY : HAIRLINE;
+          const txt = g.star ? ON_DARK : INK;
+          const sub = g.star ? AMBER_SOFT : MUTED;
+          return `<g data-tip-title="${a(g.n)}" data-tip="${a(g.tip)}">
+            <rect x="${x}" y="${y}" width="${cw}" height="${ch}" rx="6" fill="${fill}" stroke="${stroke}" stroke-width="1.5"/>
+            <text x="${x + cw / 2}" y="${y + ch / 2 + 5}" text-anchor="middle" font-size="15" font-weight="700" fill="${txt}">${a(g.n)}</text>
+            ${g.star ? `<text x="${x + cw / 2}" y="${y + 22}" text-anchor="middle" font-size="11" fill="${sub}">★ Star</text>` : ''}
+          </g>`;
+        }).join('')}
+      </svg>
+      <div class="viz-caption">성과와 잠재력 두 축으로 인력을 9개 그룹으로 나눠 육성·유지·재배치를 결정한다.</div>
+    </div>`;
+  };
+
+  const ulrichThumb = () => {
+    const x0 = 64, y0 = 24, cw = 96, ch = 60, gap = 4;
+    const quads = [
+      { c: 0, r: 0, hi: true }, { c: 1, r: 0 },
+      { c: 0, r: 1 }, { c: 1, r: 1 }
+    ];
+    return `<svg class="thumb-svg" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
+      ${quads.map(({ c, r, hi }) => {
+        const x = x0 + c * (cw + gap);
+        const y = y0 + r * (ch + gap);
+        return `<rect x="${x}" y="${y}" width="${cw}" height="${ch}" rx="4" fill="${hi ? PRIMARY : PAPER}" stroke="${hi ? PRIMARY : HAIRLINE}" stroke-width="1.2"/>`;
+      }).join('')}
+      <line x1="${x0 - 10}" y1="${y0 + ch + gap / 2}" x2="${x0 + 2 * cw + gap + 10}" y2="${y0 + ch + gap / 2}" stroke="${MUTED}" stroke-width="1" stroke-dasharray="3 3" pointer-events="none"/>
+      <line x1="${x0 + cw + gap / 2}" y1="${y0 - 10}" x2="${x0 + cw + gap / 2}" y2="${y0 + 2 * ch + gap + 10}" stroke="${MUTED}" stroke-width="1" stroke-dasharray="3 3" pointer-events="none"/>
+      <text x="${x0 + cw / 2}" y="${y0 + ch / 2 + 4}" font-size="10" font-weight="700" fill="${ON_DARK}" text-anchor="middle">전략</text>
+    </svg>`;
+  };
+
+  const ulrichFull = () => {
+    const x0 = 220, y0 = 56, cw = 230, ch = 120, gap = 10;
+    const quads = [
+      { c: 0, r: 0, n: '전략적 파트너', tip: '미래·프로세스 초점. 사업 전략과 HR 전략을 정렬해 조직 목표 달성을 이끈다.', hi: true },
+      { c: 1, r: 0, n: '변화 관리자', tip: '미래·사람 초점. 변화와 혁신을 설계하고 조직의 전환 역량을 키운다.' },
+      { c: 0, r: 1, n: '행정 전문가', tip: '일상·프로세스 초점. HR 인프라를 효율적으로 운영해 비용과 품질을 관리한다.' },
+      { c: 1, r: 1, n: '직원 옹호자', tip: '일상·사람 초점. 구성원의 몰입과 역량을 높이고 목소리를 대변한다.' }
+    ];
+    const gw = 2 * cw + gap, gh = 2 * ch + gap;
+    return `
+    <div class="viz">
+      <svg class="viz-svg" viewBox="0 0 760 380" xmlns="http://www.w3.org/2000/svg">
+        <text x="380" y="28" text-anchor="middle" font-size="17" font-weight="700" fill="${INK}" pointer-events="none">Ulrich HR 역할 모델</text>
+        <text x="${x0 + gw / 2}" y="${y0 - 14}" text-anchor="middle" font-size="12" font-weight="700" fill="${MUTED}" pointer-events="none">미래 · 전략 ↑</text>
+        <text x="${x0 + gw / 2}" y="${y0 + gh + 24}" text-anchor="middle" font-size="12" font-weight="700" fill="${MUTED}" pointer-events="none">↓ 일상 · 운영</text>
+        <text x="${x0 - 16}" y="${y0 + gh / 2}" text-anchor="middle" font-size="12" font-weight="700" fill="${MUTED}" transform="rotate(-90 ${x0 - 16} ${y0 + gh / 2})" pointer-events="none">프로세스 초점</text>
+        <text x="${x0 + gw + 16}" y="${y0 + gh / 2}" text-anchor="middle" font-size="12" font-weight="700" fill="${MUTED}" transform="rotate(90 ${x0 + gw + 16} ${y0 + gh / 2})" pointer-events="none">사람 초점</text>
+        ${quads.map((q) => {
+          const x = x0 + q.c * (cw + gap);
+          const y = y0 + q.r * (ch + gap);
+          const fill = q.hi ? PRIMARY : PAPER;
+          const stroke = q.hi ? PRIMARY : HAIRLINE;
+          const txt = q.hi ? ON_DARK : INK;
+          return `<g data-tip-title="${a(q.n)}" data-tip="${a(q.tip)}">
+            <rect x="${x}" y="${y}" width="${cw}" height="${ch}" rx="6" fill="${fill}" stroke="${stroke}" stroke-width="1.5"/>
+            <text x="${x + cw / 2}" y="${y + ch / 2 + 6}" text-anchor="middle" font-size="16" font-weight="700" fill="${txt}">${a(q.n)}</text>
+          </g>`;
+        }).join('')}
+      </svg>
+      <div class="viz-caption">초점(프로세스↔사람)과 시계(운영↔전략) 두 축으로 HR이 맡는 네 가지 역할을 정의한다.</div>
+    </div>`;
+  };
+
+  const herzbergThumb = () => {
+    const cx = 140, top = 26, rowH = 24, gap = 6, n = 4;
+    return `<svg class="thumb-svg" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
+      <line x1="${cx}" y1="18" x2="${cx}" y2="158" stroke="${MUTED}" stroke-width="1.4" pointer-events="none"/>
+      ${Array.from({ length: n }).map((_, i) => {
+        const y = top + i * (rowH + gap);
+        const wH = 36 + i * 14;
+        const wM = 40 + i * 16;
+        return `<rect x="${cx - wH}" y="${y}" width="${wH}" height="${rowH}" rx="3" fill="${CARD}" stroke="${HAIRLINE}" stroke-width="1"/>
+          <rect x="${cx}" y="${y}" width="${wM}" height="${rowH}" rx="3" fill="${PRIMARY_SOFT}" stroke="${PRIMARY}" stroke-width="1"/>`;
+      }).join('')}
+      <text x="${cx - 70}" y="14" font-size="8" fill="${MUTED}" text-anchor="middle" pointer-events="none">위생</text>
+      <text x="${cx + 60}" y="14" font-size="8" fill="${PRIMARY}" text-anchor="middle" pointer-events="none">동기</text>
+    </svg>`;
+  };
+
+  const herzbergFull = () => {
+    const hygiene = [
+      { n: '급여·복리', tip: '부족하면 불만이 크지만, 충분해도 만족을 만들지는 못한다.' },
+      { n: '근무 환경', tip: '물리적·제도적 여건. 열악하면 불만, 좋아도 중립까지만 끌어올린다.' },
+      { n: '관리·감독', tip: '상사의 관리 방식. 부적절하면 불만, 적절해도 동기 부여는 아니다.' },
+      { n: '회사 정책', tip: '규정과 관행. 불합리하면 불만의 원천이 되지만 동기와는 무관하다.' }
+    ];
+    const motivator = [
+      { n: '성취', tip: '의미 있는 일을 해냈다는 경험. 진정한 만족과 동기를 만든다.', hi: true },
+      { n: '인정', tip: '기여에 대한 공정한 인정. 자발적 몰입을 끌어올린다.' },
+      { n: '책임', tip: '권한과 자율의 확대. 일에 대한 주인의식을 높인다.' },
+      { n: '성장', tip: '발전과 승진의 기회. 장기적인 동기의 핵심이다.' }
+    ];
+    const cx = 380, top = 70, rowH = 50, gap = 10;
+    const maxW = 230;
+    return `
+    <div class="viz">
+      <svg class="viz-svg" viewBox="0 0 760 400" xmlns="http://www.w3.org/2000/svg">
+        <text x="380" y="28" text-anchor="middle" font-size="17" font-weight="700" fill="${INK}" pointer-events="none">Herzberg 2요인 이론</text>
+        <text x="${cx - maxW / 2}" y="52" text-anchor="middle" font-size="13" font-weight="700" fill="${MUTED}" pointer-events="none">위생요인 · 불만족 방지</text>
+        <text x="${cx + maxW / 2}" y="52" text-anchor="middle" font-size="13" font-weight="700" fill="${PRIMARY}" pointer-events="none">동기요인 · 만족 유발</text>
+        <line x1="${cx}" y1="60" x2="${cx}" y2="${top + 4 * (rowH + gap) - gap + 6}" stroke="${MUTED}" stroke-width="1.6" pointer-events="none"/>
+        <text x="${cx}" y="${top + 4 * (rowH + gap) + 14}" text-anchor="middle" font-size="11" fill="${MUTED_SOFT}" pointer-events="none">← 불만족   0 (중립)   만족 →</text>
+        ${hygiene.map((h, i) => {
+          const y = top + i * (rowH + gap);
+          const w = 110 + i * 28;
+          return `<g data-tip-title="${a(h.n)}" data-tip="${a(h.tip)}">
+            <rect x="${cx - w}" y="${y}" width="${w}" height="${rowH}" rx="5" fill="${CARD}" stroke="${HAIRLINE}" stroke-width="1.4"/>
+            <text x="${cx - w + 14}" y="${y + rowH / 2 + 5}" font-size="14" font-weight="600" fill="${BODY}">${a(h.n)}</text>
+          </g>`;
+        }).join('')}
+        ${motivator.map((m, i) => {
+          const y = top + i * (rowH + gap);
+          const w = 120 + i * 26;
+          const fill = m.hi ? PRIMARY : PRIMARY_SOFT;
+          const stroke = m.hi ? PRIMARY : PRIMARY;
+          const txt = m.hi ? ON_DARK : INK;
+          return `<g data-tip-title="${a(m.n)}" data-tip="${a(m.tip)}">
+            <rect x="${cx}" y="${y}" width="${w}" height="${rowH}" rx="5" fill="${fill}" stroke="${stroke}" stroke-width="1.4"/>
+            <text x="${cx + w - 14}" y="${y + rowH / 2 + 5}" text-anchor="end" font-size="14" font-weight="700" fill="${txt}">${a(m.n)}</text>
+          </g>`;
+        }).join('')}
+      </svg>
+      <div class="viz-caption">위생요인은 불만족만 막고, 진짜 만족과 동기는 성취·인정·책임·성장에서 나온다.</div>
+    </div>`;
+  };
+
+  const vrioThumb = () => {
+    const steps = ['V', 'R', 'I', 'O'];
+    const x0 = 22, y = 76, bw = 42, bh = 36, gap = 18;
+    return `<svg class="thumb-svg" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
+      ${steps.map((s, i) => {
+        const x = x0 + i * (bw + gap);
+        return `<rect x="${x}" y="${y}" width="${bw}" height="${bh}" rx="6" fill="${PAPER}" stroke="${INK}" stroke-width="1.4"/>
+          <text x="${x + bw / 2}" y="${y + bh / 2 + 5}" text-anchor="middle" font-size="15" font-weight="700" fill="${INK}">${s}</text>
+          ${i < 3 ? `<line x1="${x + bw}" y1="${y + bh / 2}" x2="${x + bw + gap}" y2="${y + bh / 2}" stroke="${INK}" stroke-width="1.2" pointer-events="none"/>` : ''}
+          <line x1="${x + bw / 2}" y1="${y + bh}" x2="${x + bw / 2}" y2="${y + bh + 16}" stroke="${MUTED}" stroke-width="1" stroke-dasharray="2 2" pointer-events="none"/>`;
+      }).join('')}
+      <rect x="${x0 + 4 * (bw + gap) - gap + 4}" y="${y}" width="48" height="${bh}" rx="6" fill="${PRIMARY}" stroke="${PRIMARY}" stroke-width="1.4"/>
+      <text x="${x0 + 4 * (bw + gap) - gap + 28}" y="${y + bh / 2 + 4}" text-anchor="middle" font-size="9" font-weight="700" fill="${ON_DARK}">우위</text>
+    </svg>`;
+  };
+
+  const vrioFull = () => {
+    const steps = [
+      { k: 'V', q: '가치 있는가?', no: '경쟁 열위', tip: '자원이 기회를 살리거나 위협에 대응하는가? 아니면 경쟁 열위에 놓인다.' },
+      { k: 'R', q: '희소한가?', no: '경쟁 등위', tip: '소수만 보유하는가? 흔하면 동등한 경쟁(경쟁 등위)에 그친다.' },
+      { k: 'I', q: '모방 어려운가?', no: '일시적 우위', tip: '모방·대체가 비싸거나 어려운가? 쉽게 따라잡히면 일시적 우위뿐이다.' },
+      { k: 'O', q: '조직이 활용하는가?', no: '미활용 우위', tip: '조직 구조와 프로세스가 자원을 활용하는가? 아니면 잠재력이 사장된다.' }
+    ];
+    const x0 = 30, ytop = 70, bw = 150, bh = 84, gap = 28;
+    const arrowY = ytop + bh / 2;
+    return `
+    <div class="viz">
+      <svg class="viz-svg" viewBox="0 0 760 360" xmlns="http://www.w3.org/2000/svg">
+        <defs><marker id="vrioAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><polygon points="0,0 10,5 0,10" fill="${INK}"/></marker></defs>
+        <text x="380" y="30" text-anchor="middle" font-size="17" font-weight="700" fill="${INK}" pointer-events="none">VRIO 분석</text>
+        ${steps.map((s, i) => {
+          const x = x0 + i * (bw + gap);
+          return `<g data-tip-title="${a(s.k + ' · ' + s.q)}" data-tip="${a(s.tip)}">
+            <rect x="${x}" y="${ytop}" width="${bw}" height="${bh}" rx="8" fill="${PAPER}" stroke="${INK}" stroke-width="1.5"/>
+            <text x="${x + bw / 2}" y="${ytop + 30}" text-anchor="middle" font-size="20" font-weight="800" fill="${INK}">${a(s.k)}</text>
+            <text x="${x + bw / 2}" y="${ytop + 56}" text-anchor="middle" font-size="13" fill="${BODY}">${a(s.q)}</text>
+          </g>
+          ${i < steps.length - 1 ? `<text x="${x + bw + gap / 2}" y="${arrowY - 8}" text-anchor="middle" font-size="11" font-weight="700" fill="${TEAL}" pointer-events="none">Yes</text><line x1="${x + bw}" y1="${arrowY}" x2="${x + bw + gap}" y2="${arrowY}" stroke="${INK}" stroke-width="1.4" marker-end="url(#vrioAr)" pointer-events="none"/>` : ''}
+          <line x1="${x + bw / 2}" y1="${ytop + bh}" x2="${x + bw / 2}" y2="${ytop + bh + 34}" stroke="${MUTED}" stroke-width="1.2" stroke-dasharray="3 3" marker-end="url(#vrioAr)" pointer-events="none"/>
+          <text x="${x + bw / 2}" y="${ytop + bh + 14}" text-anchor="middle" font-size="10" font-weight="700" fill="${MUTED}" pointer-events="none">No</text>
+          <text x="${x + bw / 2}" y="${ytop + bh + 50}" text-anchor="middle" font-size="12" fill="${MUTED}" pointer-events="none">${a(s.no)}</text>`;
+        }).join('')}
+        <g data-tip-title="지속적 경쟁우위" data-tip="네 질문에 모두 Yes일 때 도달한다. 모방·대체가 어렵고 조직이 충분히 활용하는 자원이다.">
+          <rect x="${x0 + 4 * (bw + gap) - gap + 16}" y="${ytop}" width="156" height="${bh}" rx="8" fill="${PRIMARY}" stroke="${PRIMARY}" stroke-width="1.5"/>
+          <text x="${x0 + 4 * (bw + gap) - gap + 16 + 78}" y="${ytop + 36}" text-anchor="middle" font-size="14" font-weight="700" fill="${ON_DARK}">지속적</text>
+          <text x="${x0 + 4 * (bw + gap) - gap + 16 + 78}" y="${ytop + 58}" text-anchor="middle" font-size="14" font-weight="700" fill="${ON_DARK}">경쟁우위</text>
+        </g>
+        <text x="${x0 + 4 * (bw + gap) - gap + 16 - 8}" y="${arrowY - 8}" text-anchor="middle" font-size="11" font-weight="700" fill="${TEAL}" pointer-events="none">Yes</text>
+      </svg>
+      <div class="viz-caption">자원이 가치·희소성·모방곤란성·조직 활용을 모두 충족할 때 지속적 경쟁우위가 된다.</div>
+    </div>`;
+  };
+
+  const rfmThumb = () => {
+    const bars = ['R', 'F', 'M'];
+    const x0 = 18, bx = 38, y0 = 30, rh = 18, gap = 16, bw = 110;
+    const fills = [4, 5, 3];
+    const chips = [
+      { y: 24, hi: true }, { y: 52 }, { y: 80 }, { y: 108 }
+    ];
+    return `<svg class="thumb-svg" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
+      ${bars.map((b, i) => {
+        const y = y0 + i * (rh + gap);
+        return `<text x="${x0}" y="${y + rh / 2 + 4}" font-size="11" font-weight="700" fill="${INK}">${b}</text>
+          <rect x="${bx}" y="${y}" width="${bw}" height="${rh}" rx="3" fill="${CARD}" stroke="${HAIRLINE}" stroke-width="1"/>
+          <rect x="${bx}" y="${y}" width="${bw * fills[i] / 5}" height="${rh}" rx="3" fill="${MUTED_SOFT}"/>`;
+      }).join('')}
+      ${chips.map((c) => `<rect x="178" y="${c.y}" width="88" height="22" rx="11" fill="${c.hi ? PRIMARY : PAPER}" stroke="${c.hi ? PRIMARY : HAIRLINE}" stroke-width="1.2"/>`).join('')}
+    </svg>`;
+  };
+
+  const rfmFull = () => {
+    const bars = [
+      { k: 'R', n: '최근성 (Recency)', v: 4, tip: '마지막 구매가 얼마나 최근인가. 점수가 높을수록 최근에 구매한 활성 고객이다.' },
+      { k: 'F', n: '빈도 (Frequency)', v: 5, tip: '일정 기간 동안 얼마나 자주 구매했는가. 높을수록 충성도가 강하다.' },
+      { k: 'M', n: '금액 (Monetary)', v: 3, tip: '누적 구매 금액이 얼마인가. 높을수록 매출 기여가 큰 고객이다.' }
+    ];
+    const segs = [
+      { n: '우량 고객', tip: 'R·F·M 모두 높다. 최근에, 자주, 많이 산 핵심 고객. VIP 관리와 리텐션에 집중한다.', hi: true },
+      { n: '충성 고객', tip: '빈도가 높고 꾸준히 구매한다. 업셀·크로스셀로 객단가를 높일 여지가 크다.' },
+      { n: '신규 고객', tip: '최근 첫 구매. 빈도·금액은 낮다. 온보딩과 두 번째 구매 유도가 관건이다.' },
+      { n: '이탈 위험', tip: '과거엔 우량했으나 최근성이 떨어졌다. 재활성화 캠페인이 필요하다.' },
+      { n: '휴면 고객', tip: 'R·F·M 모두 낮다. 오래 비활성. 저비용 윈백 또는 정리 대상으로 본다.' }
+    ];
+    const bx = 56, barW = 280, y0 = 78, rh = 30, vgap = 34;
+    const chipX = 440, chipY0 = 64, chipW = 270, chipH = 44, chipGap = 12;
+    return `
+    <div class="viz">
+      <svg class="viz-svg" viewBox="0 0 760 380" xmlns="http://www.w3.org/2000/svg">
+        <text x="40" y="30" font-size="17" font-weight="700" fill="${INK}" pointer-events="none">RFM 분석</text>
+        <text x="40" y="56" font-size="12" font-weight="700" fill="${MUTED}" pointer-events="none">점수 (1 → 5)</text>
+        ${[1, 2, 3, 4, 5].map((s) => {
+          const x = bx + barW * (s - 0.5) / 5;
+          return `<text x="${x}" y="56" text-anchor="middle" font-size="10" fill="${MUTED_SOFT}" pointer-events="none">${s}</text>`;
+        }).join('')}
+        ${bars.map((b, i) => {
+          const y = y0 + i * (rh + vgap);
+          return `<g data-tip-title="${a(b.n)}" data-tip="${a(b.tip)}">
+            <text x="40" y="${y + rh / 2 + 5}" font-size="15" font-weight="700" fill="${INK}">${a(b.k)}</text>
+            <rect x="${bx}" y="${y}" width="${barW}" height="${rh}" rx="5" fill="${CARD}" stroke="${HAIRLINE}" stroke-width="1.2"/>
+            <rect x="${bx}" y="${y}" width="${barW * b.v / 5}" height="${rh}" rx="5" fill="${MUTED_SOFT}"/>
+            <text x="${bx + barW * b.v / 5 - 10}" y="${y + rh / 2 + 5}" text-anchor="end" font-size="13" font-weight="700" fill="${ON_DARK}">${b.v}</text>
+            <text x="${bx + 8}" y="${y - 6}" font-size="11" fill="${MUTED}">${a(b.n)}</text>
+          </g>`;
+        }).join('')}
+        <text x="${chipX}" y="56" font-size="12" font-weight="700" fill="${MUTED}" pointer-events="none">대표 세그먼트</text>
+        ${segs.map((s, i) => {
+          const y = chipY0 + i * (chipH + chipGap);
+          const fill = s.hi ? PRIMARY : PAPER;
+          const stroke = s.hi ? PRIMARY : HAIRLINE;
+          const txt = s.hi ? ON_DARK : INK;
+          return `<g data-tip-title="${a(s.n)}" data-tip="${a(s.tip)}">
+            <rect x="${chipX}" y="${y}" width="${chipW}" height="${chipH}" rx="${chipH / 2}" fill="${fill}" stroke="${stroke}" stroke-width="1.4"/>
+            <text x="${chipX + 22}" y="${y + chipH / 2 + 5}" font-size="14" font-weight="700" fill="${txt}">${a(s.n)}</text>
+          </g>`;
+        }).join('')}
+      </svg>
+      <div class="viz-caption">최근성·빈도·금액 점수로 고객을 세분화해 세그먼트별 맞춤 전략을 세운다.</div>
+    </div>`;
+  };
+
+  const dmaicThumb = () => {
+    const S = [
+      { l: '정의' }, { l: '측정' }, { l: '분석' }, { l: '개선' }, { l: '관리' }
+    ];
+    const cx = 140, cy = 90, r = 60;
+    const nodes = S.map((s, i) => {
+      const ang = -Math.PI / 2 + (i * 2 * Math.PI / S.length);
+      return { x: cx + r * Math.cos(ang), y: cy + r * Math.sin(ang), l: s.l, hi: i === 3 };
+    });
+    const dots = nodes.map(n =>
+      `<circle cx="${n.x.toFixed(1)}" cy="${n.y.toFixed(1)}" r="18" fill="${n.hi ? PRIMARY : PAPER}" stroke="${INK}" stroke-width="1.2"/><text x="${n.x.toFixed(1)}" y="${(n.y + 4).toFixed(1)}" text-anchor="middle" font-size="11" font-weight="700" fill="${n.hi ? ON_DARK : INK}">${a(n.l)}</text>`
+    ).join('');
+    const arcs = nodes.map((n, i) => {
+      const m = nodes[(i + 1) % nodes.length];
+      return `<path d="M ${n.x.toFixed(1)} ${n.y.toFixed(1)} L ${m.x.toFixed(1)} ${m.y.toFixed(1)}" stroke="${MUTED}" stroke-width="1" fill="none" pointer-events="none" marker-end="url(#dmThumbArr)"/>`;
+    }).join('');
+    return `<svg class="thumb-svg" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg"><defs><marker id="dmThumbArr" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="${MUTED}"/></marker></defs>${arcs}${dots}</svg>`;
+  };
+
+  const dmaicFull = () => {
+    const S = [
+      { n: 'Define / 정의', k: 'D', e: 'Define', l: '정의', tip: '해결할 문제와 목표, 프로젝트 범위를 명확히 정의한다.' },
+      { n: 'Measure / 측정', k: 'M', e: 'Measure', l: '측정', tip: '현재 프로세스 성과를 데이터로 측정해 기준선을 잡는다.' },
+      { n: 'Analyze / 분석', k: 'A', e: 'Analyze', l: '분석', tip: '데이터로 근본 원인을 분석하고 핵심 변수를 찾는다.' },
+      { n: 'Improve / 개선', k: 'I', e: 'Improve', l: '개선', tip: '근본 원인을 제거할 개선안을 설계하고 실행한다.' },
+      { n: 'Control / 관리', k: 'C', e: 'Control', l: '관리', tip: '개선 성과를 표준화하고 지속 관리해 재발을 막는다.' }
+    ];
+    const cx = 380, cy = 215, r = 130;
+    const nodes = S.map((s, i) => {
+      const ang = -Math.PI / 2 + (i * 2 * Math.PI / S.length);
+      return Object.assign({}, s, { x: cx + r * Math.cos(ang), y: cy + r * Math.sin(ang), hi: i === 3 });
+    });
+    const arcs = nodes.map((n, i) => {
+      const m = nodes[(i + 1) % nodes.length];
+      const dx = m.x - n.x, dy = m.y - n.y, len = Math.sqrt(dx * dx + dy * dy);
+      const ux = dx / len, uy = dy / len, pad = 40;
+      const x1 = n.x + ux * pad, y1 = n.y + uy * pad, x2 = m.x - ux * pad, y2 = m.y - uy * pad;
+      const loop = i === nodes.length - 1;
+      return `<path d="M ${x1.toFixed(1)} ${y1.toFixed(1)} L ${x2.toFixed(1)} ${y2.toFixed(1)}" stroke="${loop ? PRIMARY : MUTED}" stroke-width="${loop ? 1.8 : 1.4}" stroke-dasharray="${loop ? '5 4' : 'none'}" fill="none" pointer-events="none" marker-end="url(#dmFullArr${loop ? 'P' : ''})"/>`;
+    }).join('');
+    const dots = nodes.map(n =>
+      `<g data-tip-title="${a(n.n)}" data-tip="${a(n.tip)}"><circle cx="${n.x.toFixed(1)}" cy="${n.y.toFixed(1)}" r="40" fill="${n.hi ? PRIMARY : PAPER}" stroke="${INK}" stroke-width="1.4"/><text x="${n.x.toFixed(1)}" y="${(n.y - 4).toFixed(1)}" text-anchor="middle" font-size="22" font-weight="700" fill="${n.hi ? ON_DARK : INK}">${a(n.k)}</text><text x="${n.x.toFixed(1)}" y="${(n.y + 16).toFixed(1)}" text-anchor="middle" font-size="12" fill="${n.hi ? ON_DARK : BODY}">${a(n.l)}</text></g>`
+    ).join('');
+    return `<div class="viz"><svg class="viz-svg" viewBox="0 0 760 430" xmlns="http://www.w3.org/2000/svg"><defs><marker id="dmFullArr" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="${MUTED}"/></marker><marker id="dmFullArrP" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="${PRIMARY}"/></marker></defs><text x="380" y="40" text-anchor="middle" font-size="18" font-weight="700" fill="${INK}" pointer-events="none">DMAIC 개선 순환</text><text x="${cx}" y="${cy - 6}" text-anchor="middle" font-size="13" fill="${MUTED}" pointer-events="none">지속</text><text x="${cx}" y="${cy + 14}" text-anchor="middle" font-size="13" fill="${MUTED}" pointer-events="none">개선</text>${arcs}${dots}</svg><div class="viz-caption">정의·측정·분석·개선·관리 다섯 단계를 순환하며, 관리 단계의 성과를 다시 정의 단계로 환류해 프로세스를 지속 개선한다.</div></div>`;
+  };
+
+  const pdcaThumb = () => {
+    const Q = [
+      { l: '계획', a0: -90, hi: false },
+      { l: '실행', a0: 0, hi: false },
+      { l: '점검', a0: 90, hi: false },
+      { l: '개선', a0: 180, hi: true }
+    ];
+    const cx = 140, cy = 92, r = 58;
+    const sectors = Q.map(q => {
+      const s = (q.a0) * Math.PI / 180, e = (q.a0 + 90) * Math.PI / 180;
+      const x1 = cx + r * Math.cos(s), y1 = cy + r * Math.sin(s);
+      const x2 = cx + r * Math.cos(e), y2 = cy + r * Math.sin(e);
+      const lx = cx + r * 0.6 * Math.cos((s + e) / 2), ly = cy + r * 0.6 * Math.sin((s + e) / 2);
+      return `<path d="M ${cx} ${cy} L ${x1.toFixed(1)} ${y1.toFixed(1)} A ${r} ${r} 0 0 1 ${x2.toFixed(1)} ${y2.toFixed(1)} Z" fill="${q.hi ? PRIMARY : PAPER}" stroke="${INK}" stroke-width="1.2"/><text x="${lx.toFixed(1)}" y="${(ly + 4).toFixed(1)}" text-anchor="middle" font-size="11" font-weight="700" fill="${q.hi ? ON_DARK : INK}">${a(q.l)}</text>`;
+    }).join('');
+    return `<svg class="thumb-svg" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg"><defs><marker id="pdThumbArr" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="${MUTED}"/></marker></defs>${sectors}<path d="M ${cx + r + 8} ${cy} A ${r + 8} ${r + 8} 0 0 1 ${cx} ${cy + r + 8}" stroke="${MUTED}" stroke-width="1.2" fill="none" pointer-events="none" marker-end="url(#pdThumbArr)"/></svg>`;
+  };
+
+  const pdcaFull = () => {
+    const Q = [
+      { n: 'Plan / 계획', k: 'P', l: '계획', a0: -90, hi: false, tip: '목표를 세우고 달성 방법과 측정 기준을 계획한다.' },
+      { n: 'Do / 실행', k: 'D', l: '실행', a0: 0, hi: false, tip: '계획을 작은 범위에서 실행하고 데이터를 수집한다.' },
+      { n: 'Check / 점검', k: 'C', l: '점검', a0: 90, hi: false, tip: '결과를 목표와 비교해 차이와 원인을 점검한다.' },
+      { n: 'Act / 개선', k: 'A', l: '개선', a0: 180, hi: true, tip: '효과가 있으면 표준화하고, 없으면 다음 주기에 반영한다.' }
+    ];
+    const cx = 300, cy = 220, r = 140;
+    const sectors = Q.map(q => {
+      const s = q.a0 * Math.PI / 180, e = (q.a0 + 90) * Math.PI / 180;
+      const x1 = cx + r * Math.cos(s), y1 = cy + r * Math.sin(s);
+      const x2 = cx + r * Math.cos(e), y2 = cy + r * Math.sin(e);
+      const mid = (s + e) / 2;
+      const lx = cx + r * 0.62 * Math.cos(mid), ly = cy + r * 0.62 * Math.sin(mid);
+      return `<g data-tip-title="${a(q.n)}" data-tip="${a(q.tip)}"><path d="M ${cx} ${cy} L ${x1.toFixed(1)} ${y1.toFixed(1)} A ${r} ${r} 0 0 1 ${x2.toFixed(1)} ${y2.toFixed(1)} Z" fill="${q.hi ? PRIMARY : PAPER}" stroke="${INK}" stroke-width="1.4"/><text x="${lx.toFixed(1)}" y="${(ly - 2).toFixed(1)}" text-anchor="middle" font-size="24" font-weight="700" fill="${q.hi ? ON_DARK : INK}">${a(q.k)}</text><text x="${lx.toFixed(1)}" y="${(ly + 18).toFixed(1)}" text-anchor="middle" font-size="13" fill="${q.hi ? ON_DARK : BODY}">${a(q.l)}</text></g>`;
+    }).join('');
+    const ro = r + 22;
+    const arc = `<path d="M ${cx + ro} ${cy} A ${ro} ${ro} 0 0 1 ${cx} ${cy + ro} A ${ro} ${ro} 0 0 1 ${cx - ro} ${cy}" stroke="${MUTED}" stroke-width="1.6" fill="none" pointer-events="none" marker-end="url(#pdFullArr)"/>`;
+    const spiral = [0, 1, 2, 3].map(i => `<rect x="${600 + 0}" y="${380 - i * 22}" width="${40 + i * 28}" height="14" fill="${i === 3 ? PRIMARY : CARD}" stroke="${INK}" stroke-width="1" rx="2"/>`).join('');
+    return `<div class="viz"><svg class="viz-svg" viewBox="0 0 760 440" xmlns="http://www.w3.org/2000/svg"><defs><marker id="pdFullArr" markerWidth="9" markerHeight="9" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="${MUTED}"/></marker></defs><text x="300" y="40" text-anchor="middle" font-size="18" font-weight="700" fill="${INK}" pointer-events="none">PDCA 순환</text>${arc}${sectors}<g data-tip-title="점진적 개선" data-tip="순환을 반복할 때마다 표준이 한 단계씩 올라가 품질이 누적 향상된다."><text x="660" y="60" text-anchor="middle" font-size="13" fill="${MUTED}" pointer-events="none">반복할수록</text><text x="660" y="78" text-anchor="middle" font-size="13" fill="${MUTED}" pointer-events="none">상승</text>${spiral}</g></svg><div class="viz-caption">계획·실행·점검·개선을 시계 방향으로 돌리는 순환이다. 한 바퀴마다 표준이 한 단계씩 올라가 품질이 점진적으로 누적된다.</div></div>`;
+  };
+
+  const growThumb = () => {
+    const S = [
+      { l: 'G', hi: false }, { l: 'R', hi: false }, { l: 'O', hi: false }, { l: 'W', hi: true }
+    ];
+    const bw = 48, gap = 12, x0 = 24, y = 64, h = 52;
+    const steps = S.map((s, i) => {
+      const x = x0 + i * (bw + gap);
+      return `<rect x="${x}" y="${y}" width="${bw}" height="${h}" rx="3" fill="${s.hi ? PRIMARY : PAPER}" stroke="${INK}" stroke-width="1.2"/><text x="${x + bw / 2}" y="${y + h / 2 + 7}" text-anchor="middle" font-size="20" font-weight="700" fill="${s.hi ? ON_DARK : INK}">${a(s.l)}</text>${i < S.length - 1 ? `<line x1="${x + bw + 1}" y1="${y + h / 2}" x2="${x + bw + gap - 1}" y2="${y + h / 2}" stroke="${MUTED}" stroke-width="1.4" marker-end="url(#grThumbArr)" pointer-events="none"/>` : ''}`;
+    }).join('');
+    return `<svg class="thumb-svg" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg"><defs><marker id="grThumbArr" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="${MUTED}"/></marker></defs>${steps}</svg>`;
+  };
+
+  const growFull = () => {
+    const S = [
+      { n: 'Goal / 목표', k: 'G', e: 'Goal', l: '목표', q: '"무엇을 이루고 싶은가?"', hi: false, tip: '코칭 대화에서 달성하고 싶은 구체적 목표를 먼저 정한다.' },
+      { n: 'Reality / 현실', k: 'R', e: 'Reality', l: '현실', q: '"지금 어디에 있는가?"', hi: false, tip: '현재 상황과 사실, 이미 시도한 것을 객관적으로 점검한다.' },
+      { n: 'Options / 대안', k: 'O', e: 'Options', l: '대안', q: '"무엇을 할 수 있는가?"', hi: false, tip: '가능한 선택지를 폭넓게 펼쳐 보고 장단점을 따져 본다.' },
+      { n: 'Will / 실행의지', k: 'W', e: 'Will', l: '실행의지', q: '"무엇을 언제 할 것인가?"', hi: true, tip: '구체적 실행 계획과 책임, 첫 행동을 약속으로 확정한다.' }
+    ];
+    const bw = 150, gap = 30, x0 = 60, y = 150, h = 130;
+    const steps = S.map((s, i) => {
+      const x = x0 + i * (bw + gap);
+      const arr = i < S.length - 1
+        ? `<line x1="${x + bw + 3}" y1="${y + h / 2}" x2="${x + bw + gap - 3}" y2="${y + h / 2}" stroke="${MUTED}" stroke-width="1.6" marker-end="url(#grFullArr)" pointer-events="none"/>`
+        : '';
+      return `<g data-tip-title="${a(s.n)}" data-tip="${a(s.tip)}"><rect x="${x}" y="${y}" width="${bw}" height="${h}" rx="4" fill="${s.hi ? PRIMARY : PAPER}" stroke="${INK}" stroke-width="1.4"/><text x="${x + bw / 2}" y="${y + 50}" text-anchor="middle" font-size="40" font-weight="700" fill="${s.hi ? ON_DARK : PRIMARY}">${a(s.k)}</text><text x="${x + bw / 2}" y="${y + 78}" text-anchor="middle" font-size="15" font-weight="700" fill="${s.hi ? ON_DARK : INK}">${a(s.l)}</text><text x="${x + bw / 2}" y="${y + 102}" text-anchor="middle" font-size="11" fill="${s.hi ? ON_DARK : MUTED}">${a(s.q)}</text></g>${arr}`;
+    }).join('');
+    return `<div class="viz"><svg class="viz-svg" viewBox="0 0 760 360" xmlns="http://www.w3.org/2000/svg"><defs><marker id="grFullArr" markerWidth="9" markerHeight="9" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="${MUTED}"/></marker></defs><text x="380" y="48" text-anchor="middle" font-size="18" font-weight="700" fill="${INK}" pointer-events="none">GROW 코칭 모델</text><text x="380" y="78" text-anchor="middle" font-size="13" fill="${MUTED}" pointer-events="none">목표 → 현실 → 대안 → 실행의지 순으로 질문을 던진다</text><line x1="60" y1="${y + h + 26}" x2="700" y2="${y + h + 26}" stroke="${HAIRLINE}" stroke-width="1" pointer-events="none"/>${steps}</svg><div class="viz-caption">목표·현실·대안·실행의지 네 단계 질문으로 코칭 대화를 구조화한다. 마지막 실행의지에서 구체적 첫 행동을 약속으로 확정하는 것이 핵심이다.</div></div>`;
+  };
+
+  const kirkpatrickThumb = () => {
+    const L = [
+      { l: '반응', hi: false }, { l: '학습', hi: false }, { l: '행동', hi: false }, { l: '결과', hi: true }
+    ];
+    const baseW = 200, x0 = 40, yBase = 150, sh = 30;
+    const steps = L.map((s, i) => {
+      const w = baseW - i * 40;
+      const x = x0 + (i * 40) / 2;
+      const y = yBase - (i + 1) * sh;
+      return `<rect x="${x}" y="${y}" width="${w}" height="${sh - 4}" fill="${s.hi ? PRIMARY : PAPER}" stroke="${INK}" stroke-width="1.2"/><text x="${x + w / 2}" y="${y + 18}" text-anchor="middle" font-size="12" font-weight="700" fill="${s.hi ? ON_DARK : INK}">${a(s.l)}</text>`;
+    }).join('');
+    return `<svg class="thumb-svg" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">${steps}</svg>`;
+  };
+
+  const kirkpatrickFull = () => {
+    const L = [
+      { n: 'Level 1 · Reaction / 반응', k: '1', e: 'Reaction', l: '반응', d: '교육 만족도', hi: false, tip: '학습자가 교육을 어떻게 느꼈는지 만족도와 반응을 측정한다.' },
+      { n: 'Level 2 · Learning / 학습', k: '2', e: 'Learning', l: '학습', d: '지식·기술 습득', hi: false, tip: '교육을 통해 지식·기술·태도가 실제로 늘었는지 평가한다.' },
+      { n: 'Level 3 · Behavior / 행동', k: '3', e: 'Behavior', l: '행동', d: '현업 적용·행동 변화', hi: false, tip: '배운 것을 현업에서 행동으로 옮기고 있는지 관찰한다.' },
+      { n: 'Level 4 · Results / 결과', k: '4', e: 'Results', l: '결과', d: '성과·비즈니스 임팩트', hi: true, tip: '교육이 매출·품질 등 비즈니스 성과로 이어졌는지 측정한다.' }
+    ];
+    const cx = 300, baseW = 360, top = 70, sh = 70, gap = 6;
+    const steps = L.map((s, i) => {
+      const w = baseW - i * 80;
+      const y = top + i * (sh + gap);
+      const x = cx - w / 2;
+      return `<g data-tip-title="${a(s.n)}" data-tip="${a(s.tip)}"><rect x="${x}" y="${y}" width="${w}" height="${sh}" rx="3" fill="${s.hi ? PRIMARY : PAPER}" stroke="${INK}" stroke-width="1.4"/><text x="${cx}" y="${y + 30}" text-anchor="middle" font-size="16" font-weight="700" fill="${s.hi ? ON_DARK : INK}">${a('Lv' + s.k + ' ' + s.l)} <tspan font-size="13" font-weight="400" fill="${s.hi ? ON_DARK : MUTED}">${a(s.e)}</tspan></text><text x="${cx}" y="${y + 52}" text-anchor="middle" font-size="12" fill="${s.hi ? ON_DARK : BODY}">${a(s.d)}</text></g>`;
+    }).join('');
+    const axTop = top, axBot = top + 4 * (sh + gap) - gap;
+    return `<div class="viz"><svg class="viz-svg" viewBox="0 0 760 400" xmlns="http://www.w3.org/2000/svg"><defs><marker id="kpAxis" markerWidth="9" markerHeight="9" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="${MUTED}"/></marker></defs><text x="300" y="38" text-anchor="middle" font-size="18" font-weight="700" fill="${INK}" pointer-events="none">커크패트릭 4단계 평가</text><g pointer-events="none"><line x1="600" y1="${axBot}" x2="600" y2="${axTop - 6}" stroke="${MUTED}" stroke-width="1.4" marker-end="url(#kpAxis)"/><text x="618" y="${axTop + 6}" font-size="12" fill="${MUTED}">측정 난도</text><text x="618" y="${axTop + 22}" font-size="12" fill="${MUTED}">가치 ↑</text><text x="618" y="${axBot}" font-size="11" fill="${MUTED_SOFT}">낮음</text></g>${steps}</svg><div class="viz-caption">반응·학습·행동·결과 네 단계로 교육 효과를 평가한다. 위로 갈수록 측정은 어렵지만 비즈니스 가치가 커지며, 최종 결과 단계가 가장 중요하다.</div></div>`;
+  };
+
+  const competencyThumb = () => {
+    const L = [
+      { l: '핵심', hi: false }, { l: '직무', hi: false }, { l: '리더십', hi: true }
+    ];
+    const cx = 110, baseW = 150, top = 50, sh = 32, gap = 6;
+    const steps = L.map((s, i) => {
+      const idx = L.length - 1 - i;
+      const w = baseW - idx * 45;
+      const y = top + idx * (sh + gap);
+      const x = cx - w / 2;
+      return `<rect x="${x}" y="${y}" width="${w}" height="${sh}" fill="${s.hi ? PRIMARY : PAPER}" stroke="${INK}" stroke-width="1.2"/><text x="${cx}" y="${y + 21}" text-anchor="middle" font-size="11" font-weight="700" fill="${s.hi ? ON_DARK : INK}">${a(s.l)}</text>`;
+    }).join('');
+    return `<svg class="thumb-svg" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">${steps}<text x="225" y="80" text-anchor="middle" font-size="10" fill="${MUTED}">KSA</text></svg>`;
+  };
+
+  const competencyFull = () => {
+    const L = [
+      { n: '핵심역량 / Core', l: '핵심역량', e: 'Core Competency', d: '전 구성원 공통 가치·태도', hi: false, tip: '조직 구성원 모두가 공유해야 하는 공통 가치와 기본 태도다.' },
+      { n: '직무역량 / Functional', l: '직무역량', e: 'Functional Competency', d: '직무 수행에 필요한 지식·기술', hi: false, tip: '맡은 직무를 잘 수행하기 위해 필요한 전문 지식과 기술이다.' },
+      { n: '리더십역량 / Leadership', l: '리더십역량', e: 'Leadership Competency', d: '조직을 이끄는 역량', hi: true, tip: '사람과 조직을 이끌고 성과를 만들어 내는 상위 리더십 역량이다.' }
+    ];
+    const cx = 290, baseW = 420, top = 80, sh = 90, gap = 8;
+    const steps = L.map((s, i) => {
+      const idx = L.length - 1 - i;
+      const w = baseW - idx * 130;
+      const y = top + idx * (sh + gap);
+      const x = cx - w / 2;
+      return `<g data-tip-title="${a(s.n)}" data-tip="${a(s.tip)}"><polygon points="${x},${y + sh} ${x + w},${y + sh} ${cx + (w / 2) * 0.7},${y} ${cx - (w / 2) * 0.7},${y}" fill="${s.hi ? PRIMARY : PAPER}" stroke="${INK}" stroke-width="1.4"/><text x="${cx}" y="${y + sh / 2 - 4}" text-anchor="middle" font-size="16" font-weight="700" fill="${s.hi ? ON_DARK : INK}">${a(s.l)}</text><text x="${cx}" y="${y + sh / 2 + 16}" text-anchor="middle" font-size="12" fill="${s.hi ? ON_DARK : BODY}">${a(s.d)}</text></g>`;
+    }).join('');
+    const ksa = [
+      { k: 'K', t: 'Knowledge / 지식', tip: '직무에 필요한 이론·정보·전문 지식.' },
+      { k: 'S', t: 'Skill / 기술', tip: '실제로 일을 수행하는 숙련된 기술과 능력.' },
+      { k: 'A', t: 'Attitude / 태도', tip: '일과 사람을 대하는 가치관과 행동 성향.' }
+    ].map((m, i) => {
+      const y = 110 + i * 70;
+      return `<g data-tip-title="${a(m.t)}" data-tip="${a(m.tip)}"><circle cx="600" cy="${y}" r="22" fill="${PAPER}" stroke="${INK}" stroke-width="1.4"/><text x="600" y="${y + 6}" text-anchor="middle" font-size="18" font-weight="700" fill="${INK}">${a(m.k)}</text><text x="632" y="${y + 5}" font-size="13" fill="${BODY}">${a(m.t)}</text></g>`;
+    }).join('');
+    return `<div class="viz"><svg class="viz-svg" viewBox="0 0 760 400" xmlns="http://www.w3.org/2000/svg"><text x="290" y="44" text-anchor="middle" font-size="18" font-weight="700" fill="${INK}" pointer-events="none">역량 피라미드</text><text x="600" y="64" text-anchor="middle" font-size="14" font-weight="700" fill="${MUTED}" pointer-events="none">KSA 구성요소</text>${steps}${ksa}</svg><div class="viz-caption">핵심역량 위에 직무역량, 그 위에 리더십역량이 쌓이는 3층 구조다. 각 역량은 지식(K)·기술(S)·태도(A)의 조합으로 정의된다.</div></div>`;
+  };
+
+  const fishboneThumb = () => `
+    <svg class="thumb-svg" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
+      <line x1="24" y1="90" x2="214" y2="90" stroke="${MUTED_SOFT}" stroke-width="2" pointer-events="none"/>
+      <line x1="70"  y1="48" x2="92"  y2="90" stroke="${HAIRLINE}" stroke-width="2" pointer-events="none"/>
+      <line x1="124" y1="48" x2="146" y2="90" stroke="${HAIRLINE}" stroke-width="2" pointer-events="none"/>
+      <line x1="178" y1="48" x2="200" y2="90" stroke="${HAIRLINE}" stroke-width="2" pointer-events="none"/>
+      <line x1="70"  y1="132" x2="92"  y2="90" stroke="${HAIRLINE}" stroke-width="2" pointer-events="none"/>
+      <line x1="124" y1="132" x2="146" y2="90" stroke="${HAIRLINE}" stroke-width="2" pointer-events="none"/>
+      <line x1="178" y1="132" x2="200" y2="90" stroke="${HAIRLINE}" stroke-width="2" pointer-events="none"/>
+      <rect x="214" y="70" width="50" height="40" rx="6" fill="${PRIMARY}"/>
+      <text x="239" y="94" text-anchor="middle" font-size="11" font-weight="700" fill="${ON_DARK}">문제</text>
+    </svg>`;
+
+  const fishboneFull = () => {
+    const spine = { x1: 70, x2: 600, y: 230 };
+    const top = [
+      { x: 150, label: 'Man', ko: '사람', tip: '담당자의 숙련도, 교육 수준, 동기, 업무 배분. 사람 요인이 결과 편차를 만드는지 점검합니다.' },
+      { x: 300, label: 'Machine', ko: '설비', tip: '장비·시스템의 노후, 정비 주기, 사양 한계. 설비 상태가 불량의 뿌리인지 확인합니다.' },
+      { x: 450, label: 'Method', ko: '방법', tip: '작업 절차, 표준, 매뉴얼의 적정성. 방법 자체가 잘못 설계되었는지 따집니다.' }
+    ];
+    const bottom = [
+      { x: 150, label: 'Material', ko: '자재', tip: '원자재·부품의 품질, 공급처 편차, 보관 상태. 투입물이 결과를 흔드는지 살핍니다.' },
+      { x: 300, label: 'Measurement', ko: '측정', tip: '측정 기준, 계측기 정확도, 데이터 신뢰성. 측정 오류가 가짜 문제를 만드는지 봅니다.' },
+      { x: 450, label: 'Environment', ko: '환경', tip: '온습도, 작업 공간, 외부 규제 등 환경 조건. 통제 밖 변수가 영향을 주는지 확인합니다.' }
+    ];
+    const boneTop = (b) => {
+      const ex = b.x, ey = 110, sx = b.x + 60, sy = spine.y;
+      return `
+      <g data-tip-title="${a(b.label)} · ${a(b.ko)}" data-tip="${a(b.tip)}">
+        <line x1="${ex}" y1="${ey}" x2="${sx}" y2="${sy}" stroke="${MUTED}" stroke-width="2.5"/>
+        <line x1="${ex + 20}" y1="${ey + 30}" x2="${ex + 36}" y2="${ey + 18}" stroke="${HAIRLINE}" stroke-width="2" pointer-events="none"/>
+        <line x1="${ex + 36}" y1="${ey + 54}" x2="${ex + 52}" y2="${ey + 42}" stroke="${HAIRLINE}" stroke-width="2" pointer-events="none"/>
+        <text x="${ex - 6}" y="${ey - 8}" font-size="15" font-weight="700" fill="${INK}">${b.label}</text>
+        <text x="${ex - 6}" y="${ey + 9}" font-size="11" fill="${MUTED}">${b.ko}</text>
+      </g>`;
+    };
+    const boneBottom = (b) => {
+      const ex = b.x, ey = 350, sx = b.x + 60, sy = spine.y;
+      return `
+      <g data-tip-title="${a(b.label)} · ${a(b.ko)}" data-tip="${a(b.tip)}">
+        <line x1="${ex}" y1="${ey}" x2="${sx}" y2="${sy}" stroke="${MUTED}" stroke-width="2.5"/>
+        <line x1="${ex + 20}" y1="${ey - 30}" x2="${ex + 36}" y2="${ey - 18}" stroke="${HAIRLINE}" stroke-width="2" pointer-events="none"/>
+        <line x1="${ex + 36}" y1="${ey - 54}" x2="${ex + 52}" y2="${ey - 42}" stroke="${HAIRLINE}" stroke-width="2" pointer-events="none"/>
+        <text x="${ex - 6}" y="${ey + 18}" font-size="15" font-weight="700" fill="${INK}">${b.label}</text>
+        <text x="${ex - 6}" y="${ey + 35}" font-size="11" fill="${MUTED}">${b.ko}</text>
+      </g>`;
+    };
+    return `
+    <div class="viz">
+      <svg class="viz-svg" viewBox="0 0 760 420" xmlns="http://www.w3.org/2000/svg">
+        <text x="40" y="40" font-size="17" font-weight="700" fill="${INK}">특성요인도 · 6M 원인 분석</text>
+        <text x="40" y="62" font-size="12" fill="${MUTED}">결과(문제)를 머리에 두고 6개 범주로 원인을 거슬러 올라갑니다</text>
+        <g data-tip-title="척추 · 인과 흐름" data-tip="중앙 수평선은 문제로 이어지는 큰 인과 흐름입니다. 위아래 뼈대가 이 줄기로 모여 최종 문제를 만듭니다.">
+          <line x1="${spine.x1}" y1="${spine.y}" x2="${spine.x2}" y2="${spine.y}" stroke="${INK}" stroke-width="3"/>
+        </g>
+        ${top.map(boneTop).join('')}
+        ${bottom.map(boneBottom).join('')}
+        <g data-tip-title="문제 · 결과(Effect)" data-tip="분석 대상이 되는 핵심 문제입니다. 구체적이고 측정 가능한 한 문장으로 머리에 정의해야 원인 추적이 정확해집니다.">
+          <polygon points="600,${spine.y} 640,${spine.y - 38} 720,${spine.y - 38} 720,${spine.y + 38} 640,${spine.y + 38}" fill="${PRIMARY}"/>
+          <text x="678" y="${spine.y - 6}" text-anchor="middle" font-size="16" font-weight="700" fill="${ON_DARK}">핵심</text>
+          <text x="678" y="${spine.y + 16}" text-anchor="middle" font-size="16" font-weight="700" fill="${ON_DARK}">문제</text>
+        </g>
+      </svg>
+      <div class="viz-caption">6M(사람·설비·방법·자재·측정·환경)으로 근본 원인을 구조적으로 추적합니다</div>
+    </div>`;
+  };
+
+  const paretoThumb = () => `
+    <svg class="thumb-svg" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
+      <line x1="34" y1="150" x2="252" y2="150" stroke="${HAIRLINE}" stroke-width="1.5" pointer-events="none"/>
+      <rect x="44"  y="48"  width="26" height="102" fill="${PRIMARY}"/>
+      <rect x="78"  y="78"  width="26" height="72"  fill="${PRIMARY}"/>
+      <rect x="112" y="104" width="26" height="46"  fill="${CARD}"/>
+      <rect x="146" y="120" width="26" height="30"  fill="${CARD}"/>
+      <rect x="180" y="132" width="26" height="18"  fill="${CARD}"/>
+      <rect x="214" y="140" width="26" height="10"  fill="${CARD}"/>
+      <polyline points="57,72 91,46 125,36 159,30 193,26 227,24" fill="none" stroke="${MUTED}" stroke-width="2" pointer-events="none"/>
+      <line x1="34" y1="58" x2="252" y2="58" stroke="${MUTED_SOFT}" stroke-width="1" stroke-dasharray="4 3" pointer-events="none"/>
+    </svg>`;
+
+  const paretoFull = () => {
+    const bars = [
+      { ko: '결제 오류', f: 42, cum: 42 },
+      { ko: '배송 지연', f: 28, cum: 70 },
+      { ko: '로그인 실패', f: 12, cum: 82 },
+      { ko: 'UI 혼란', f: 8, cum: 90 },
+      { ko: '재고 부족', f: 6, cum: 96 },
+      { ko: '기타', f: 4, cum: 100 }
+    ];
+    const x0 = 90, y0 = 330, plotW = 560, plotH = 240, maxF = 50, bw = 64, gap = (plotW - bars.length * bw) / (bars.length + 1);
+    const bx = (i) => x0 + gap + i * (bw + gap);
+    const barH = (f) => f / maxF * plotH;
+    const cumY = (c) => y0 - (c / 100) * plotH;
+    const line = bars.map((b, i) => `${(bx(i) + bw / 2).toFixed(1)},${cumY(b.cum).toFixed(1)}`).join(' ');
+    return `
+    <div class="viz">
+      <svg class="viz-svg" viewBox="0 0 760 400" xmlns="http://www.w3.org/2000/svg">
+        <text x="40" y="36" font-size="17" font-weight="700" fill="${INK}">파레토 차트 · 80/20 법칙</text>
+        <text x="40" y="56" font-size="12" fill="${MUTED}">소수의 원인이 다수의 결과를 만듭니다 — 상위 2개가 누적 70%</text>
+        <line x1="${x0}" y1="${y0 - plotH}" x2="${x0}" y2="${y0}" stroke="${HAIRLINE}" stroke-width="1.5" pointer-events="none"/>
+        <line x1="${x0}" y1="${y0}" x2="${x0 + plotW}" y2="${y0}" stroke="${HAIRLINE}" stroke-width="1.5" pointer-events="none"/>
+        <line x1="${x0 + plotW}" y1="${y0 - plotH}" x2="${x0 + plotW}" y2="${y0}" stroke="${HAIRLINE}" stroke-width="1.5" pointer-events="none"/>
+        <text x="${x0 - 14}" y="${y0 - plotH + 4}" text-anchor="end" font-size="10" fill="${MUTED}">빈도</text>
+        <text x="${x0 + plotW + 14}" y="${y0 - plotH + 4}" font-size="10" fill="${MUTED}">누적%</text>
+        <g data-tip-title="80% 기준선" data-tip="누적 비율 80% 지점입니다. 이 선을 넘기 직전까지의 원인이 전체의 대부분을 설명하는 '핵심 소수'입니다.">
+          <line x1="${x0}" y1="${cumY(80)}" x2="${x0 + plotW}" y2="${cumY(80)}" stroke="${MUTED_SOFT}" stroke-width="1.5" stroke-dasharray="6 4"/>
+          <text x="${x0 + plotW - 4}" y="${cumY(80) - 8}" text-anchor="end" font-size="11" font-weight="600" fill="${MUTED}">80%</text>
+        </g>
+        ${bars.map((b, i) => {
+          const vital = b.cum - b.f < 80;
+          const x = bx(i), h = barH(b.f), y = y0 - h;
+          const fill = vital ? PRIMARY : CARD;
+          const txtFill = vital ? PRIMARY : MUTED;
+          return `
+        <g data-tip-title="${a(b.ko)} · 빈도 ${b.f}건" data-tip="${vital ? '핵심 소수에 해당합니다. 이 원인을 먼저 해결할 때 투입 대비 개선 효과가 가장 큽니다.' : '꼬리(trivial many)에 해당합니다. 자원이 한정되면 후순위로 두고 핵심 소수부터 처리합니다.'} 누적 ${b.cum}%.">
+          <rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${bw}" height="${h.toFixed(1)}" rx="3" fill="${fill}" stroke="${HAIRLINE}" stroke-width="${vital ? 0 : 1}"/>
+          <text x="${(x + bw / 2).toFixed(1)}" y="${y0 + 20}" text-anchor="middle" font-size="12" font-weight="${vital ? 700 : 500}" fill="${txtFill}">${b.ko}</text>
+          <text x="${(x + bw / 2).toFixed(1)}" y="${(y - 8).toFixed(1)}" text-anchor="middle" font-size="11" fill="${MUTED}">${b.f}</text>
+        </g>`;
+        }).join('')}
+        <g data-tip-title="누적 곡선" data-tip="원인을 빈도 내림차순으로 더해간 누적 비율입니다. 곡선이 가파르게 오를수록 소수 원인의 집중도가 높다는 뜻입니다.">
+          <polyline points="${line}" fill="none" stroke="${INK}" stroke-width="2.5"/>
+          ${bars.map((b, i) => `<circle cx="${(bx(i) + bw / 2).toFixed(1)}" cy="${cumY(b.cum).toFixed(1)}" r="4" fill="${PAPER}" stroke="${INK}" stroke-width="2"/>`).join('')}
+        </g>
+      </svg>
+      <div class="viz-caption">상위 핵심 소수(PRIMARY)에 자원을 집중해 개선 효과를 극대화합니다</div>
+    </div>`;
+  };
+
+  const horizonsThumb = () => `
+    <svg class="thumb-svg" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
+      <line x1="24" y1="150" x2="256" y2="150" stroke="${HAIRLINE}" stroke-width="1.5" pointer-events="none"/>
+      <line x1="24" y1="22"  x2="24"  y2="150" stroke="${HAIRLINE}" stroke-width="1.5" pointer-events="none"/>
+      <path d="M24 60 C70 52 120 70 256 138" fill="none" stroke="${CARD}" stroke-width="3"/>
+      <path d="M24 140 C90 138 150 70 230 60" fill="none" stroke="${MUTED_SOFT}" stroke-width="3"/>
+      <path d="M120 148 C190 146 220 110 256 56" fill="none" stroke="${PRIMARY}" stroke-width="3"/>
+    </svg>`;
+
+  const horizonsFull = () => {
+    const x0 = 80, y0 = 330, w = 600, h = 250;
+    const xr = x0 + w, yt = y0 - h;
+    return `
+    <div class="viz">
+      <svg class="viz-svg" viewBox="0 0 760 400" xmlns="http://www.w3.org/2000/svg">
+        <text x="40" y="36" font-size="17" font-weight="700" fill="${INK}">3대 성장 지평 · Three Horizons</text>
+        <text x="40" y="56" font-size="12" fill="${MUTED}">현재 사업을 지키며 동시에 미래 성장 엔진을 병행 육성합니다</text>
+        <line x1="${x0}" y1="${yt}" x2="${x0}" y2="${y0}" stroke="${HAIRLINE}" stroke-width="1.5" pointer-events="none"/>
+        <line x1="${x0}" y1="${y0}" x2="${xr}" y2="${y0}" stroke="${HAIRLINE}" stroke-width="1.5" pointer-events="none"/>
+        <text x="${x0 - 12}" y="${yt + 4}" text-anchor="end" font-size="11" fill="${MUTED}">가치</text>
+        <text x="${xr}" y="${y0 + 22}" text-anchor="end" font-size="11" fill="${MUTED}">시간 →</text>
+        <g data-tip-title="H1 · 현재 핵심 사업" data-tip="지금 매출과 이익의 대부분을 책임지는 사업입니다. 방어와 효율화로 수익을 유지하되, 장기적으로는 성숙·하강합니다.">
+          <path d="M${x0} ${y0 - h * 0.78} C${x0 + 120} ${y0 - h * 0.82} ${x0 + 240} ${y0 - h * 0.55} ${xr} ${y0 - h * 0.12}" fill="none" stroke="${MUTED}" stroke-width="3"/>
+          <text x="${x0 + 30}" y="${y0 - h * 0.78 - 12}" font-size="14" font-weight="700" fill="${INK}">H1 현재 핵심</text>
+          <text x="${x0 + 30}" y="${y0 - h * 0.78 + 6}" font-size="11" fill="${MUTED}">방어 · 수익 극대화</text>
+        </g>
+        <g data-tip-title="H2 · 신흥 성장 사업" data-tip="이미 검증되기 시작한 차세대 성장 동력입니다. 중기에 빠르게 매출을 키워 H1의 둔화를 메우는 역할을 합니다.">
+          <path d="M${x0} ${y0 - h * 0.08} C${x0 + 200} ${y0 - h * 0.12} ${x0 + 360} ${y0 - h * 0.75} ${xr} ${y0 - h * 0.82}" fill="none" stroke="${AMBER}" stroke-width="3"/>
+          <text x="${x0 + 300}" y="${y0 - h * 0.5}" font-size="14" font-weight="700" fill="${INK}">H2 신흥 성장</text>
+          <text x="${x0 + 300}" y="${y0 - h * 0.5 + 18}" font-size="11" fill="${MUTED}">투자 · 규모화</text>
+        </g>
+        <g data-tip-title="H3 · 미래 옵션" data-tip="아직 불확실하지만 판을 바꿀 수 있는 미래 베팅입니다. 작은 실험과 옵션 투자로 후기에 폭발적 성장 가능성을 확보합니다.">
+          <path d="M${x0 + 200} ${y0 - h * 0.02} C${x0 + 400} ${y0 - h * 0.04} ${x0 + 500} ${y0 - h * 0.45} ${xr} ${y0 - h * 0.95}" fill="none" stroke="${PRIMARY}" stroke-width="3.5"/>
+          <text x="${xr - 10}" y="${y0 - h * 0.95 - 8}" text-anchor="end" font-size="14" font-weight="700" fill="${PRIMARY}">H3 미래 옵션</text>
+          <text x="${xr - 10}" y="${y0 - h * 0.95 + 10}" text-anchor="end" font-size="11" fill="${PRIMARY}">실험 · 옵션 베팅</text>
+        </g>
+      </svg>
+      <div class="viz-caption">세 지평을 동시에 운영해야 단기 수익과 장기 성장이 끊기지 않습니다</div>
+    </div>`;
+  };
+
+  const corecompThumb = () => `
+    <svg class="thumb-svg" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="115" cy="75"  r="58" fill="${CARD}" opacity="0.55"/>
+      <circle cx="165" cy="75"  r="58" fill="${AMBER_SOFT}" opacity="0.55"/>
+      <circle cx="140" cy="118" r="58" fill="${CREAM_STR}" opacity="0.55"/>
+      <circle cx="140" cy="92"  r="16" fill="${PRIMARY}"/>
+    </svg>`;
+
+  const corecompFull = () => {
+    const r = 118, cx = 380, cyT = 195, cyB = 270, dx = 92;
+    return `
+    <div class="viz">
+      <svg class="viz-svg" viewBox="0 0 760 440" xmlns="http://www.w3.org/2000/svg">
+        <text x="40" y="36" font-size="17" font-weight="700" fill="${INK}">핵심역량 · Core Competence</text>
+        <text x="40" y="56" font-size="12" fill="${MUTED}">세 조건을 모두 만족하는 교집합이 진짜 핵심역량입니다</text>
+        <g data-tip-title="고객 가치 (Customer Value)" data-tip="고객이 실제로 인지하고 대가를 지불할 만한 가치를 만드는 능력인가? 내부 자부심이 아니라 고객 관점의 효용이 기준입니다.">
+          <circle cx="${cx - dx}" cy="${cyT}" r="${r}" fill="${TEAL}" opacity="0.16" stroke="${TEAL}" stroke-width="1.5"/>
+          <text x="${cx - dx - 30}" y="${cyT - 60}" text-anchor="middle" font-size="15" font-weight="700" fill="${INK}">고객 가치</text>
+        </g>
+        <g data-tip-title="경쟁 차별성 (Differentiation)" data-tip="경쟁사가 쉽게 모방할 수 없어 차별적 우위를 주는가? 흔하거나 금방 베껴지는 역량은 핵심역량이 아닙니다.">
+          <circle cx="${cx + dx}" cy="${cyT}" r="${r}" fill="${AMBER}" opacity="0.16" stroke="${AMBER}" stroke-width="1.5"/>
+          <text x="${cx + dx + 30}" y="${cyT - 60}" text-anchor="middle" font-size="15" font-weight="700" fill="${INK}">경쟁 차별성</text>
+        </g>
+        <g data-tip-title="확장 가능성 (Extendability)" data-tip="여러 시장·제품으로 응용해 새 사업의 문을 여는가? 한 영역에만 갇힌 역량보다 전이 가능한 역량이 더 강력합니다.">
+          <circle cx="${cx}" cy="${cyB}" r="${r}" fill="${MUTED}" opacity="0.13" stroke="${MUTED}" stroke-width="1.5"/>
+          <text x="${cx}" y="${cyB + r + 26}" text-anchor="middle" font-size="15" font-weight="700" fill="${INK}">확장 가능성</text>
+        </g>
+        <g data-tip-title="핵심역량 (Core Competence)" data-tip="세 조건의 교집합. 고객이 가치를 느끼고, 경쟁사가 못 따라오며, 다른 사업으로 확장되는 역량입니다. 여기에 자원을 집중해야 합니다.">
+          <circle cx="${cx}" cy="${cyT + 38}" r="34" fill="${PRIMARY}"/>
+          <text x="${cx}" y="${cyT + 34}" text-anchor="middle" font-size="13" font-weight="700" fill="${ON_DARK}">핵심</text>
+          <text x="${cx}" y="${cyT + 50}" text-anchor="middle" font-size="13" font-weight="700" fill="${ON_DARK}">역량</text>
+        </g>
+      </svg>
+      <div class="viz-caption">세 원이 겹치는 중심(PRIMARY)에 전략 자원을 집중 투입합니다</div>
+    </div>`;
+  };
+
+  const tocThumb = () => `
+    <svg class="thumb-svg" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="48"  cy="80" rx="22" ry="30" fill="none" stroke="${MUTED}" stroke-width="6"/>
+      <ellipse cx="92"  cy="80" rx="22" ry="30" fill="none" stroke="${MUTED}" stroke-width="6"/>
+      <ellipse cx="136" cy="80" rx="22" ry="30" fill="none" stroke="${PRIMARY}" stroke-width="2.5"/>
+      <ellipse cx="180" cy="80" rx="22" ry="30" fill="none" stroke="${MUTED}" stroke-width="6"/>
+      <ellipse cx="224" cy="80" rx="22" ry="30" fill="none" stroke="${MUTED}" stroke-width="6"/>
+      <text x="136" y="138" text-anchor="middle" font-size="11" font-weight="700" fill="${PRIMARY}">제약</text>
+    </svg>`;
+
+  const tocFull = () => {
+    const links = [
+      { ko: '영업', weak: false },
+      { ko: '설계', weak: false },
+      { ko: '가공', weak: true },
+      { ko: '조립', weak: false },
+      { ko: '출하', weak: false }
+    ];
+    const y = 150, rx = 32, ry = 50, x0 = 110, step = 128;
+    const steps = [
+      { ko: '식별', tip: '전체 흐름을 가장 제약하는 단 하나의 병목을 찾습니다. 제약은 보통 한 곳이며, 그곳이 시스템 전체 산출을 결정합니다.' },
+      { ko: '활용', tip: '제약을 새로 투자하지 않고도 최대한 가동합니다. 병목이 놀거나 불량을 만들지 않도록 우선순위와 보호 버퍼를 둡니다.' },
+      { ko: '종속', tip: '나머지 모든 공정을 제약의 속도에 맞춥니다. 비병목이 과잉 생산하면 재고만 쌓이므로 제약 리듬에 종속시킵니다.' },
+      { ko: '격상', tip: '그래도 부족하면 제약 능력 자체를 키웁니다. 설비 증설·인력 투입 등 본격 투자는 이 단계에서 검토합니다.' },
+      { ko: '반복', tip: '제약이 풀리면 다음 병목이 나타납니다. 관성에 안주하지 말고 1단계로 돌아가 새 제약을 찾는 순환을 이어갑니다.' }
+    ];
+    const sx0 = 110, sStep = 130, sy = 350;
+    return `
+    <div class="viz">
+      <svg class="viz-svg" viewBox="0 0 760 430" xmlns="http://www.w3.org/2000/svg">
+        <text x="40" y="36" font-size="17" font-weight="700" fill="${INK}">제약 이론 · Theory of Constraints</text>
+        <text x="40" y="56" font-size="12" fill="${MUTED}">사슬의 강도는 가장 약한 고리가 결정합니다 — 병목에 집중하세요</text>
+        <g data-tip-title="사슬 · 전체 시스템" data-tip="각 고리는 하나의 공정·부서입니다. 전체 처리량은 가장 약한 고리(제약)를 넘을 수 없으므로, 비병목을 강화해도 산출은 늘지 않습니다.">
+          ${links.slice(0, -1).map((_, i) => `<line x1="${x0 + i * step + rx - 6}" y1="${y}" x2="${x0 + (i + 1) * step - rx + 6}" y2="${y}" stroke="${HAIRLINE}" stroke-width="2" pointer-events="none"/>`).join('')}
+        </g>
+        ${links.map((l, i) => {
+          const cx = x0 + i * step;
+          if (l.weak) {
+            return `
+        <g data-tip-title="${a(l.ko)} · 제약(병목)" data-tip="가장 약한 고리입니다. 이 공정의 처리 능력이 시스템 전체 산출을 결정합니다. 개선 자원을 여기에 우선 투입해야 전체 성과가 올라갑니다.">
+          <ellipse cx="${cx}" cy="${y}" rx="${rx}" ry="${ry}" fill="none" stroke="${PRIMARY}" stroke-width="3"/>
+          <text x="${cx}" y="${y + 5}" text-anchor="middle" font-size="14" font-weight="700" fill="${PRIMARY}">${l.ko}</text>
+          <text x="${cx}" y="${y + ry + 20}" text-anchor="middle" font-size="11" font-weight="600" fill="${PRIMARY}">← 제약</text>
+        </g>`;
+          }
+          return `
+        <g data-tip-title="${a(l.ko)} · 비병목" data-tip="제약이 아닌 공정입니다. 여기에 능력이 남아도 전체 산출은 늘지 않습니다. 제약의 속도에 종속시켜 과잉 생산을 막는 것이 원칙입니다.">
+          <ellipse cx="${cx}" cy="${y}" rx="${rx}" ry="${ry}" fill="none" stroke="${MUTED}" stroke-width="9"/>
+          <text x="${cx}" y="${y + 5}" text-anchor="middle" font-size="14" font-weight="600" fill="${INK}">${l.ko}</text>
+        </g>`;
+        }).join('')}
+        <text x="40" y="312" font-size="13" font-weight="700" fill="${INK}">집중 개선 5단계</text>
+        ${steps.map((s, i) => {
+          const cx = sx0 + i * sStep;
+          return `
+        <g data-tip-title="${i + 1}. ${a(s.ko)}" data-tip="${a(s.tip)}">
+          <rect x="${cx - 52}" y="${sy - 18}" width="104" height="40" rx="20" fill="${CARD}"/>
+          <text x="${cx}" y="${sy + 7}" text-anchor="middle" font-size="13" font-weight="600" fill="${INK}">${i + 1}. ${s.ko}</text>
+          ${i < steps.length - 1 ? `<path d="M${cx + 54} ${sy + 2} l16 0 m-6 -5 l6 5 -6 5" fill="none" stroke="${MUTED_SOFT}" stroke-width="2" pointer-events="none"/>` : ''}
+        </g>`;
+        }).join('')}
+        <path d="M${sx0 + (steps.length - 1) * sStep} ${sy + 24} q0 28 -${(steps.length - 1) * sStep / 2} 28 q-${(steps.length - 1) * sStep / 2} 0 ${(steps.length - 1) * sStep / 2 - 6} -22" fill="none" stroke="${MUTED_SOFT}" stroke-width="1.5" stroke-dasharray="5 4" pointer-events="none"/>
+        <text x="${sx0}" y="${sy + 58}" font-size="10" fill="${MUTED}" pointer-events="none">반복</text>
+      </svg>
+      <div class="viz-caption">약한 고리(제약·PRIMARY)를 찾아 5단계 집중 개선을 순환합니다</div>
+    </div>`;
+  };
+
   const REG = {
+    'fishbone':         { thumb: fishboneThumb,    full: fishboneFull },
+    'pareto':           { thumb: paretoThumb,      full: paretoFull },
+    'horizons':         { thumb: horizonsThumb,    full: horizonsFull },
+    'corecomp':         { thumb: corecompThumb,    full: corecompFull },
+    'toc':              { thumb: tocThumb,         full: tocFull },
+    'dmaic':            { thumb: dmaicThumb,       full: dmaicFull },
+    'pdca':             { thumb: pdcaThumb,        full: pdcaFull },
+    'grow':             { thumb: growThumb,        full: growFull },
+    'kirkpatrick':      { thumb: kirkpatrickThumb, full: kirkpatrickFull },
+    'competency':       { thumb: competencyThumb,  full: competencyFull },
+    'hr-9box':          { thumb: hr9boxThumb,      full: hr9boxFull },
+    'ulrich':           { thumb: ulrichThumb,      full: ulrichFull },
+    'herzberg':         { thumb: herzbergThumb,    full: herzbergFull },
+    'vrio':             { thumb: vrioThumb,        full: vrioFull },
+    'rfm':              { thumb: rfmThumb,         full: rfmFull },
+    'muda':             { thumb: mudaThumb,     full: mudaFull },
+    'fives':            { thumb: fivesThumb,    full: fivesFull },
+    'kanban':           { thumb: kanbanThumb,   full: kanbanFull },
+    'fivewhys':         { thumb: fivewhysThumb, full: fivewhysFull },
+    'sixhats':          { thumb: sixhatsThumb,  full: sixhatsFull },
     'bmc':              { thumb: bmcThumb,    full: bmcFull },
     'profit-equation':  { thumb: profitThumb, full: profitFull },
     'revenue-model':    { thumb: revThumb,    full: revFull },
@@ -1762,7 +3078,12 @@ window.VIZ = (() => {
     'kano':             { thumb: kanoThumb,    full: kanoFull },
     'pyramid-principle':{ thumb: pyramidThumb, full: pyramidFull },
     'positioning-map':  { thumb: posMapThumb,  full: posMapFull },
-    'design-thinking':  { thumb: dtThumb,      full: dtFull }
+    'design-thinking':  { thumb: dtThumb,      full: dtFull },
+    'aarrr':            { thumb: aarrrThumb,   full: aarrrFull },
+    'aida':             { thumb: aidaThumb,    full: aidaFull },
+    'tuckman':          { thumb: tuckmanThumb, full: tuckmanFull },
+    'ejm':              { thumb: ejmThumb,     full: ejmFull },
+    'vsm':              { thumb: vsmThumb,     full: vsmFull }
   };
 
   return {
