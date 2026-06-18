@@ -765,7 +765,7 @@ body {
   color: var(--on-dark-soft);
   padding: 64px 0 48px;
 }
-.site-footer .container { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 48px; }
+.site-footer .container { display: grid; grid-template-columns: 1.6fr 1fr; gap: 48px; }
 @media (max-width: 768px) { .site-footer .container { grid-template-columns: 1fr; gap: 32px; } }
 .footer-brand {
   display: inline-flex;
