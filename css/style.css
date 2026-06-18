@@ -1078,7 +1078,7 @@ body.no-scroll { overflow: hidden; }
   font-size: 13px;
   line-height: 1.55;
   font-weight: 400;
-  max-width: 320px;
+  max-width: min(320px, calc(100vw - 32px));
   opacity: 0;
   transform: translate(-9999px, -9999px);
   transition: opacity 0.14s ease;

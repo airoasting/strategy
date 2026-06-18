@@ -391,6 +391,9 @@
       let ny = y + pad;
       if (nx + tw > vw - 8) nx = x - tw - pad;
       if (ny + th > vh - 8) ny = y - th - pad;
+      // 뷰포트 밖으로 나가지 않도록 양끝 클램프 (모바일 좁은 화면 대응)
+      nx = Math.max(8, Math.min(nx, vw - tw - 8));
+      ny = Math.max(8, Math.min(ny, vh - th - 8));
       node.style.transform = `translate(${nx}px, ${ny}px)`;
     };
 
@@ -417,6 +420,17 @@
     document.addEventListener('focusout', (e) => {
       const tgt = e.target.closest && e.target.closest('[data-tip]');
       if (tgt) hide();
+    });
+    // 터치(탭)로도 툴팁 표시 — 모바일 대응
+    document.addEventListener('click', (e) => {
+      const tgt = e.target.closest && e.target.closest('[data-tip]');
+      if (tgt) {
+        show(tipHTML(tgt));
+        const r = tgt.getBoundingClientRect();
+        move(r.left + r.width / 2, r.top + r.height / 2);
+      } else {
+        hide();
+      }
     });
     document.addEventListener('mousemove', (e) => {
       if (!visible) return;
