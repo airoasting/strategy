@@ -2721,7 +2721,7 @@ window.VIZ = (() => {
     const L = [
       { l: '핵심', hi: false }, { l: '직무', hi: false }, { l: '리더십', hi: true }
     ];
-    const cx = 110, baseW = 150, top = 50, sh = 32, gap = 6;
+    const cx = 140, baseW = 150, top = 50, sh = 32, gap = 6;
     const steps = L.map((s, i) => {
       const idx = L.length - 1 - i;
       const w = baseW - i * 45;
@@ -2729,7 +2729,7 @@ window.VIZ = (() => {
       const x = cx - w / 2;
       return `<rect x="${x}" y="${y}" width="${w}" height="${sh}" fill="${s.hi ? PRIMARY : PAPER}" stroke="${INK}" stroke-width="1.2"/><text x="${cx}" y="${y + 21}" text-anchor="middle" font-size="11" font-weight="700" fill="${s.hi ? ON_DARK : INK}">${a(s.l)}</text>`;
     }).join('');
-    return `<svg class="thumb-svg" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">${steps}<text x="225" y="80" text-anchor="middle" font-size="10" fill="${MUTED}">KSA</text></svg>`;
+    return `<svg class="thumb-svg" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">${steps}</svg>`;
   };
 
   const competencyFull = () => {
@@ -3080,8 +3080,8 @@ window.VIZ = (() => {
 
   const scrumThumb = () => `<svg class="thumb-svg" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
   <rect x="14" y="72" width="40" height="40" rx="4" fill="${CARD}" stroke="${HAIRLINE}"/><text x="34" y="96" font-size="9" fill="${MUTED}" text-anchor="middle">백로그</text>
-  <circle cx="140" cy="90" r="42" fill="none" stroke="${PRIMARY}" stroke-width="2.5" stroke-dasharray="200" stroke-dashoffset="40"/>
-  <path d="M178 78 l6 -6 -2 9 -9 -2 z" fill="${PRIMARY}" pointer-events="none"/>
+  <circle cx="140" cy="90" r="40" fill="none" stroke="${PRIMARY}" stroke-width="2.5"/>
+  <path d="M174 76 l6 14 -16 -2 z" fill="${PRIMARY}" pointer-events="none"/>
   <text x="140" y="94" font-size="10" fill="${PRIMARY}" text-anchor="middle">스프린트</text>
   <rect x="226" y="72" width="40" height="40" rx="4" fill="${CARD}" stroke="${HAIRLINE}"/><text x="246" y="96" font-size="9" fill="${MUTED}" text-anchor="middle">증분</text>
   <path d="M56 92 l24 0 m-5 -4 l5 4 -5 4" stroke="${MUTED}" fill="none" pointer-events="none"/>
