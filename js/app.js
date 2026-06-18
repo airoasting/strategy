@@ -2,7 +2,8 @@
   const state = {
     data: window.FRAMEWORKS_DATA,
     activeCategory: 'all',
-    query: ''
+    query: '',
+    sort: 'default'
   };
 
   const el = {
@@ -60,6 +61,7 @@
     container.querySelectorAll('.chip[data-cat]').forEach(btn => {
       if (btn.dataset.cat === 'all') return;
       btn.addEventListener('click', () => {
+        if (state.sort !== 'default') setSort('default');
         setActiveChip(btn.dataset.cat);
         const catId = btn.dataset.cat;
         if (closeMobile) {
@@ -145,11 +147,11 @@
           <div class="card-meta">
             <div class="meta-pair">
               <span class="meta-label">사용 빈도</span>
-              <span class="stars">${stars(f.frequency)}</span>
+              <span class="stars" role="img" aria-label="5점 만점에 ${Math.round(f.frequency)}점">${stars(f.frequency)}</span>
             </div>
             <div class="meta-pair">
               <span class="meta-label">효과성</span>
-              <span class="stars">${stars(f.effectiveness)}</span>
+              <span class="stars" role="img" aria-label="5점 만점에 ${Math.round(f.effectiveness)}점">${stars(f.effectiveness)}</span>
             </div>
           </div>
         </div>
@@ -163,9 +165,38 @@
     return [f.name, f.altName, f.summary, cName].join(' ').toLowerCase().includes(q);
   };
 
+  const bindCardClicks = () => {
+    el.gallery.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('click', () => openModal(Number(card.dataset.id)));
+    });
+  };
+
   const renderGallery = () => {
     const q = state.query.trim().toLowerCase();
     const cnts = counts();
+
+    // 정렬 모드: 카테고리 섹션 대신 단일 랭킹 그리드
+    if (state.sort !== 'default') {
+      const key = state.sort;
+      const items = state.data.frameworks
+        .filter(f => matches(f, q))
+        .slice()
+        .sort((a, b) => (b[key] - a[key]) || (b.effectiveness - a.effectiveness) || (b.frequency - a.frequency) || (a.id - b.id));
+      if (!items.length) { el.gallery.innerHTML = ''; el.empty.hidden = false; return; }
+      el.empty.hidden = true;
+      const label = key === 'frequency' ? '사용 빈도순' : '효과성순';
+      el.gallery.innerHTML = `
+        <section class="cat-section" id="cat-sorted">
+          <div class="cat-head">
+            <h3><span class="cat-dot" style="background:var(--primary)"></span>${label} 전체</h3>
+            <span class="cat-count">${items.length}개${q ? ' 매칭' : ''}</span>
+          </div>
+          <div class="gallery">${items.map(cardHTML).join('')}</div>
+        </section>`;
+      bindCardClicks();
+      return;
+    }
+
     const sections = state.data.categories.map(c => {
       const items = state.data.frameworks
         .filter(f => f.category === c.id)
@@ -189,8 +220,26 @@
     }
     el.empty.hidden = true;
     el.gallery.innerHTML = sections;
-    el.gallery.querySelectorAll('.card').forEach(card => {
-      card.addEventListener('click', () => openModal(Number(card.dataset.id)));
+    bindCardClicks();
+  };
+
+  const setSort = (sort) => {
+    state.sort = sort;
+    document.querySelectorAll('.sort-btn').forEach(b =>
+      b.setAttribute('aria-pressed', b.dataset.sort === sort ? 'true' : 'false'));
+    renderGallery();
+    initScrollSpy();
+  };
+
+  const bindSort = () => {
+    document.querySelectorAll('.sort-btn').forEach(btn => {
+      btn.addEventListener('click', () => setSort(btn.dataset.sort));
+    });
+  };
+
+  const bindHeroDemo = () => {
+    document.querySelectorAll('.hero-demo-q[data-demo]').forEach(btn => {
+      btn.addEventListener('click', () => openModal(Number(btn.dataset.demo)));
     });
   };
 
@@ -222,11 +271,11 @@
           <div class="m-ratings">
             <div class="m-rating-item">
               <span class="m-rating-label">사용 빈도</span>
-              <span class="stars">${stars(f.frequency)}</span>
+              <span class="stars" role="img" aria-label="5점 만점에 ${Math.round(f.frequency)}점">${stars(f.frequency)}</span>
             </div>
             <div class="m-rating-item">
               <span class="m-rating-label">효과성</span>
-              <span class="stars">${stars(f.effectiveness)}</span>
+              <span class="stars" role="img" aria-label="5점 만점에 ${Math.round(f.effectiveness)}점">${stars(f.effectiveness)}</span>
             </div>
           </div>
 
@@ -271,12 +320,24 @@
     `;
 
     el.body.querySelectorAll('[data-related]').forEach(a => {
-      a.addEventListener('click', e => {
-        e.preventDefault();
+      a.setAttribute('tabindex', '0');
+      a.setAttribute('role', 'link');
+      const go = () => {
         openModal(Number(a.dataset.related));
         const side = el.body.querySelector('.m-side');
         if (side) side.scrollTop = 0;
-      });
+      };
+      a.addEventListener('click', e => { e.preventDefault(); go(); });
+      a.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
+    });
+
+    // 시각화 요소를 키보드 포커스 + 스크린리더로 접근 가능하게
+    el.body.querySelectorAll('.viz-svg [data-tip]').forEach(g => {
+      g.setAttribute('tabindex', '0');
+      g.setAttribute('role', 'img');
+      const t = g.getAttribute('data-tip-title') || '';
+      const d = g.getAttribute('data-tip') || '';
+      g.setAttribute('aria-label', (t ? t + '. ' : '') + d);
     });
 
     el.modal.setAttribute('aria-hidden', 'false');
@@ -333,15 +394,29 @@
       node.style.transform = `translate(${nx}px, ${ny}px)`;
     };
 
-    document.addEventListener('mouseover', (e) => {
-      const tgt = e.target.closest && e.target.closest('[data-tip]');
-      if (!tgt) return;
+    const tipHTML = (tgt) => {
       const title = tgt.dataset.tipTitle || '';
       const body = tgt.dataset.tip || '';
       const sub  = tgt.dataset.tipSub || '';
-      const html = (title ? `<strong>${title}</strong>` : '') + body + (sub ? `<em>${sub}</em>` : '');
-      show(html);
+      return (title ? `<strong>${title}</strong>` : '') + body + (sub ? `<em>${sub}</em>` : '');
+    };
+    document.addEventListener('mouseover', (e) => {
+      const tgt = e.target.closest && e.target.closest('[data-tip]');
+      if (!tgt) return;
+      show(tipHTML(tgt));
       move(e.clientX, e.clientY);
+    });
+    // 키보드 포커스로도 툴팁 표시 (접근성)
+    document.addEventListener('focusin', (e) => {
+      const tgt = e.target.closest && e.target.closest('[data-tip]');
+      if (!tgt) return;
+      show(tipHTML(tgt));
+      const r = tgt.getBoundingClientRect();
+      move(r.left + r.width / 2, r.top + r.height / 2);
+    });
+    document.addEventListener('focusout', (e) => {
+      const tgt = e.target.closest && e.target.closest('[data-tip]');
+      if (tgt) hide();
     });
     document.addEventListener('mousemove', (e) => {
       if (!visible) return;
@@ -430,6 +505,8 @@
     initScrollSpy();
     bindModal();
     bindSearch();
+    bindSort();
+    bindHeroDemo();
     bindFooterLinks();
     initMobileMenu();
   };

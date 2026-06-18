@@ -1,14 +1,14 @@
 window.FRAMEWORKS_DATA = {
   categories: [
     { id: 'problem-solving', name: '문제 해결·사고 도구', color: '#F59E0B' },
-    { id: 'market', name: '시장·경쟁 분석', color: '#8B5CF6' },
-    { id: 'marketing', name: '마케팅 전략', color: '#EC4899' },
-    { id: 'business-model', name: '비즈니스 모델·수익 구조 분석', color: '#5C2D91' },
-    { id: 'organization', name: '조직·내부역량 분석', color: '#0EA5E9' },
+    { id: 'market', name: '시장·경쟁 분석', color: '#3f8fb5' },
+    { id: 'marketing', name: '마케팅 전략', color: '#d76ba0' },
+    { id: 'business-model', name: '비즈니스 모델·수익 구조 분석', color: '#cc785c' },
+    { id: 'organization', name: '조직·내부역량 분석', color: '#6c6a64' },
     { id: 'hr', name: 'HR·인재·조직문화', color: '#b3729a' },
     { id: 'change', name: '변화관리', color: '#5b86a8' },
     { id: 'project', name: '프로젝트 관리', color: '#c2954a' },
-    { id: 'process', name: '프로세스 분석', color: '#10B981' }
+    { id: 'process', name: '프로세스 분석', color: '#5aa86a' }
   ],
   frameworks: [
     {
