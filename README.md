@@ -50,7 +50,7 @@ ln -s "$(pwd)/strategy/skill" ~/.claude/skills/strategy
 
 | 기능 | 설명 |
 |---|---|
-| 67개 프레임워크 | 9개 카테고리, SVG 시각화 포함 |
+| 67개 프레임워크 | 6개 카테고리, SVG 시각화 포함 |
 | 카테고리 필터 + 검색 | 실시간 필터링, 스크롤 스파이 연동 |
 | 모달 상세 | 개요·구성·절차·예시·한계·관련 도구 |
 | 라이트 / 다크 모드 | 시스템 설정 감지, 수동 전환 가능 |
@@ -73,11 +73,11 @@ ln -s "$(pwd)/strategy/skill" ~/.claude/skills/strategy
 ### 비즈니스 모델·수익 구조
 ![비즈니스 모델·수익 구조](assets/screenshots/business-model.png)
 
-### 조직·내부역량 분석
-![조직·내부역량 분석](assets/screenshots/organization.png)
+### 조직·인사
+![조직·인사](assets/screenshots/organization.png)
 
-### 프로세스 분석
-![프로세스 분석](assets/screenshots/process.png)
+### 프로세스·실행
+![프로세스·실행](assets/screenshots/process.png)
 
 ---
 
@@ -87,31 +87,22 @@ ln -s "$(pwd)/strategy/skill" ~/.claude/skills/strategy
 <summary>전체 목록 보기</summary>
 
 ### 문제 해결·사고 도구 (10)
-`#1` 이슈 트리 / MECE &nbsp; `#2` 시나리오 플래닝 &nbsp; `#28` 피라미드 원칙 &nbsp; `#30` 디자인 씽킹 &nbsp; `#46` 5 Whys &nbsp; `#47` 특성요인도 &nbsp; `#48` 파레토 분석 &nbsp; `#49` 6색 사고모자 &nbsp; `#62` 아이젠하워 매트릭스 &nbsp; `#63` 리스크 매트릭스
+`#1` 이슈 트리 / MECE &nbsp; `#2` 시나리오 플래닝 &nbsp; `#3` 피라미드 원칙 &nbsp; `#4` 디자인 씽킹 &nbsp; `#5` 5 Whys &nbsp; `#6` 특성요인도 &nbsp; `#7` 파레토 분석 &nbsp; `#8` 6색 사고모자 &nbsp; `#9` 아이젠하워 매트릭스 &nbsp; `#10` 리스크 매트릭스
 
 ### 시장·경쟁 분석 (10)
-`#3` 3C 분석 &nbsp; `#4` SWOT &nbsp; `#5` 5 Forces &nbsp; `#8` PESTEL &nbsp; `#6` BCG 매트릭스 &nbsp; `#7` Ansoff &nbsp; `#9` GE-McKinsey 9Box &nbsp; `#10` 블루오션 전략 &nbsp; `#52` 3대 성장 지평 &nbsp; `#66` 포터 본원적 경쟁전략
+`#11` 3C 분석 &nbsp; `#12` SWOT &nbsp; `#13` 5 Forces &nbsp; `#14` BCG 매트릭스 &nbsp; `#15` Ansoff &nbsp; `#16` PESTEL &nbsp; `#17` GE-McKinsey 9Box &nbsp; `#18` 블루오션 전략 &nbsp; `#19` 3대 성장 지평 &nbsp; `#20` 포터 본원적 경쟁전략
 
 ### 마케팅 전략 (9)
-`#15` STP &nbsp; `#16` 4P &nbsp; `#17` Customer Journey Map &nbsp; `#18` JTBD &nbsp; `#19` Kano 모델 &nbsp; `#29` 포지셔닝 맵 &nbsp; `#53` AARRR &nbsp; `#54` RFM &nbsp; `#55` AIDA
+`#21` STP &nbsp; `#22` 4P &nbsp; `#23` Customer Journey Map &nbsp; `#24` JTBD &nbsp; `#25` Kano 모델 &nbsp; `#26` 포지셔닝 맵 &nbsp; `#27` AARRR &nbsp; `#28` RFM &nbsp; `#29` AIDA
 
 ### 비즈니스 모델·수익 구조 (5)
-`#11` BMC &nbsp; `#12` 이익 방정식 &nbsp; `#13` 수익 모델 &nbsp; `#14` Lean Canvas &nbsp; `#67` 가치 제안 캔버스
+`#30` BMC &nbsp; `#31` 이익 방정식 &nbsp; `#32` 수익 모델 &nbsp; `#33` Lean Canvas &nbsp; `#34` 가치 제안 캔버스
 
-### 조직·내부역량 분석 (8)
-`#20` 가치 사슬 &nbsp; `#22` 맥킨지 7S &nbsp; `#23` 역량 성숙도 &nbsp; `#21` BSC &nbsp; `#26` OKR &nbsp; `#50` VRIO &nbsp; `#51` 핵심역량 &nbsp; `#65` SMART 목표
+### 조직·인사 (17)
+`#35` 가치 사슬 &nbsp; `#36` BSC &nbsp; `#37` 맥킨지 7S &nbsp; `#38` 역량 성숙도 &nbsp; `#39` OKR &nbsp; `#40` VRIO &nbsp; `#41` 핵심역량 &nbsp; `#42` SMART 목표 &nbsp; `#43` 9박스 인재 매트릭스 &nbsp; `#44` Ulrich HR 모델 &nbsp; `#45` 역량 모델 &nbsp; `#46` Tuckman 팀 발달 &nbsp; `#47` 허즈버그 2요인 &nbsp; `#48` 커크패트릭 4단계 &nbsp; `#49` 직원 여정 지도 &nbsp; `#50` GROW 코칭 &nbsp; `#51` 매슬로 욕구단계
 
-### HR·인재·조직문화 (9)
-`#31` 9박스 인재 매트릭스 &nbsp; `#32` Ulrich HR 모델 &nbsp; `#33` 역량 모델 &nbsp; `#34` Tuckman 팀 발달 &nbsp; `#35` 허즈버그 2요인 &nbsp; `#36` 커크패트릭 4단계 &nbsp; `#37` 직원 여정 지도 &nbsp; `#38` GROW 코칭 &nbsp; `#64` 매슬로 욕구단계
-
-### 변화관리 (3)
-`#56` 코터 8단계 &nbsp; `#57` ADKAR &nbsp; `#58` 르윈 3단계
-
-### 프로젝트 관리 (3)
-`#59` 간트 차트 &nbsp; `#60` 크리티컬 패스 &nbsp; `#61` 스크럼
-
-### 프로세스 분석 (10)
-`#24` 프로세스 분해 &nbsp; `#27` SIPOC &nbsp; `#25` RACI &nbsp; `#39` DMAIC &nbsp; `#40` 린 7대 낭비 &nbsp; `#41` VSM &nbsp; `#42` PDCA &nbsp; `#43` 5S &nbsp; `#44` 칸반 &nbsp; `#45` 제약 이론(TOC)
+### 프로세스·실행 (16)
+`#52` 프로세스 분해 &nbsp; `#53` RACI &nbsp; `#54` SIPOC &nbsp; `#55` DMAIC &nbsp; `#56` 린 7대 낭비 &nbsp; `#57` VSM &nbsp; `#58` PDCA &nbsp; `#59` 5S &nbsp; `#60` 칸반 &nbsp; `#61` 제약 이론(TOC) &nbsp; `#62` 코터 8단계 &nbsp; `#63` ADKAR &nbsp; `#64` 르윈 3단계 &nbsp; `#65` 간트 차트 &nbsp; `#66` 크리티컬 패스 &nbsp; `#67` 스크럼
 
 </details>
 
@@ -122,7 +113,7 @@ ln -s "$(pwd)/strategy/skill" ~/.claude/skills/strategy
 ```
 사용자  신사업 검토 중인데 어떤 프레임워크부터 써야 할지 모르겠어
 
-AI      추천: 3C 분석 (#4)
+AI      추천: 3C 분석 (#11)
         이유: 세부 분석으로 내려가기 전에 시장·고객·경쟁 전체 구도를 먼저
               잡아야 합니다. 3C로 큰 그림부터 정리하세요.
 
@@ -131,7 +122,7 @@ AI      추천: 3C 분석 (#4)
         2. 고객(Customer): 타깃 세그먼트와 핵심 니즈 정의
         3. 경쟁(Competitor): 주요 플레이어와 포지셔닝 비교
 
-        보조 도구: BMC(#1)로 사업 모델 초안, PESTEL(#7)로 거시환경 점검
+        보조 도구: BMC(#30)로 사업 모델 초안, PESTEL(#16)로 거시환경 점검
 ```
 
 ---
