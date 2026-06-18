@@ -3033,7 +3033,470 @@ window.VIZ = (() => {
     </div>`;
   };
 
+  const kotterThumb = () => `<svg class="thumb-svg" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
+  ${[0,1,2,3,4,5,6,7].map(i=>{const w=26,h=14,x=18+i*30,y=150-i*16;const last=i===7;return `<rect x="${x}" y="${y}" width="${w}" height="${h+ (150-y)}" rx="2" fill="${last?PRIMARY:CARD}" stroke="${last?PRIMARY:HAIRLINE}"/><text x="${x+w/2}" y="${y-4}" font-size="9" fill="${last?PRIMARY:MUTED}" text-anchor="middle">${i+1}</text>`;}).join('')}
+  <line x1="14" y1="166" x2="266" y2="166" stroke="${HAIRLINE}" pointer-events="none"/>
+</svg>`;
+
+  const kotterFull = () => {
+    const steps=[["1","위기감 조성"],["2","연합팀 구성"],["3","비전 수립"],["4","비전 전파"],["5","권한 위임"],["6","단기 성과"],["7","변화 가속화"],["8","문화 정착"]];
+    const tips=["변화의 시급성을 공유한다","변화를 이끌 핵심 그룹을 만든다","명확한 방향과 전략을 세운다","비전을 조직 전체에 알린다","장애물을 없애고 행동을 위임한다","빠른 성공으로 동력을 얻는다","성과를 발판으로 변화를 확장한다","새 방식을 조직 문화로 굳힌다"];
+    const baseY=420, stepH=44, stepW=80, gap=4;
+    return `<div class="viz"><svg class="viz-svg" viewBox="0 0 760 470" xmlns="http://www.w3.org/2000/svg">
+  <text x="380" y="44" font-size="18" fill="${INK}" text-anchor="middle" font-weight="600">코터의 8단계 변화관리</text>
+  ${steps.map((s,i)=>{const x=40+i*(stepW+gap);const h=stepH*(i+1);const y=baseY-h;const last=i===7;return `<g data-tip-title="${a(s[0]+'. '+s[1])}" data-tip="${a(tips[i])}"><rect x="${x}" y="${y}" width="${stepW}" height="${h}" rx="4" fill="${last?PRIMARY:CARD}" stroke="${last?PRIMARY:HAIRLINE}"/><text x="${x+stepW/2}" y="${y+20}" font-size="15" fill="${last?ON_DARK:INK}" text-anchor="middle" font-weight="600">${s[0]}</text><text x="${x+stepW/2}" y="${y+38}" font-size="11" fill="${last?ON_DARK:BODY}" text-anchor="middle">${a(s[1])}</text></g>`;}).join('')}
+  <line x1="32" y1="${baseY}" x2="728" y2="${baseY}" stroke="${HAIRLINE}" pointer-events="none"/>
+  <text x="40" y="${baseY+18}" font-size="11" fill="${MUTED}" pointer-events="none">시작</text>
+  <text x="700" y="${baseY+18}" font-size="11" fill="${PRIMARY}" text-anchor="end" pointer-events="none">정착</text>
+  </svg><div class="viz-caption">위기감 조성부터 문화 정착까지, 변화를 단계적으로 쌓아 올린다.</div></div>`;
+  };
+
+  const adkarThumb = () => `<svg class="thumb-svg" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
+  ${["A","D","K","A","R"].map((c,i)=>{const w=42,x=12+i*52,y=72,last=i===4;return `<rect x="${x}" y="${y}" width="${w}" height="36" rx="4" fill="${last?PRIMARY:CARD}" stroke="${last?PRIMARY:HAIRLINE}"/><text x="${x+w/2}" y="${y+24}" font-size="16" fill="${last?ON_DARK:INK}" text-anchor="middle" font-weight="600">${c}</text>${i<4?`<path d="M${x+w+2} ${y+18} l8 0 m-4 -4 l4 4 -4 4" stroke="${MUTED}" fill="none" pointer-events="none"/>`:''}`;}).join('')}
+</svg>`;
+
+  const adkarFull = () => {
+    const items=[["A","인식","Awareness","변화의 필요성을 안다"],["D","욕구","Desire","변화에 참여하려 한다"],["K","지식","Knowledge","변화 방법을 익힌다"],["A","능력","Ability","실제로 실행할 수 있다"],["R","강화","Reinforcement","변화를 지속·정착시킨다"]];
+    const bw=120,bh=120,gap=18,y=140;
+    return `<div class="viz"><svg class="viz-svg" viewBox="0 0 760 340" xmlns="http://www.w3.org/2000/svg">
+  <text x="380" y="44" font-size="18" fill="${INK}" text-anchor="middle" font-weight="600">ADKAR 변화 모델</text>
+  ${items.map((it,i)=>{const x=24+i*(bw+gap);const last=i===4;return `<g data-tip-title="${a(it[0]+' · '+it[1]+' ('+it[2]+')')}" data-tip="${a(it[3])}"><rect x="${x}" y="${y}" width="${bw}" height="${bh}" rx="6" fill="${last?PRIMARY:CARD}" stroke="${last?PRIMARY:HAIRLINE}"/><text x="${x+bw/2}" y="${y+44}" font-size="30" fill="${last?ON_DARK:PRIMARY}" text-anchor="middle" font-weight="700">${it[0]}</text><text x="${x+bw/2}" y="${y+72}" font-size="15" fill="${last?ON_DARK:INK}" text-anchor="middle" font-weight="600">${a(it[1])}</text><text x="${x+bw/2}" y="${y+92}" font-size="11" fill="${last?ON_DARK:MUTED}" text-anchor="middle">${a(it[2])}</text></g>${i<4?`<path d="M${x+bw+2} ${y+bh/2} l${gap-4} 0 m-6 -5 l6 5 -6 5" stroke="${MUTED_SOFT}" stroke-width="1.5" fill="none" pointer-events="none"/>`:''}`;}).join('')}
+  </svg><div class="viz-caption">개인의 변화는 인식·욕구·지식·능력·강화의 순서로 완성된다.</div></div>`;
+  };
+
+  const lewinThumb = () => `<svg class="thumb-svg" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
+  ${[["해빙",TEAL,18],["변화",AMBER,102],["재동결",MUTED_SOFT,186]].map((b,i)=>`<rect x="${b[2]}" y="68" width="68" height="44" rx="4" fill="${i===1?AMBER_SOFT:(i===0?'#d8efe9':CARD)}" stroke="${b[1]}"/><text x="${b[2]+34}" y="95" font-size="11" fill="${INK}" text-anchor="middle">${b[0]}</text>${i<2?`<path d="M${b[2]+70} 90 l10 0 m-5 -4 l5 4 -5 4" stroke="${MUTED}" fill="none" pointer-events="none"/>`:''}`).join('')}
+</svg>`;
+
+  const lewinFull = () => {
+    const blocks=[["해빙","Unfreeze","기존 방식을 녹여 변화의 여지를 만든다",TEAL,"#dcefe9"],["변화","Change","새로운 방식으로 이동한다",AMBER,AMBER_SOFT],["재동결","Refreeze","새 방식을 안정된 상태로 굳힌다",MUTED,CARD]];
+    const bw=200,bh=130,gap=30,y=130;
+    return `<div class="viz"><svg class="viz-svg" viewBox="0 0 760 330" xmlns="http://www.w3.org/2000/svg">
+  <text x="380" y="44" font-size="18" fill="${INK}" text-anchor="middle" font-weight="600">르윈의 3단계 변화 모델</text>
+  ${blocks.map((b,i)=>{const x=20+i*(bw+gap);return `<g data-tip-title="${a(b[0]+' ('+b[1]+')')}" data-tip="${a(b[2])}"><rect x="${x}" y="${y}" width="${bw}" height="${bh}" rx="8" fill="${b[4]}" stroke="${b[3]}" stroke-width="1.5"/><text x="${x+bw/2}" y="${y+56}" font-size="20" fill="${INK}" text-anchor="middle" font-weight="600">${a(b[0])}</text><text x="${x+bw/2}" y="${y+82}" font-size="13" fill="${b[3]}" text-anchor="middle" font-weight="600">${a(b[1])}</text></g>${i<2?`<path d="M${x+bw+4} ${y+bh/2} l${gap-8} 0 m-7 -6 l7 6 -7 6" stroke="${MUTED_SOFT}" stroke-width="2" fill="none" pointer-events="none"/>`:''}`;}).join('')}
+  <text x="380" y="${y+bh+34}" font-size="11" fill="${MUTED}" text-anchor="middle" pointer-events="none">얼음 → 물 → 얼음: 굳은 상태를 녹이고, 옮기고, 다시 굳힌다</text>
+  </svg><div class="viz-caption">변화는 기존 상태를 녹이고 옮긴 뒤 다시 안정화하는 세 단계로 이뤄진다.</div></div>`;
+  };
+
+  const scrumThumb = () => `<svg class="thumb-svg" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
+  <rect x="14" y="72" width="40" height="40" rx="4" fill="${CARD}" stroke="${HAIRLINE}"/><text x="34" y="96" font-size="9" fill="${MUTED}" text-anchor="middle">백로그</text>
+  <circle cx="140" cy="90" r="42" fill="none" stroke="${PRIMARY}" stroke-width="2.5" stroke-dasharray="200" stroke-dashoffset="40"/>
+  <path d="M178 78 l6 -6 -2 9 -9 -2 z" fill="${PRIMARY}" pointer-events="none"/>
+  <text x="140" y="94" font-size="10" fill="${PRIMARY}" text-anchor="middle">스프린트</text>
+  <rect x="226" y="72" width="40" height="40" rx="4" fill="${CARD}" stroke="${HAIRLINE}"/><text x="246" y="96" font-size="9" fill="${MUTED}" text-anchor="middle">증분</text>
+  <path d="M56 92 l24 0 m-5 -4 l5 4 -5 4" stroke="${MUTED}" fill="none" pointer-events="none"/>
+  <path d="M186 92 l38 0 m-5 -4 l5 4 -5 4" stroke="${MUTED}" fill="none" pointer-events="none"/>
+</svg>`;
+
+  const scrumFull = () => {
+    const cx=380,cy=210,r=98;
+    const loop=[["계획","Sprint Planning",-90],["데일리","Daily Scrum",0],["리뷰","Review",90],["회고","Retrospective",180]];
+    const pt=(ang,rad)=>{const t=(ang-90)*Math.PI/180;return [cx+rad*Math.cos(t),cy+rad*Math.sin(t)];};
+    return `<div class="viz"><svg class="viz-svg" viewBox="0 0 760 410" xmlns="http://www.w3.org/2000/svg">
+  <text x="380" y="44" font-size="18" fill="${INK}" text-anchor="middle" font-weight="600">스크럼 프레임워크</text>
+  <g data-tip-title="제품 백로그" data-tip="우선순위로 정렬된 요구사항 목록"><rect x="24" y="160" width="100" height="100" rx="8" fill="${CARD}" stroke="${HAIRLINE}"/><text x="74" y="205" font-size="14" fill="${INK}" text-anchor="middle" font-weight="600">제품</text><text x="74" y="225" font-size="14" fill="${INK}" text-anchor="middle" font-weight="600">백로그</text></g>
+  <path d="M128 210 l120 0 m-10 -7 l10 7 -10 7" stroke="${MUTED_SOFT}" stroke-width="2" fill="none" pointer-events="none"/>
+  <g data-tip-title="스프린트 순환" data-tip="계획·데일리·리뷰·회고를 반복하는 핵심 주기">
+    <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${PRIMARY}" stroke-width="3"/>
+    <path d="M${cx+r-6} ${cy-14} l6 14 -16 -2 z" fill="${PRIMARY}"/>
+    <text x="${cx}" y="${cy-4}" font-size="15" fill="${PRIMARY}" text-anchor="middle" font-weight="600">스프린트</text>
+    <text x="${cx}" y="${cy+16}" font-size="11" fill="${MUTED}" text-anchor="middle">2~4주 반복</text>
+  </g>
+  ${loop.map((l,i)=>{const[px,py]=pt(l[2],r);return `<g data-tip-title="${a(l[0]+' ('+l[1]+')')}" data-tip="${a('스프린트 주기의 한 단계')}"><circle cx="${px}" cy="${py}" r="22" fill="${PAPER}" stroke="${PRIMARY}" stroke-width="1.5"/><text x="${px}" y="${py+4}" font-size="11" fill="${INK}" text-anchor="middle" font-weight="600">${a(l[0])}</text></g>`;}).join('')}
+  <path d="M${cx+r+8} 210 l108 0 m-10 -7 l10 7 -10 7" stroke="${MUTED_SOFT}" stroke-width="2" fill="none" pointer-events="none"/>
+  <g data-tip-title="증분 (Increment)" data-tip="스프린트마다 완성되는 출시 가능한 결과물"><rect x="636" y="160" width="100" height="100" rx="8" fill="${CARD}" stroke="${HAIRLINE}"/><text x="686" y="215" font-size="14" fill="${INK}" text-anchor="middle" font-weight="600">증분</text></g>
+  </svg><div class="viz-caption">백로그에서 출발해 짧은 스프린트를 반복하며 매번 완성된 증분을 내놓는다.</div></div>`;
+  };
+
+  const smartThumb = () => `<svg class="thumb-svg" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
+  ${["S","M","A","R","T"].map((c,i)=>{const y=18+i*30,last=i===4;return `<rect x="40" y="${y}" width="200" height="24" rx="3" fill="${last?PRIMARY:CARD}" stroke="${last?PRIMARY:HAIRLINE}"/><text x="52" y="${y+17}" font-size="13" fill="${last?ON_DARK:INK}" text-anchor="middle" font-weight="600">${c}</text>`;}).join('')}
+</svg>`;
+
+  const smartFull = () => {
+    const items=[["S","Specific","구체성","목표가 명확하고 구체적인가"],["M","Measurable","측정가능","진척과 달성을 측정할 수 있는가"],["A","Achievable","달성가능","현실적으로 이룰 수 있는가"],["R","Relevant","관련성","상위 목표와 연결되는가"],["T","Time-bound","기한","명확한 마감 시점이 있는가"]];
+    const rowH=58,gap=10,y0=78;
+    return `<div class="viz"><svg class="viz-svg" viewBox="0 0 760 420" xmlns="http://www.w3.org/2000/svg">
+  <text x="380" y="44" font-size="18" fill="${INK}" text-anchor="middle" font-weight="600">SMART 목표 설정</text>
+  ${items.map((it,i)=>{const y=y0+i*(rowH+gap);const last=i===4;return `<g data-tip-title="${a(it[0]+' · '+it[2]+' ('+it[1]+')')}" data-tip="${a(it[3])}"><rect x="120" y="${y}" width="520" height="${rowH}" rx="6" fill="${last?PRIMARY_SOFT:CARD}" stroke="${last?PRIMARY:HAIRLINE}"/><rect x="120" y="${y}" width="58" height="${rowH}" rx="6" fill="${last?PRIMARY:CREAM_STR}"/><text x="149" y="${y+38}" font-size="26" fill="${last?ON_DARK:PRIMARY}" text-anchor="middle" font-weight="700">${it[0]}</text><text x="198" y="${y+26}" font-size="16" fill="${INK}" font-weight="600">${a(it[2])}</text><text x="198" y="${y+46}" font-size="12" fill="${MUTED}">${a(it[1])} — ${a(it[3])}</text></g>`;}).join('')}
+  </svg><div class="viz-caption">좋은 목표는 구체적이고 측정 가능하며 달성 가능하고 관련 있고 기한이 있다.</div></div>`;
+  };
+
+  const maslowThumb = () => {
+    const w=[150,122,94,66,38];const yb=[160,131,102,73,44];const cx=140;
+    return `<svg class="thumb-svg" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
+  ${[0,1,2,3,4].map(i=>{const bw=w[i],tw=w[i+1]||(w[i]-28);const yBot=yb[i],yTop=yb[i]-29;const blW=cx-bw/2,brW=cx+bw/2,tlW=cx-tw/2,trW=cx+tw/2;const last=i===4;return `<polygon points="${blW},${yBot} ${brW},${yBot} ${trW},${yTop} ${tlW},${yTop}" fill="${last?PRIMARY:CARD}" stroke="${last?PRIMARY:HAIRLINE}"/>`;}).join('')}
+</svg>`;
+  };
+
+  const maslowFull = () => {
+    const layers=[
+      ["생리적 욕구","Physiological","음식·물·수면 등 생존의 기본"],
+      ["안전 욕구","Safety","안정·건강·재정적 보호"],
+      ["사회적 욕구","Love/Belonging","관계·소속감·애정"],
+      ["존중 욕구","Esteem","인정·성취·지위"],
+      ["자아실현","Self-Actualization","잠재력의 실현과 성장"]
+    ];
+    const widths=[380,310,235,160,82,0];
+    const cx=380, yBottom0=410, layerH=64.4;
+    return `<div class="viz"><svg class="viz-svg" viewBox="0 0 760 470" xmlns="http://www.w3.org/2000/svg">
+  <text x="380" y="44" font-size="18" fill="${INK}" text-anchor="middle" font-weight="600">매슬로의 욕구 5단계</text>
+  ${layers.map((L,i)=>{
+    const bw=widths[i], tw=widths[i+1];
+    const yBot=yBottom0-i*layerH;
+    const yTop=yBot-layerH;
+    const bl=cx-bw/2, br=cx+bw/2, tl=cx-tw/2, tr=cx+tw/2;
+    const cy=(yBot+yTop)/2;
+    const last=i===4;
+    return `<g data-tip-title="${a(L[0]+' ('+L[1]+')')}" data-tip="${a(L[2])}"><polygon points="${bl},${yBot} ${br},${yBot} ${tr},${yTop} ${tl},${yTop}" fill="${last?PRIMARY:CARD}" stroke="${last?PRIMARY:HAIRLINE}" stroke-width="1.5"/><text x="${cx}" y="${cy+5}" font-size="${last?14:15}" fill="${last?ON_DARK:INK}" text-anchor="middle" font-weight="600">${a(L[0])}</text></g>`;
+  }).join('')}
+  <text x="40" y="${yBottom0+5}" font-size="11" fill="${MUTED}" pointer-events="none">하위 (기본 욕구)</text>
+  <text x="40" y="${yBottom0-5*layerH+5}" font-size="11" fill="${PRIMARY}" pointer-events="none">상위 (성장 욕구)</text>
+  </svg><div class="viz-caption">하위의 기본 욕구가 충족될수록 상위의 성장 욕구로 동기가 이동한다.</div></div>`;
+  };
+
+  const GANTT = [
+    { n: '기획',     start: 0, dur: 2, prog: 1.0, tip: '프로젝트 범위와 목표를 정의합니다. 0~2주차, 완료된 단계입니다.' },
+    { n: '디자인',   start: 1, dur: 3, prog: 1.0, tip: 'UX·UI 설계와 프로토타입. 기획과 1주 겹쳐 시작합니다.' },
+    { n: '개발',     start: 3, dur: 5, prog: 0.55, tip: '핵심 기능 구현. 현재 진행 중이며 약 55% 완료된 강조 막대입니다.' },
+    { n: '테스트',   start: 7, dur: 2, prog: 0, tip: '품질 검증과 버그 수정. 개발 막바지와 1주 겹쳐 시작합니다.' },
+    { n: '런칭',     start: 9, dur: 1, prog: 0, tip: '배포와 출시. 마일스톤(◆)으로 표시한 종료 시점입니다.' }
+  ];
+  const ganttThumb = () => {
+    const W = 20, X0 = 58, Y0 = 28, RH = 26;
+    return `
+    <svg class="thumb-svg" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
+      ${[...Array(6)].map((_, i) => `<line x1="${X0 + i * W}" y1="${Y0 - 6}" x2="${X0 + i * W}" y2="${Y0 + 5 * RH - 8}" stroke="${HAIRLINE}" stroke-width="1"/>`).join('')}
+      ${GANTT.map((g, i) => {
+        const x = X0 + g.start * W, y = Y0 + i * RH, w = g.dur * W - 4;
+        const hi = i === 2;
+        return `
+          <text x="${X0 - 8}" y="${y + 11}" text-anchor="end" font-size="9" fill="${MUTED}">${g.n}</text>
+          <rect x="${x}" y="${y}" width="${w}" height="13" rx="3" fill="${hi ? PRIMARY : CREAM_STR}" stroke="${hi ? PRIMARY : MUTED_SOFT}" stroke-width="1"/>`;
+      }).join('')}
+      <path d="M${X0 + 9 * W} ${Y0 + 4 * RH + 6} l5 -5 l5 5 l-5 5 z" fill="${INK}"/>
+    </svg>`;
+  };
+  const ganttFull = () => {
+    const W = 56, X0 = 150, Y0 = 90, RH = 50, BH = 26;
+    const weeks = 10;
+    return `
+    <div class="viz">
+      <svg class="viz-svg" viewBox="0 0 760 380" xmlns="http://www.w3.org/2000/svg">
+        <text x="380" y="42" text-anchor="middle" font-size="18" font-weight="700" fill="${INK}">간트 차트 — 일정·진척 관리</text>
+        <text x="380" y="64" text-anchor="middle" font-size="12" fill="${MUTED}">작업별 시작~종료를 계단식으로 배치하고 진척을 추적합니다</text>
+        ${[...Array(weeks + 1)].map((_, i) => `
+          <line x1="${X0 + i * W}" y1="${Y0 - 10}" x2="${X0 + i * W}" y2="${Y0 + 5 * RH - 4}" stroke="${HAIRLINE}" stroke-width="1" pointer-events="none"/>
+          ${i < weeks ? `<text x="${X0 + i * W + W / 2}" y="${Y0 - 16}" text-anchor="middle" font-size="11" fill="${MUTED_SOFT}" pointer-events="none">${i + 1}주</text>` : ''}`).join('')}
+        ${GANTT.map((g, i) => {
+          const x = X0 + g.start * W, y = Y0 + i * RH, w = g.dur * W - 6;
+          const hi = i === 2;
+          const pw = Math.round(w * g.prog);
+          return `
+            <g data-tip-title="${a(g.n)} · ${g.start + 1}~${g.start + g.dur}주" data-tip="${a(g.tip)}">
+              <text x="${X0 - 16}" y="${y + BH / 2 + 5}" text-anchor="end" font-size="14" font-weight="600" fill="${INK}">${g.n}</text>
+              <rect x="${x}" y="${y}" width="${w}" height="${BH}" rx="5" fill="${hi ? PRIMARY_SOFT : CREAM_STR}" stroke="${hi ? PRIMARY : MUTED_SOFT}" stroke-width="1.3"/>
+              ${g.prog > 0 ? `<rect x="${x}" y="${y}" width="${pw}" height="${BH}" rx="5" fill="${hi ? PRIMARY : MUTED}"/>` : ''}
+              ${g.prog > 0 ? `<text x="${x + 10}" y="${y + BH / 2 + 4}" font-size="11" font-weight="700" fill="${ON_DARK}">${Math.round(g.prog * 100)}%</text>` : ''}
+            </g>`;
+        }).join('')}
+        <path d="M${X0 + 10 * W} ${Y0 + 4 * RH + BH / 2} l11 -11 l11 11 l-11 11 z" fill="${INK}" data-tip-title="런칭 마일스톤" data-tip="10주차 종료 시점의 출시 마일스톤입니다."/>
+        <g pointer-events="none" font-size="11" fill="${MUTED}">
+          <rect x="${X0}" y="${Y0 + 5 * RH + 8}" width="14" height="12" rx="2" fill="${PRIMARY}"/>
+          <text x="${X0 + 20}" y="${Y0 + 5 * RH + 18}">진척(완료분)</text>
+          <path d="M${X0 + 130} ${Y0 + 5 * RH + 14} l8 -8 l8 8 l-8 8 z" fill="${INK}"/>
+          <text x="${X0 + 150}" y="${Y0 + 5 * RH + 18}">마일스톤</text>
+        </g>
+      </svg>
+      <div class="viz-caption">작업의 시작·종료·의존을 시간축에 그려 일정과 진척을 한눈에 봅니다</div>
+    </div>`;
+  };
+
+  const cpmThumb = () => {
+    const N = [
+      { x: 30, y: 90 }, { x: 95, y: 50 }, { x: 95, y: 130 },
+      { x: 175, y: 90 }, { x: 245, y: 90 }
+    ];
+    const crit = [[0, 1], [1, 3], [3, 4]];
+    const sub = [[0, 2], [2, 3]];
+    const line = (e, hi) => `<line x1="${N[e[0]].x}" y1="${N[e[0]].y}" x2="${N[e[1]].x}" y2="${N[e[1]].y}" stroke="${hi ? PRIMARY : MUTED_SOFT}" stroke-width="${hi ? 3 : 1.5}"/>`;
+    return `
+    <svg class="thumb-svg" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
+      ${sub.map(e => line(e, false)).join('')}
+      ${crit.map(e => line(e, true)).join('')}
+      ${N.map((p, i) => `<circle cx="${p.x}" cy="${p.y}" r="14" fill="${(i === 0 || i === 1 || i === 3 || i === 4) ? PRIMARY_SOFT : PAPER}" stroke="${(i === 0 || i === 1 || i === 3 || i === 4) ? PRIMARY : MUTED_SOFT}" stroke-width="1.5"/><text x="${p.x}" y="${p.y + 4}" text-anchor="middle" font-size="11" font-weight="700" fill="${INK}">${i + 1}</text>`).join('')}
+    </svg>`;
+  };
+  const cpmFull = () => {
+    const N = [
+      { id: 'A', n: '요구분석', x: 110, y: 200, d: 2, tip: '시작 작업. 2일 소요. 핵심 경로의 출발점입니다.' },
+      { id: 'B', n: '설계', x: 290, y: 120, d: 4, tip: '요구분석 후 설계. 4일 소요. 핵심 경로상의 작업입니다.' },
+      { id: 'C', n: '자료준비', x: 290, y: 290, d: 2, tip: '병행 가능한 보조 작업. 2일 소요로 여유(slack)가 있습니다.' },
+      { id: 'D', n: '구현', x: 480, y: 200, d: 5, tip: '설계와 자료준비가 끝나야 시작. 5일로 가장 긴 작업이며 핵심 경로입니다.' },
+      { id: 'E', n: '검증', x: 650, y: 200, d: 2, tip: '마지막 작업. 2일 소요. 핵심 경로의 종착점입니다.' }
+    ];
+    const idx = id => N.findIndex(n => n.id === id);
+    const critEdges = [['A', 'B'], ['B', 'D'], ['D', 'E']];
+    const subEdges = [['A', 'C'], ['C', 'D']];
+    const edge = (e, hi) => {
+      const s = N[idx(e[0])], t = N[idx(e[1])];
+      const dx = t.x - s.x, dy = t.y - s.y, len = Math.hypot(dx, dy);
+      const ux = dx / len, uy = dy / len;
+      const x1 = s.x + ux * 30, y1 = s.y + uy * 30, x2 = t.x - ux * 34, y2 = t.y - uy * 34;
+      return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${hi ? PRIMARY : MUTED_SOFT}" stroke-width="${hi ? 3.5 : 1.6}" marker-end="url(#cpm-arr-${hi ? 'p' : 'm'})" pointer-events="none"/>`;
+    };
+    return `
+    <div class="viz">
+      <svg class="viz-svg" viewBox="0 0 760 380" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="cpm-arr-p" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><polygon points="0,0 10,5 0,10" fill="${PRIMARY}"/></marker>
+          <marker id="cpm-arr-m" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><polygon points="0,0 10,5 0,10" fill="${MUTED_SOFT}"/></marker>
+        </defs>
+        <text x="380" y="44" text-anchor="middle" font-size="18" font-weight="700" fill="${INK}">크리티컬 패스 (CPM)</text>
+        <text x="380" y="66" text-anchor="middle" font-size="12" fill="${MUTED}">가장 긴 의존 경로가 전체 기간을 결정합니다</text>
+        ${subEdges.map(e => edge(e, false)).join('')}
+        ${critEdges.map(e => edge(e, true)).join('')}
+        ${N.map(p => {
+          const onCrit = ['A', 'B', 'D', 'E'].includes(p.id);
+          return `
+            <g data-tip-title="${a(p.id)} · ${a(p.n)} (${p.d}일)" data-tip="${a(p.tip)}">
+              <circle cx="${p.x}" cy="${p.y}" r="30" fill="${onCrit ? PRIMARY_SOFT : PAPER}" stroke="${onCrit ? PRIMARY : MUTED_SOFT}" stroke-width="${onCrit ? 2.2 : 1.4}"/>
+              <text x="${p.x}" y="${p.y - 2}" text-anchor="middle" font-size="17" font-weight="700" fill="${INK}">${p.id}</text>
+              <text x="${p.x}" y="${p.y + 15}" text-anchor="middle" font-size="10" fill="${MUTED}">${p.d}일</text>
+              <text x="${p.x}" y="${p.y + 48}" text-anchor="middle" font-size="12" font-weight="600" fill="${INK}">${p.n}</text>
+            </g>`;
+        }).join('')}
+        <g pointer-events="none" font-size="12" fill="${MUTED}">
+          <line x1="110" y1="350" x2="150" y2="350" stroke="${PRIMARY}" stroke-width="3.5"/>
+          <text x="158" y="354" font-weight="600" fill="${INK}">핵심 경로 (A→B→D→E, 13일)</text>
+          <line x1="430" y1="350" x2="470" y2="350" stroke="${MUTED_SOFT}" stroke-width="1.6"/>
+          <text x="478" y="354">여유 경로</text>
+        </g>
+      </svg>
+      <div class="viz-caption">지연되면 전체 일정이 밀리는 핵심 경로를 찾아 자원을 집중합니다</div>
+    </div>`;
+  };
+
+  const eisenhowerThumb = () => {
+    const cells = [
+      { x: 145, y: 22, fill: PAPER, t: '즉시' },
+      { x: 22, y: 22, fill: PRIMARY_SOFT, t: '계획', hi: true },
+      { x: 145, y: 100, fill: PAPER, t: '위임' },
+      { x: 22, y: 100, fill: CREAM_STR, t: '제거' }
+    ];
+    return `
+    <svg class="thumb-svg" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
+      ${cells.map(c => `
+        <rect x="${c.x}" y="${c.y}" width="113" height="68" rx="4" fill="${c.fill}" stroke="${c.hi ? PRIMARY : MUTED_SOFT}" stroke-width="${c.hi ? 1.8 : 1}"/>
+        <text x="${c.x + 56}" y="${c.y + 40}" text-anchor="middle" font-size="13" font-weight="700" fill="${INK}">${c.t}</text>`).join('')}
+    </svg>`;
+  };
+  const eisenhowerFull = () => {
+    const X0 = 180, Y0 = 95, CW = 230, CH = 110;
+    const quad = (col, row) => ({ x: X0 + col * CW, y: Y0 + row * CH });
+    const cells = [
+      { col: 1, row: 0, fill: PAPER, stroke: INK, title: '즉시 실행 (Do)', tip: '긴급하고 중요. 위기·마감·핵심 문제. 지금 직접 처리합니다.', sub: '긴급 + 중요' },
+      { col: 0, row: 0, fill: PRIMARY_SOFT, stroke: PRIMARY, hi: true, title: '계획 (Schedule)', tip: '중요하지만 비긴급. 전략·관계·역량개발. 시간을 정해 투자하는, 성과를 가르는 가장 중요한 사분면입니다.', sub: '중요 + 비긴급' },
+      { col: 1, row: 1, fill: AMBER_SOFT, stroke: AMBER, title: '위임 (Delegate)', tip: '긴급하지만 비중요. 일부 회의·요청. 다른 사람에게 맡깁니다.', sub: '긴급 + 비중요' },
+      { col: 0, row: 1, fill: CREAM_STR, stroke: MUTED_SOFT, title: '제거 (Delete)', tip: '비긴급·비중요. 시간낭비·과한 잡무. 줄이거나 없앱니다.', sub: '비긴급 + 비중요' }
+    ];
+    return `
+    <div class="viz">
+      <svg class="viz-svg" viewBox="0 0 760 400" xmlns="http://www.w3.org/2000/svg">
+        <text x="380" y="44" text-anchor="middle" font-size="18" font-weight="700" fill="${INK}">아이젠하워 매트릭스</text>
+        ${cells.map(c => {
+          const p = quad(c.col, c.row);
+          return `
+            <g data-tip-title="${a(c.title)}" data-tip="${a(c.tip)}">
+              <rect x="${p.x}" y="${p.y}" width="${CW - 6}" height="${CH - 6}" rx="6" fill="${c.fill}" stroke="${c.stroke}" stroke-width="${c.hi ? 2.2 : 1.3}"/>
+              <text x="${p.x + (CW - 6) / 2}" y="${p.y + 44}" text-anchor="middle" font-size="17" font-weight="700" fill="${INK}">${c.title}</text>
+              <text x="${p.x + (CW - 6) / 2}" y="${p.y + 68}" text-anchor="middle" font-size="12" fill="${MUTED}">${c.sub}</text>
+            </g>`;
+        }).join('')}
+        <g pointer-events="none">
+          <text x="${X0 + CW - 3}" y="80" text-anchor="middle" font-size="13" font-weight="600" fill="${MUTED}">중요도 ↑</text>
+          <text x="${X0 + CW / 2}" y="${Y0 + 2 * CH + 14}" text-anchor="middle" font-size="12" fill="${MUTED_SOFT}">낮음</text>
+          <text x="${X0 + CW + CW / 2}" y="${Y0 + 2 * CH + 14}" text-anchor="middle" font-size="12" fill="${MUTED_SOFT}">높음</text>
+          <text x="${X0 + CW - 3}" y="${Y0 + 2 * CH + 32}" text-anchor="middle" font-size="13" font-weight="600" fill="${MUTED}">긴급도 →</text>
+        </g>
+      </svg>
+      <div class="viz-caption">긴급도와 중요도로 일을 4분면에 나눠, 무엇을 먼저·맡기고·버릴지 정합니다</div>
+    </div>`;
+  };
+
+  const riskColor = (sum) => {
+    if (sum <= 2) return '#cfe8e1';
+    if (sum <= 3) return '#e9ecd6';
+    if (sum <= 4) return AMBER_SOFT;
+    if (sum <= 5) return PRIMARY_SOFT;
+    return '#e9b8a6';
+  };
+  const riskmatrixThumb = () => {
+    const X0 = 60, Y0 = 18, C = 28;
+    let cells = '';
+    for (let r = 0; r < 4; r++) for (let c = 0; c < 4; c++) {
+      cells += `<rect x="${X0 + c * C}" y="${Y0 + r * C}" width="${C - 2}" height="${C - 2}" fill="${riskColor(c + (3 - r))}" stroke="${PAPER}" stroke-width="1"/>`;
+    }
+    return `
+    <svg class="thumb-svg" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
+      ${cells}
+      <circle cx="${X0 + 3 * C + (C - 2) / 2}" cy="${Y0 + (C - 2) / 2}" r="7" fill="${PRIMARY}" stroke="${PAPER}" stroke-width="1.5"/>
+    </svg>`;
+  };
+  const riskmatrixFull = () => {
+    const X0 = 200, Y0 = 90, C = 56, GRID = 5;
+    const probLab = ['희박', '낮음', '보통', '높음', '매우높음'];
+    const impLab = ['경미', '낮음', '보통', '심각', '치명적'];
+    let cells = '';
+    for (let r = 0; r < GRID; r++) for (let c = 0; c < GRID; c++) {
+      const imp = GRID - 1 - r;
+      const norm = Math.round(((c + imp) / (2 * (GRID - 1))) * 6);
+      cells += `<rect x="${X0 + c * C}" y="${Y0 + r * C}" width="${C - 3}" height="${C - 3}" rx="3" fill="${riskColor(norm)}" stroke="${PAPER}" stroke-width="2" pointer-events="none"/>`;
+    }
+    const risks = [
+      { c: 4, r: 0, label: '핵심 인력 이탈', tip: '발생확률 매우 높음 × 영향도 치명적 = 최고위험. 즉시 대응책(승계·리텐션)을 마련합니다.' },
+      { c: 1, r: 1, label: '환율 변동', tip: '발생확률 낮음 × 영향도 심각. 모니터링하며 헤지 전략을 준비합니다.' },
+      { c: 0, r: 4, label: '문서 오탈자', tip: '발생확률 희박 × 영향도 경미 = 저위험. 수용하거나 단순 점검으로 충분합니다.' }
+    ];
+    return `
+    <div class="viz">
+      <svg class="viz-svg" viewBox="0 0 760 420" xmlns="http://www.w3.org/2000/svg">
+        <text x="380" y="44" text-anchor="middle" font-size="18" font-weight="700" fill="${INK}">리스크 매트릭스</text>
+        ${cells}
+        ${risks.map(rk => {
+          const cx = X0 + rk.c * C + (C - 3) / 2, cy = Y0 + rk.r * C + (C - 3) / 2;
+          return `
+            <g data-tip-title="${a(rk.label)}" data-tip="${a(rk.tip)}">
+              <circle cx="${cx}" cy="${cy}" r="11" fill="${INK}" stroke="${PAPER}" stroke-width="2"/>
+              <text x="${cx}" y="${cy + 4}" text-anchor="middle" font-size="11" font-weight="700" fill="${ON_DARK}">!</text>
+              <text x="${cx + 16}" y="${cy + 4}" font-size="11" font-weight="600" fill="${INK}">${rk.label}</text>
+            </g>`;
+        }).join('')}
+        <g pointer-events="none" font-size="11" fill="${MUTED}">
+          ${impLab.map((l, i) => `<text x="${X0 - 10}" y="${Y0 + (GRID - 1 - i) * C + (C - 3) / 2 + 4}" text-anchor="end">${l}</text>`).join('')}
+          ${probLab.map((l, i) => `<text x="${X0 + i * C + (C - 3) / 2}" y="${Y0 + GRID * C + 16}" text-anchor="middle">${l}</text>`).join('')}
+          <text x="${X0 - 70}" y="${Y0 + GRID * C / 2}" text-anchor="middle" font-size="13" font-weight="600" fill="${MUTED}" transform="rotate(-90 ${X0 - 70} ${Y0 + GRID * C / 2})">영향도 ↑</text>
+          <text x="${X0 + GRID * C / 2}" y="${Y0 + GRID * C + 38}" text-anchor="middle" font-size="13" font-weight="600" fill="${MUTED}">발생확률 →</text>
+        </g>
+      </svg>
+      <div class="viz-caption">발생확률과 영향도로 위험을 격자에 올려, 우선 대응할 리스크를 가립니다</div>
+    </div>`;
+  };
+
+  const genericStrategyThumb = () => {
+    return `
+    <svg class="thumb-svg" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
+      <rect x="22" y="22" width="113" height="60" rx="4" fill="${PAPER}" stroke="${MUTED_SOFT}" stroke-width="1"/>
+      <text x="78" y="56" text-anchor="middle" font-size="11" font-weight="700" fill="${INK}">원가우위</text>
+      <rect x="145" y="22" width="113" height="60" rx="4" fill="${PRIMARY_SOFT}" stroke="${PRIMARY}" stroke-width="1.8"/>
+      <text x="201" y="56" text-anchor="middle" font-size="11" font-weight="700" fill="${INK}">차별화</text>
+      <rect x="22" y="92" width="236" height="60" rx="4" fill="${CREAM_STR}" stroke="${MUTED_SOFT}" stroke-width="1"/>
+      <text x="140" y="126" text-anchor="middle" font-size="11" font-weight="700" fill="${INK}">집중화</text>
+    </svg>`;
+  };
+  const genericStrategyFull = () => {
+    const X0 = 200, Y0 = 95, CW = 230, RH = 105;
+    return `
+    <div class="viz">
+      <svg class="viz-svg" viewBox="0 0 760 400" xmlns="http://www.w3.org/2000/svg">
+        <text x="380" y="44" text-anchor="middle" font-size="18" font-weight="700" fill="${INK}">포터의 본원적 경쟁전략</text>
+        <g data-tip-title="원가우위 (Cost Leadership)" data-tip="광범위한 시장에서 최저 원가로 경쟁합니다. 규모의 경제·효율화로 가격 경쟁력을 확보합니다.">
+          <rect x="${X0}" y="${Y0}" width="${CW - 6}" height="${RH - 6}" rx="6" fill="${PAPER}" stroke="${INK}" stroke-width="1.3"/>
+          <text x="${X0 + (CW - 6) / 2}" y="${Y0 + 48}" text-anchor="middle" font-size="17" font-weight="700" fill="${INK}">원가우위</text>
+          <text x="${X0 + (CW - 6) / 2}" y="${Y0 + 72}" text-anchor="middle" font-size="12" fill="${MUTED}">Cost Leadership</text>
+        </g>
+        <g data-tip-title="차별화 (Differentiation)" data-tip="광범위한 시장에서 독특한 가치로 경쟁합니다. 브랜드·품질·기술로 프리미엄을 받는 핵심 전략입니다.">
+          <rect x="${X0 + CW}" y="${Y0}" width="${CW - 6}" height="${RH - 6}" rx="6" fill="${PRIMARY_SOFT}" stroke="${PRIMARY}" stroke-width="2.2"/>
+          <text x="${X0 + CW + (CW - 6) / 2}" y="${Y0 + 48}" text-anchor="middle" font-size="17" font-weight="700" fill="${INK}">차별화</text>
+          <text x="${X0 + CW + (CW - 6) / 2}" y="${Y0 + 72}" text-anchor="middle" font-size="12" fill="${MUTED}">Differentiation</text>
+        </g>
+        <g data-tip-title="집중화 (Focus)" data-tip="협소한 틈새 시장에 집중합니다. 원가집중·차별화집중으로 특정 세그먼트를 깊이 공략합니다.">
+          <rect x="${X0}" y="${Y0 + RH}" width="${2 * CW - 6}" height="${RH - 6}" rx="6" fill="${CREAM_STR}" stroke="${INK}" stroke-width="1.3"/>
+          <text x="${X0 + CW - 3}" y="${Y0 + RH + 44}" text-anchor="middle" font-size="17" font-weight="700" fill="${INK}">집중화 (Focus)</text>
+          <text x="${X0 + CW - 3}" y="${Y0 + RH + 68}" text-anchor="middle" font-size="12" fill="${MUTED}">원가집중 · 차별화집중</text>
+        </g>
+        <g pointer-events="none">
+          <text x="${X0 + (CW - 6) / 2}" y="${Y0 - 12}" text-anchor="middle" font-size="12" font-weight="600" fill="${MUTED}">저원가</text>
+          <text x="${X0 + CW + (CW - 6) / 2}" y="${Y0 - 12}" text-anchor="middle" font-size="12" font-weight="600" fill="${MUTED}">차별화</text>
+          <text x="${X0 + CW - 3}" y="${Y0 - 32}" text-anchor="middle" font-size="13" font-weight="700" fill="${INK}">경쟁우위 →</text>
+          <text x="${X0 - 42}" y="${Y0 + RH}" text-anchor="middle" font-size="13" font-weight="700" fill="${INK}" transform="rotate(-90 ${X0 - 42} ${Y0 + RH})">경쟁범위</text>
+        </g>
+      </svg>
+      <div class="viz-caption">경쟁우위(원가/차별화)와 범위(광범위/협소)로 네 가지 본원 전략을 가립니다</div>
+    </div>`;
+  };
+
+  const vpcThumb = () => {
+    return `
+    <svg class="thumb-svg" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
+      <rect x="24" y="45" width="90" height="90" rx="6" fill="${PAPER}" stroke="${MUTED_SOFT}" stroke-width="1.3"/>
+      <line x1="24" y1="75" x2="114" y2="75" stroke="${HAIRLINE}"/>
+      <line x1="24" y1="105" x2="114" y2="105" stroke="${HAIRLINE}"/>
+      <circle cx="212" cy="90" r="48" fill="${PRIMARY_SOFT}" stroke="${PRIMARY}" stroke-width="1.5"/>
+      <line x1="164" y1="90" x2="260" y2="90" stroke="${PRIMARY}" stroke-width="0.8" opacity="0.5"/>
+      <line x1="195" y1="48" x2="195" y2="132" stroke="${PRIMARY}" stroke-width="0.8" opacity="0.5"/>
+      <text x="138" y="96" text-anchor="middle" font-size="16" font-weight="700" fill="${INK}">=</text>
+    </svg>`;
+  };
+  const vpcFull = () => {
+    const SX = 90, SY = 110, SS = 200;
+    const CX = 560, CY = 210, CR = 130;
+    const sqRows = [
+      { y: SY, h: SS / 3, title: '제품·서비스', tip: '가치 지도 — 제공하는 제품과 서비스의 목록입니다. 고객의 할 일을 돕는 핵심입니다.' },
+      { y: SY + SS / 3, h: SS / 3, title: '고통 해소제', tip: '가치 지도 — 고객의 고통(Pain)을 어떻게 없애거나 줄이는지를 정의합니다.' },
+      { y: SY + 2 * SS / 3, h: SS / 3, title: '이득 창출제', tip: '가치 지도 — 고객이 기대하는 이득(Gain)을 어떻게 만들어내는지를 정의합니다.' }
+    ];
+    const circSecs = [
+      { title: '할 일 (Jobs)', tip: '고객 프로파일 — 고객이 해결하려는 과업·문제·욕구입니다.', angle: -90 },
+      { title: '고통 (Pains)', tip: '고객 프로파일 — 과업 수행 중 겪는 불편·위험·부정적 결과입니다.', angle: 30 },
+      { title: '이득 (Gains)', tip: '고객 프로파일 — 고객이 바라는 긍정적 결과와 혜택입니다.', angle: 150 }
+    ];
+    return `
+    <div class="viz">
+      <svg class="viz-svg" viewBox="0 0 760 420" xmlns="http://www.w3.org/2000/svg">
+        <text x="380" y="44" text-anchor="middle" font-size="18" font-weight="700" fill="${INK}">가치 제안 캔버스 (VPC)</text>
+        <text x="${SX + SS / 2}" y="${SY - 16}" text-anchor="middle" font-size="14" font-weight="700" fill="${INK}">가치 지도</text>
+        ${sqRows.map((r, i) => `
+          <g data-tip-title="${a(r.title)}" data-tip="${a(r.tip)}">
+            <rect x="${SX}" y="${r.y}" width="${SS}" height="${r.h}" fill="${i === 0 ? CREAM_STR : PAPER}" stroke="${INK}" stroke-width="1.3"/>
+            <text x="${SX + SS / 2}" y="${r.y + r.h / 2 + 5}" text-anchor="middle" font-size="14" font-weight="600" fill="${INK}">${r.title}</text>
+          </g>`).join('')}
+        <text x="${CX}" y="${CY - CR - 16}" text-anchor="middle" font-size="14" font-weight="700" fill="${INK}">고객 프로파일</text>
+        <circle cx="${CX}" cy="${CY}" r="${CR}" fill="${PRIMARY_SOFT}" stroke="${PRIMARY}" stroke-width="1.8" pointer-events="none"/>
+        <line x1="${CX}" y1="${CY}" x2="${CX}" y2="${CY - CR}" stroke="${PRIMARY}" stroke-width="1.2" pointer-events="none"/>
+        <line x1="${CX}" y1="${CY}" x2="${CX + CR * Math.cos(Math.PI / 6)}" y2="${CY + CR * Math.sin(Math.PI / 6)}" stroke="${PRIMARY}" stroke-width="1.2" pointer-events="none"/>
+        <line x1="${CX}" y1="${CY}" x2="${CX - CR * Math.cos(Math.PI / 6)}" y2="${CY + CR * Math.sin(Math.PI / 6)}" stroke="${PRIMARY}" stroke-width="1.2" pointer-events="none"/>
+        ${circSecs.map(s => {
+          const rad = s.angle * Math.PI / 180;
+          const lx = CX + (CR * 0.55) * Math.cos(rad);
+          const ly = CY + (CR * 0.55) * Math.sin(rad);
+          return `
+            <g data-tip-title="${a(s.title)}" data-tip="${a(s.tip)}">
+              <circle cx="${lx}" cy="${ly}" r="34" fill="transparent"/>
+              <text x="${lx}" y="${ly + 4}" text-anchor="middle" font-size="13" font-weight="600" fill="${INK}">${s.title}</text>
+            </g>`;
+        }).join('')}
+        <text x="${(SX + SS + CX - CR) / 2}" y="${CY + 6}" text-anchor="middle" font-size="26" font-weight="700" fill="${PRIMARY}">≈</text>
+        <text x="${(SX + SS + CX - CR) / 2}" y="${CY + 30}" text-anchor="middle" font-size="11" fill="${MUTED}">적합성(Fit)</text>
+        <text x="${SX + SS / 2}" y="${SY + SS + 26}" text-anchor="middle" font-size="11" fill="${MUTED}">우리가 만드는 것</text>
+        <text x="${CX}" y="${CY + CR + 26}" text-anchor="middle" font-size="11" fill="${MUTED}">고객이 원하는 것</text>
+      </svg>
+      <div class="viz-caption">가치 지도(사각형)와 고객 프로파일(원)을 맞춰 제품-시장 적합성을 점검합니다</div>
+    </div>`;
+  };
+
   const REG = {
+    'kotter':           { thumb: kotterThumb,       full: kotterFull },
+    'adkar':            { thumb: adkarThumb,        full: adkarFull },
+    'lewin':            { thumb: lewinThumb,        full: lewinFull },
+    'gantt':            { thumb: ganttThumb,        full: ganttFull },
+    'cpm':              { thumb: cpmThumb,          full: cpmFull },
+    'scrum':            { thumb: scrumThumb,        full: scrumFull },
+    'eisenhower':       { thumb: eisenhowerThumb,   full: eisenhowerFull },
+    'riskmatrix':       { thumb: riskmatrixThumb,   full: riskmatrixFull },
+    'maslow':           { thumb: maslowThumb,       full: maslowFull },
+    'smart':            { thumb: smartThumb,        full: smartFull },
+    'generic-strategy': { thumb: genericStrategyThumb, full: genericStrategyFull },
+    'vpc':              { thumb: vpcThumb,          full: vpcFull },
     'fishbone':         { thumb: fishboneThumb,    full: fishboneFull },
     'pareto':           { thumb: paretoThumb,      full: paretoFull },
     'horizons':         { thumb: horizonsThumb,    full: horizonsFull },

@@ -1,10 +1,10 @@
-# 55개 전략 프레임워크
+# 67개 전략 프레임워크
 
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Frameworks](https://img.shields.io/badge/frameworks-55-coral.svg)](https://github.com/airoasting/strategy)
+[![Frameworks](https://img.shields.io/badge/frameworks-67-coral.svg)](https://github.com/airoasting/strategy)
 [![Static](https://img.shields.io/badge/build-static-brightgreen.svg)](index.html)
 
-맥킨지·베인·BCG 현장 도구 55개를 한 자리에 모았습니다.
+맥킨지·베인·BCG 현장 도구 67개를 한 자리에 모았습니다.
 카드로 탐색하고, AI가 상황에 맞는 도구를 골라줍니다.
 
 **[airoasting.github.io/strategy](https://airoasting.github.io/strategy/)**
@@ -15,7 +15,7 @@
 
 전략 프레임워크는 많은데, 지금 내 상황에 뭘 써야 할지 모르겠는 경우가 더 많습니다.
 
-갤러리에서 55개를 직접 훑어보거나, AI 스킬에 상황을 말하면 맞는 도구를 골라줍니다.
+갤러리에서 67개를 직접 훑어보거나, AI 스킬에 상황을 말하면 맞는 도구를 골라줍니다.
 
 ---
 
@@ -50,7 +50,7 @@ ln -s "$(pwd)/strategy/skill" ~/.claude/skills/strategy
 
 | 기능 | 설명 |
 |---|---|
-| 55개 프레임워크 | 7개 카테고리, SVG 시각화 포함 |
+| 67개 프레임워크 | 9개 카테고리, SVG 시각화 포함 |
 | 카테고리 필터 + 검색 | 실시간 필터링, 스크롤 스파이 연동 |
 | 모달 상세 | 개요·구성·절차·예시·한계·관련 도구 |
 | 라이트 / 다크 모드 | 시스템 설정 감지, 수동 전환 가능 |
@@ -81,28 +81,34 @@ ln -s "$(pwd)/strategy/skill" ~/.claude/skills/strategy
 
 ---
 
-## 55개 프레임워크
+## 67개 프레임워크
 
 <details>
 <summary>전체 목록 보기</summary>
 
-### 문제 해결·사고 도구 (8)
-`#1` 이슈 트리 / MECE &nbsp; `#2` 시나리오 플래닝 &nbsp; `#28` 피라미드 원칙 &nbsp; `#30` 디자인 씽킹 &nbsp; `#46` 5 Whys &nbsp; `#47` 특성요인도 &nbsp; `#48` 파레토 분석 &nbsp; `#49` 6색 사고모자
+### 문제 해결·사고 도구 (10)
+`#1` 이슈 트리 / MECE &nbsp; `#2` 시나리오 플래닝 &nbsp; `#28` 피라미드 원칙 &nbsp; `#30` 디자인 씽킹 &nbsp; `#46` 5 Whys &nbsp; `#47` 특성요인도 &nbsp; `#48` 파레토 분석 &nbsp; `#49` 6색 사고모자 &nbsp; `#62` 아이젠하워 매트릭스 &nbsp; `#63` 리스크 매트릭스
 
-### 시장·경쟁 분석 (9)
-`#3` 3C 분석 &nbsp; `#4` SWOT &nbsp; `#5` 5 Forces &nbsp; `#8` PESTEL &nbsp; `#6` BCG 매트릭스 &nbsp; `#7` Ansoff &nbsp; `#9` GE-McKinsey 9Box &nbsp; `#10` 블루오션 전략 &nbsp; `#52` 3대 성장 지평
+### 시장·경쟁 분석 (10)
+`#3` 3C 분석 &nbsp; `#4` SWOT &nbsp; `#5` 5 Forces &nbsp; `#8` PESTEL &nbsp; `#6` BCG 매트릭스 &nbsp; `#7` Ansoff &nbsp; `#9` GE-McKinsey 9Box &nbsp; `#10` 블루오션 전략 &nbsp; `#52` 3대 성장 지평 &nbsp; `#66` 포터 본원적 경쟁전략
 
 ### 마케팅 전략 (9)
 `#15` STP &nbsp; `#16` 4P &nbsp; `#17` Customer Journey Map &nbsp; `#18` JTBD &nbsp; `#19` Kano 모델 &nbsp; `#29` 포지셔닝 맵 &nbsp; `#53` AARRR &nbsp; `#54` RFM &nbsp; `#55` AIDA
 
-### 비즈니스 모델·수익 구조 (4)
-`#11` BMC &nbsp; `#12` 이익 방정식 &nbsp; `#13` 수익 모델 &nbsp; `#14` Lean Canvas
+### 비즈니스 모델·수익 구조 (5)
+`#11` BMC &nbsp; `#12` 이익 방정식 &nbsp; `#13` 수익 모델 &nbsp; `#14` Lean Canvas &nbsp; `#67` 가치 제안 캔버스
 
-### 조직·내부역량 분석 (7)
-`#20` 가치 사슬 &nbsp; `#22` 맥킨지 7S &nbsp; `#23` 역량 성숙도 &nbsp; `#21` BSC &nbsp; `#26` OKR &nbsp; `#50` VRIO &nbsp; `#51` 핵심역량
+### 조직·내부역량 분석 (8)
+`#20` 가치 사슬 &nbsp; `#22` 맥킨지 7S &nbsp; `#23` 역량 성숙도 &nbsp; `#21` BSC &nbsp; `#26` OKR &nbsp; `#50` VRIO &nbsp; `#51` 핵심역량 &nbsp; `#65` SMART 목표
 
-### HR·인재·조직문화 (8)
-`#31` 9박스 인재 매트릭스 &nbsp; `#32` Ulrich HR 모델 &nbsp; `#33` 역량 모델 &nbsp; `#34` Tuckman 팀 발달 &nbsp; `#35` 허즈버그 2요인 &nbsp; `#36` 커크패트릭 4단계 &nbsp; `#37` 직원 여정 지도 &nbsp; `#38` GROW 코칭
+### HR·인재·조직문화 (9)
+`#31` 9박스 인재 매트릭스 &nbsp; `#32` Ulrich HR 모델 &nbsp; `#33` 역량 모델 &nbsp; `#34` Tuckman 팀 발달 &nbsp; `#35` 허즈버그 2요인 &nbsp; `#36` 커크패트릭 4단계 &nbsp; `#37` 직원 여정 지도 &nbsp; `#38` GROW 코칭 &nbsp; `#64` 매슬로 욕구단계
+
+### 변화관리 (3)
+`#56` 코터 8단계 &nbsp; `#57` ADKAR &nbsp; `#58` 르윈 3단계
+
+### 프로젝트 관리 (3)
+`#59` 간트 차트 &nbsp; `#60` 크리티컬 패스 &nbsp; `#61` 스크럼
 
 ### 프로세스 분석 (10)
 `#24` 프로세스 분해 &nbsp; `#27` SIPOC &nbsp; `#25` RACI &nbsp; `#39` DMAIC &nbsp; `#40` 린 7대 낭비 &nbsp; `#41` VSM &nbsp; `#42` PDCA &nbsp; `#43` 5S &nbsp; `#44` 칸반 &nbsp; `#45` 제약 이론(TOC)
