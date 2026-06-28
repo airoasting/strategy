@@ -1582,7 +1582,7 @@ window.VIZ = (() => {
      ============================================================ */
   const posMapThumb = () => {
     const brands = [
-      { x: 210, y: 43,  r: 8,  fill: PRIMARY,     label: 'A' },
+      { x: 210, y: 53,  r: 8,  fill: PRIMARY,     label: 'A' },
       { x: 155, y: 55,  r: 6,  fill: CARD,        label: 'B' },
       { x: 60,  y: 130, r: 7,  fill: CARD,        label: 'C' },
       { x: 100, y: 75,  r: 5,  fill: PAPER,       label: 'D' },
@@ -1597,7 +1597,7 @@ window.VIZ = (() => {
       <text x="140" y="8"  text-anchor="middle" font-size="8" fill="${MUTED}">프리미엄</text>
       <text x="140" y="178" text-anchor="middle" font-size="8" fill="${MUTED}">간편</text>
       <rect x="148" y="16" width="118" height="68" rx="3" fill="${PRIMARY}" opacity="0.06"/>
-      <text x="207" y="44" text-anchor="middle" font-size="7.5" fill="${PRIMARY}" font-weight="600">기회 영역</text>
+      <text x="207" y="41" text-anchor="middle" font-size="7.5" fill="${PRIMARY}" font-weight="600">기회 영역</text>
       ${brands.map(b => `
         <circle cx="${b.x}" cy="${b.y}" r="${b.r}" fill="${b.fill}" stroke="${INK}" stroke-width="0.8"/>
         <text x="${b.x + b.r + 3}" y="${b.y + 4}" font-size="7.5" fill="${INK}">${b.label}</text>
