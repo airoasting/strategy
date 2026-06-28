@@ -1284,7 +1284,7 @@ body.no-scroll { overflow: hidden; }
   .site-footer .container { grid-template-columns: 1fr; }
   .footer-col { display: none; }
 
-  .modal { padding: 18px 12px; }
+  .modal { padding: 32px 12px; }
   .modal-dialog { width: 100%; max-height: none; }
   .m-layout { grid-template-columns: 1fr !important; grid-template-rows: auto 1fr; }
   .m-stage { height: auto; max-height: 44vh; padding: 18px 14px; }
