@@ -1232,10 +1232,10 @@ window.VIZ = (() => {
       <path d="${toPath(pts1)}" fill="none" stroke="${MUTED}" stroke-width="2" stroke-dasharray="5,3"/>
       <path d="${toPath(pts2)}" fill="none" stroke="${PRIMARY}" stroke-width="2.5"/>
       <text x="140" y="175" text-anchor="middle" font-size="8" fill="${MUTED}">경쟁 요소</text>
-      <rect x="200" y="20" width="40" height="10" rx="2" fill="${PRIMARY}"/>
-      <text x="244" y="29" font-size="8" fill="${INK}">자사</text>
-      <rect x="200" y="34" width="40" height="6" rx="2" fill="${MUTED}" opacity="0.6"/>
-      <text x="244" y="40" font-size="8" fill="${MUTED}">경쟁사</text>
+      <rect x="200" y="8" width="40" height="9" rx="2" fill="${PRIMARY}"/>
+      <text x="244" y="16" font-size="8" fill="${INK}">자사</text>
+      <rect x="200" y="22" width="40" height="6" rx="2" fill="${MUTED}" opacity="0.6"/>
+      <text x="244" y="28" font-size="8" fill="${MUTED}">경쟁사</text>
     </svg>`;
   };
   const blueOceanFull = () => {
@@ -1311,9 +1311,9 @@ window.VIZ = (() => {
         ${quads.map(q => `
           <g data-tip-title="${a(q.label)} (${a(q.ko)})" data-tip="${a(q.tip)}">
             <rect x="${q.x}" y="${q.y}" width="${q.w}" height="${q.h}" fill="${q.fill}" stroke="${INK}" stroke-width="1.2"/>
-            <text x="${q.x + q.w/2}" y="${q.y + 50}" text-anchor="middle" font-size="28" fill="${INK}">${q.icon}</text>
-            <text x="${q.x + q.w/2}" y="${q.y + 80}" text-anchor="middle" font-size="18" font-weight="700" fill="${INK}">${q.label}</text>
-            <text x="${q.x + q.w/2}" y="${q.y + 100}" text-anchor="middle" font-size="13" fill="${MUTED}">${q.ko}</text>
+            <text x="${q.x + q.w/2}" y="${q.y + q.h/2 - 16}" text-anchor="middle" font-size="28" fill="${INK}">${q.icon}</text>
+            <text x="${q.x + q.w/2}" y="${q.y + q.h/2 + 12}" text-anchor="middle" font-size="18" font-weight="700" fill="${INK}">${q.label}</text>
+            <text x="${q.x + q.w/2}" y="${q.y + q.h/2 + 32}" text-anchor="middle" font-size="13" fill="${MUTED}">${q.ko}</text>
           </g>`).join('')}
         <text x="22" y="220" text-anchor="middle" font-size="12" fill="${MUTED}" transform="rotate(-90,22,220)">시장 성장률 (高 ← → 低)</text>
         <text x="400" y="415" text-anchor="middle" font-size="12" fill="${MUTED}">상대적 시장 점유율 (高 ← → 低)</text>
@@ -3392,7 +3392,7 @@ window.VIZ = (() => {
     </svg>`;
   };
   const genericStrategyFull = () => {
-    const X0 = 200, Y0 = 95, CW = 230, RH = 105;
+    const X0 = 200, Y0 = 125, CW = 230, RH = 105;
     return `
     <div class="viz">
       <svg class="viz-svg" viewBox="0 0 760 400" xmlns="http://www.w3.org/2000/svg">
