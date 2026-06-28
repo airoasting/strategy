@@ -371,7 +371,6 @@ window.VIZ = (() => {
           return `
             <g data-tip-title="${a(it.l)} · ${a(it.en)} (${a(it.ko)})" data-tip="${a(it.tip)}">
               <rect x="${x}" y="${y}" width="226" height="154" rx="8" fill="${PAPER}" stroke="${INK}" stroke-width="1"/>
-              <rect x="${x}" y="${y}" width="4" height="154" fill="${PRIMARY}"/>
               <text x="${x + 24}" y="${y + 60}" font-size="44" font-weight="700" fill="${PRIMARY}">${it.l}</text>
               <text x="${x + 80}" y="${y + 42}" font-size="18" font-weight="600" fill="${INK}">${it.ko}</text>
               <text x="${x + 80}" y="${y + 60}" font-size="12" fill="${MUTED}">${it.en}</text>
@@ -1031,9 +1030,9 @@ window.VIZ = (() => {
   };
   const kanoFull = () => {
     const types = [
-      { y:40, fill:PRIMARY_SOFT, ko:'매력 기능', en:'Attractive / Delighter', tip:'있으면 크게 기쁘지만 없어도 불만이 없습니다. 경쟁 차별화의 핵심. 시간이 지나면 성능 기능으로 이동합니다. 예: 스마트폰 무선 충전 (초기)', curve:'M60,220 C160,180 260,100 420,60', color:PRIMARY },
-      { y:140, fill:AMBER_SOFT, ko:'성능 기능', en:'Performance / Linear', tip:'충족될수록 만족도가 선형으로 올라갑니다. 더 빠를수록, 더 클수록, 더 저렴할수록 좋습니다. 예: 배터리 지속 시간', curve:'M60,240 C160,210 260,160 420,120', color:AMBER },
-      { y:240, fill:CARD, ko:'기본 기능', en:'Must-be / Basic', tip:'없으면 극심한 불만이지만 있어도 당연히 여깁니다. 자원을 집중할 영역이 아니라 결함이 없어야 할 영역입니다. 예: 화장실의 온수', curve:'M60,280 C160,278 260,270 420,240', color:MUTED }
+      { y:40, fill:PRIMARY_SOFT, ko:'매력 기능', en:'Attractive / Delighter', tip:'있으면 크게 기쁘지만 없어도 불만이 없습니다. 경쟁 차별화의 핵심. 시간이 지나면 성능 기능으로 이동합니다. 예: 스마트폰 무선 충전 (초기)', curve:'M480,256 C580,244 662,128 724,68', color:PRIMARY },
+      { y:140, fill:AMBER_SOFT, ko:'성능 기능', en:'Performance / Linear', tip:'충족될수록 만족도가 선형으로 올라갑니다. 더 빠를수록, 더 클수록, 더 저렴할수록 좋습니다. 예: 배터리 지속 시간', curve:'M480,300 L724,108', color:AMBER },
+      { y:240, fill:CARD, ko:'기본 기능', en:'Must-be / Basic', tip:'없으면 극심한 불만이지만 있어도 당연히 여깁니다. 자원을 집중할 영역이 아니라 결함이 없어야 할 영역입니다. 예: 화장실의 온수', curve:'M480,322 C572,302 652,206 724,188', color:MUTED }
     ];
     return `
     <div class="viz">
@@ -1048,12 +1047,12 @@ window.VIZ = (() => {
         <text x="600" y="48" text-anchor="middle" font-size="13" font-weight="700" fill="${INK}">만족도 곡선</text>
         <line x1="480" y1="200" x2="730" y2="200" stroke="${HAIRLINE}" stroke-width="1"/>
         <line x1="595" y1="40" x2="595" y2="350" stroke="${HAIRLINE}" stroke-width="1"/>
-        ${types.map(t=>`<path d="${t.curve.replace('M60','M475').replace('420','730')}" fill="none" stroke="${t.color}" stroke-width="2.5"/>`).join('')}
+        ${types.map(t=>`<path d="${t.curve}" fill="none" stroke="${t.color}" stroke-width="2.5"/>`).join('')}
         <text x="600" y="360" text-anchor="middle" font-size="11" fill="${MUTED}">기능 충족도 →</text>
         <text x="470" y="200" font-size="10" fill="${MUTED}" transform="rotate(-90,470,200)">고객 만족도 ↑</text>
-        <text x="720" y="72" font-size="10" fill="${PRIMARY}" font-weight="600">매력</text>
-        <text x="720" y="128" font-size="10" fill="${AMBER}" font-weight="600">성능</text>
-        <text x="720" y="248" font-size="10" fill="${MUTED}" font-weight="600">기본</text>
+        <text x="690" y="60" font-size="11" fill="${PRIMARY}" font-weight="700">매력</text>
+        <text x="690" y="98" font-size="11" fill="${AMBER}" font-weight="700">성능</text>
+        <text x="690" y="180" font-size="11" fill="${MUTED}" font-weight="700">기본</text>
       </svg>
       <div class="viz-caption">기본 기능 결함 제거 → 성능 기능 강화 → 매력 기능으로 차별화 순서로 우선순위를 설정합니다</div>
     </div>`;
@@ -1090,13 +1089,12 @@ window.VIZ = (() => {
       '최소 투자. 매력도 낮고 경쟁력도 약합니다. 철수를 검토합니다.',
       '철수 검토. 매력도도 최저, 경쟁력도 최저. 투자를 중단하고 매각을 검토합니다.'
     ];
-    const W=200, H=100, ox=60, oy=40;
+    const W=200, H=110, ox=60, oy=40;
     return `
     <div class="viz">
       <svg class="viz-svg" viewBox="0 0 760 420" xmlns="http://www.w3.org/2000/svg">
-        <text x="260" y="28" text-anchor="middle" font-size="12" font-weight="600" fill="${INK}">사업 경쟁력 (강 → 약)</text>
-        <text x="460" y="28" text-anchor="middle" font-size="12" font-weight="600" fill="${INK}">────────────────────</text>
-        <text x="36" y="190" text-anchor="middle" font-size="12" font-weight="600" fill="${INK}" transform="rotate(-90,36,190)">산업 매력도 (고 → 저)</text>
+        <text x="360" y="28" text-anchor="middle" font-size="12" font-weight="600" fill="${INK}">사업 경쟁력 (강 → 약)</text>
+        <text x="36" y="205" text-anchor="middle" font-size="12" font-weight="600" fill="${INK}" transform="rotate(-90,36,205)">산업 매력도 (고 → 저)</text>
         ${colors.map((c,i)=>{
           const col=i%3, row=Math.floor(i/3);
           const x=ox+col*W, y=oy+row*H;
@@ -1106,12 +1104,12 @@ window.VIZ = (() => {
             <text x="${x+W/2}" y="${y+H/2+5}" text-anchor="middle" font-size="13" font-weight="600" fill="${INK}">${labels[i]}</text>
           </g>`;
         }).join('')}
-        <rect x="60" y="340" width="100" height="18" rx="4" fill="${PRIMARY_SOFT}" stroke="${INK}" stroke-width="1"/>
-        <text x="110" y="354" text-anchor="middle" font-size="10" fill="${INK}">투자·성장</text>
-        <rect x="240" y="340" width="100" height="18" rx="4" fill="${AMBER_SOFT}" stroke="${INK}" stroke-width="1"/>
-        <text x="290" y="354" text-anchor="middle" font-size="10" fill="${INK}">선택적 투자</text>
-        <rect x="420" y="340" width="100" height="18" rx="4" fill="${CARD}" stroke="${INK}" stroke-width="1"/>
-        <text x="470" y="354" text-anchor="middle" font-size="10" fill="${INK}">수확·철수</text>
+        <rect x="60" y="384" width="100" height="18" rx="4" fill="${PRIMARY_SOFT}" stroke="${INK}" stroke-width="1"/>
+        <text x="110" y="398" text-anchor="middle" font-size="10" fill="${INK}">투자·성장</text>
+        <rect x="240" y="384" width="100" height="18" rx="4" fill="${AMBER_SOFT}" stroke="${INK}" stroke-width="1"/>
+        <text x="290" y="398" text-anchor="middle" font-size="10" fill="${INK}">선택적 투자</text>
+        <rect x="420" y="384" width="100" height="18" rx="4" fill="${CARD}" stroke="${INK}" stroke-width="1"/>
+        <text x="470" y="398" text-anchor="middle" font-size="10" fill="${INK}">수확·철수</text>
       </svg>
       <div class="viz-caption">각 축은 5~7개 요소의 가중 합산 점수 · 버블 크기 = 사업 매출 규모</div>
     </div>`;
@@ -1302,9 +1300,9 @@ window.VIZ = (() => {
   };
   const bcgFull = () => {
     const quads = [
-      { x: 40, y: 40, w: 320, h: 260, fill: PRIMARY_SOFT, label: 'Star', ko: '스타', icon: '★', tip: '고성장·고점유. 현재 시장을 선도하고 있습니다. 투자를 유지해 성장과 점유율을 지켜야 합니다. 언젠가 현금소(Cash Cow)가 됩니다.' },
+      { x: 40, y: 40, w: 320, h: 260, fill: PRIMARY_SOFT, label: 'Star', ko: '스타', icon: '★', tip: '고성장·고점유. 현재 시장을 선도하고 있습니다. 투자를 유지해 성장과 점유율을 지켜야 합니다. 언젠가 캐시카우(Cash Cow)가 됩니다.' },
       { x: 360, y: 40, w: 360, h: 260, fill: CARD, label: 'Question Mark', ko: '물음표', icon: '?', tip: '고성장·저점유. 가능성은 있지만 아직 시장에서 이기지 못하고 있습니다. 집중 투자해 스타로 올리거나, 가능성이 낮으면 철수합니다.' },
-      { x: 40, y: 300, w: 320, h: 100, fill: AMBER_SOFT, label: 'Cash Cow', ko: '현금소', icon: '💰', tip: '저성장·고점유. 안정적으로 현금을 창출합니다. 추가 투자보다 현금 수확에 집중하고, 창출된 현금을 스타·물음표에 투자합니다.' },
+      { x: 40, y: 300, w: 320, h: 100, fill: AMBER_SOFT, label: 'Cash Cow', ko: '캐시카우', icon: '💰', tip: '저성장·고점유. 안정적으로 현금을 창출합니다. 추가 투자보다 현금 수확에 집중하고, 창출된 현금을 스타·물음표에 투자합니다.' },
       { x: 360, y: 300, w: 360, h: 100, fill: PAPER, label: 'Dog', ko: '개', icon: '🐕', tip: '저성장·저점유. 성장도 점유율도 낮습니다. 원가 절감으로 현금 창출을 최소화하거나 철수를 검토합니다.' }
     ];
     return `
@@ -1532,9 +1530,9 @@ window.VIZ = (() => {
   const pyramidFull = () => {
     const a = (s) => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
     const layers = [
-      { y: 30,  w: 260, h: 52, fill: PRIMARY,      textFill: ON_DARK, label: '핵심 메시지 (So What?)', sub: '구독 모델 도입으로 18개월 내 점유율 2위 달성', tipTitle:'피라미드 정점', tip:'단 하나의 결론. 독자가 이 보고서를 다 읽지 않아도 알아야 할 핵심 메시지입니다.' },
-      { y: 110, w: 740, h: 52, fill: PRIMARY_SOFT,  textFill: INK,    label: '키 라인 (Why So? · 논거 3개)', sub: '논거 A: LTV 3.2배  ·  논거 B: 경쟁사 공백  ·  논거 C: 파일럿 NPS 72', tipTitle:'키 라인', tip:'핵심 메시지를 직접 지지하는 2~4개 논거. 각 논거는 MECE해야 합니다.' },
-      { y: 190, w: 740, h: 52, fill: CARD,          textFill: INK,    label: '서포팅 데이터 (How So?)', sub: '시장 분석  ·  고객 인터뷰  ·  파일럿 결과  ·  경쟁사 벤치마크', tipTitle:'서포팅 레이어', tip:'각 논거를 뒷받침하는 구체적 사실·분석·사례입니다.' }
+      { y: 88,  w: 260, h: 52, fill: PRIMARY,      textFill: ON_DARK, label: '핵심 메시지 (So What?)', sub: '구독 모델 도입으로 18개월 내 점유율 2위 달성', tipTitle:'피라미드 정점', tip:'단 하나의 결론. 독자가 이 보고서를 다 읽지 않아도 알아야 할 핵심 메시지입니다.' },
+      { y: 152, w: 740, h: 52, fill: PRIMARY_SOFT,  textFill: INK,    label: '키 라인 (Why So? · 논거 3개)', sub: '논거 A: LTV 3.2배  ·  논거 B: 경쟁사 공백  ·  논거 C: 파일럿 NPS 72', tipTitle:'키 라인', tip:'핵심 메시지를 직접 지지하는 2~4개 논거. 각 논거는 MECE해야 합니다.' },
+      { y: 216, w: 740, h: 52, fill: CARD,          textFill: INK,    label: '서포팅 데이터 (How So?)', sub: '시장 분석  ·  고객 인터뷰  ·  파일럿 결과  ·  경쟁사 벤치마크', tipTitle:'서포팅 레이어', tip:'각 논거를 뒷받침하는 구체적 사실·분석·사례입니다.' }
     ];
     const scqa = [
       { label: 'S', title: 'Situation', desc: '국내 커피 시장 3위, 점유율 정체 2년째' },
@@ -1625,8 +1623,8 @@ window.VIZ = (() => {
         <text x="380" y="16"  text-anchor="middle" font-size="12" font-weight="600" fill="${MUTED}">↑ 프리미엄</text>
         <text x="380" y="374" text-anchor="middle" font-size="12" font-weight="600" fill="${MUTED}">↓ 간편·기능적</text>
         <rect x="388" y="24" width="344" height="160" rx="6" fill="${PRIMARY}" opacity="0.07"/>
-        <text x="560" y="110" text-anchor="middle" font-size="13" font-weight="700" fill="${PRIMARY}" opacity="0.6">기회 영역</text>
-        <text x="560" y="128" text-anchor="middle" font-size="11" fill="${PRIMARY}" opacity="0.5">중고가 프리미엄 공백</text>
+        <text x="560" y="48" text-anchor="middle" font-size="13" font-weight="700" fill="${PRIMARY}" opacity="0.6">기회 영역</text>
+        <text x="560" y="66" text-anchor="middle" font-size="11" fill="${PRIMARY}" opacity="0.5">중고가 프리미엄 공백</text>
         ${brands.map(b => `
           <g data-tip-title="${a(b.label)}" data-tip="${a(b.tip)}">
             <circle cx="${b.x}" cy="${b.y}" r="${b.r}" fill="${b.fill}" stroke="${INK}" stroke-width="1.2"/>
@@ -2044,7 +2042,7 @@ window.VIZ = (() => {
     const cx = 140, cy = 95, r = 58;
     return `
     <svg class="thumb-svg" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="${cx}" cy="${cy}" r="${r + 16}" fill="none" stroke="${HAIRLINE}" stroke-width="1"/>
+      <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${HAIRLINE}" stroke-width="1"/>
       <text x="${cx}" y="${cy + 4}" text-anchor="middle" font-size="13" font-weight="700" fill="${INK}">5S</text>
       ${items.map((it,i) => {
         const ang = -Math.PI/2 + i * Math.PI*2/5;
@@ -2273,10 +2271,10 @@ window.VIZ = (() => {
     ];
     const x0 = 70, y0 = 18, cw = 60, ch = 44, gap = 4;
     return `<svg class="thumb-svg" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
-      <line x1="${x0 - 10}" y1="${y0}" x2="${x0 - 10}" y2="${y0 + 3 * ch + 2 * gap}" stroke="${MUTED}" stroke-width="1.2" pointer-events="none"/>
-      <line x1="${x0 - 10}" y1="${y0 + 3 * ch + 2 * gap}" x2="${x0 + 3 * cw + 2 * gap}" y2="${y0 + 3 * ch + 2 * gap}" stroke="${MUTED}" stroke-width="1.2" pointer-events="none"/>
+      <line x1="${x0 - 10}" y1="${y0}" x2="${x0 - 10}" y2="${y0 + 3 * ch + 2 * gap + 10}" stroke="${MUTED}" stroke-width="1.2" pointer-events="none"/>
+      <line x1="${x0 - 10}" y1="${y0 + 3 * ch + 2 * gap + 10}" x2="${x0 + 3 * cw + 2 * gap}" y2="${y0 + 3 * ch + 2 * gap + 10}" stroke="${MUTED}" stroke-width="1.2" pointer-events="none"/>
       <text x="${x0 - 24}" y="${y0 + 60}" font-size="9" fill="${MUTED}" transform="rotate(-90 ${x0 - 24} ${y0 + 60})" text-anchor="middle" pointer-events="none">잠재력</text>
-      <text x="${x0 + 90}" y="${y0 + 3 * ch + 2 * gap + 14}" font-size="9" fill="${MUTED}" text-anchor="middle" pointer-events="none">성과</text>
+      <text x="${x0 + 90}" y="${y0 + 3 * ch + 2 * gap + 24}" font-size="9" fill="${MUTED}" text-anchor="middle" pointer-events="none">성과</text>
       ${cells.map(({ c, r }) => {
         const x = x0 + c * (cw + gap);
         const y = y0 + r * (ch + gap);
@@ -2308,10 +2306,10 @@ window.VIZ = (() => {
     <div class="viz">
       <svg class="viz-svg" viewBox="0 0 760 400" xmlns="http://www.w3.org/2000/svg">
         <text x="380" y="26" text-anchor="middle" font-size="17" font-weight="700" fill="${INK}" pointer-events="none">9-Box 인재 그리드</text>
-        <line x1="${x0 - 14}" y1="${y0}" x2="${x0 - 14}" y2="${y0 + gh}" stroke="${MUTED}" stroke-width="1.4" pointer-events="none"/>
-        <line x1="${x0 - 14}" y1="${y0 + gh}" x2="${x0 + gw}" y2="${y0 + gh}" stroke="${MUTED}" stroke-width="1.4" pointer-events="none"/>
+        <line x1="${x0 - 14}" y1="${y0}" x2="${x0 - 14}" y2="${y0 + gh + 14}" stroke="${MUTED}" stroke-width="1.4" pointer-events="none"/>
+        <line x1="${x0 - 14}" y1="${y0 + gh + 14}" x2="${x0 + gw}" y2="${y0 + gh + 14}" stroke="${MUTED}" stroke-width="1.4" pointer-events="none"/>
         <text x="${x0 - 30}" y="${y0 + gh / 2}" font-size="13" font-weight="700" fill="${MUTED}" transform="rotate(-90 ${x0 - 30} ${y0 + gh / 2})" text-anchor="middle" pointer-events="none">잠재력 (저 → 고)</text>
-        <text x="${x0 + gw / 2}" y="${y0 + gh + 28}" font-size="13" font-weight="700" fill="${MUTED}" text-anchor="middle" pointer-events="none">성과 (저 → 고)</text>
+        <text x="${x0 + gw / 2}" y="${y0 + gh + 38}" font-size="13" font-weight="700" fill="${MUTED}" text-anchor="middle" pointer-events="none">성과 (저 → 고)</text>
         ${grid.map((g) => {
           const x = x0 + g.c * (cw + gap);
           const y = y0 + g.r * (ch + gap);
@@ -2453,8 +2451,7 @@ window.VIZ = (() => {
         const x = x0 + i * (bw + gap);
         return `<rect x="${x}" y="${y}" width="${bw}" height="${bh}" rx="6" fill="${PAPER}" stroke="${INK}" stroke-width="1.4"/>
           <text x="${x + bw / 2}" y="${y + bh / 2 + 5}" text-anchor="middle" font-size="15" font-weight="700" fill="${INK}">${s}</text>
-          ${i < 3 ? `<line x1="${x + bw}" y1="${y + bh / 2}" x2="${x + bw + gap}" y2="${y + bh / 2}" stroke="${INK}" stroke-width="1.2" pointer-events="none"/>` : ''}
-          <line x1="${x + bw / 2}" y1="${y + bh}" x2="${x + bw / 2}" y2="${y + bh + 16}" stroke="${MUTED}" stroke-width="1" stroke-dasharray="2 2" pointer-events="none"/>`;
+          ${i < 3 ? `<line x1="${x + bw}" y1="${y + bh / 2}" x2="${x + bw + gap}" y2="${y + bh / 2}" stroke="${INK}" stroke-width="1.2" pointer-events="none"/>` : ''}`;
       }).join('')}
       <line x1="${x0 + 4 * (bw + gap) - gap}" y1="${y + bh / 2}" x2="${advX}" y2="${y + bh / 2}" stroke="${INK}" stroke-width="1.2" pointer-events="none"/>
       <rect x="${advX}" y="${y}" width="${advW}" height="${bh}" rx="6" fill="${PRIMARY}" stroke="${PRIMARY}" stroke-width="1.4"/>
@@ -3026,8 +3023,9 @@ window.VIZ = (() => {
           ${i < steps.length - 1 ? `<path d="M${cx + 54} ${sy + 2} l16 0 m-6 -5 l6 5 -6 5" fill="none" stroke="${MUTED_SOFT}" stroke-width="2" pointer-events="none"/>` : ''}
         </g>`;
         }).join('')}
-        <path d="M${sx0 + (steps.length - 1) * sStep} ${sy + 24} q0 28 -${(steps.length - 1) * sStep / 2} 28 q-${(steps.length - 1) * sStep / 2} 0 ${(steps.length - 1) * sStep / 2 - 6} -22" fill="none" stroke="${MUTED_SOFT}" stroke-width="1.5" stroke-dasharray="5 4" pointer-events="none"/>
-        <text x="${sx0}" y="${sy + 58}" font-size="10" fill="${MUTED}" pointer-events="none">반복</text>
+        <path d="M${sx0 + (steps.length - 1) * sStep} ${sy + 26} C ${sx0 + (steps.length - 1) * sStep} ${sy + 54}, ${sx0} ${sy + 54}, ${sx0} ${sy + 30}" fill="none" stroke="${MUTED_SOFT}" stroke-width="1.5" stroke-dasharray="5 4" pointer-events="none"/>
+        <path d="M${sx0 - 4} ${sy + 36} L${sx0} ${sy + 27} L${sx0 + 4} ${sy + 36} Z" fill="${MUTED_SOFT}" pointer-events="none"/>
+        <text x="${sx0 + (steps.length - 1) * sStep / 2}" y="${sy + 70}" text-anchor="middle" font-size="10" fill="${MUTED}" pointer-events="none">반복</text>
       </svg>
       <div class="viz-caption">약한 고리(제약)를 찾아 5단계 집중 개선을 순환합니다</div>
     </div>`;
@@ -3081,7 +3079,7 @@ window.VIZ = (() => {
   const scrumThumb = () => `<svg class="thumb-svg" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
   <rect x="14" y="72" width="40" height="40" rx="4" fill="${CARD}" stroke="${HAIRLINE}"/><text x="34" y="96" font-size="9" fill="${MUTED}" text-anchor="middle">백로그</text>
   <circle cx="140" cy="90" r="40" fill="none" stroke="${PRIMARY}" stroke-width="2.5"/>
-  <path d="M174 76 l6 14 -16 -2 z" fill="${PRIMARY}" pointer-events="none"/>
+  <path d="M135 45 L145 50 L135 55 Z" fill="${PRIMARY}" pointer-events="none"/>
   <text x="140" y="94" font-size="10" fill="${PRIMARY}" text-anchor="middle">스프린트</text>
   <rect x="226" y="72" width="40" height="40" rx="4" fill="${CARD}" stroke="${HAIRLINE}"/><text x="246" y="96" font-size="9" fill="${MUTED}" text-anchor="middle">증분</text>
   <path d="M56 92 l24 0 m-5 -4 l5 4 -5 4" stroke="${MUTED}" fill="none" pointer-events="none"/>
@@ -3098,12 +3096,11 @@ window.VIZ = (() => {
   <path d="M128 210 l120 0 m-10 -7 l10 7 -10 7" stroke="${MUTED_SOFT}" stroke-width="2" fill="none" pointer-events="none"/>
   <g data-tip-title="스프린트 순환" data-tip="계획·데일리·리뷰·회고를 반복하는 핵심 주기">
     <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${PRIMARY}" stroke-width="3"/>
-    <path d="M${cx+r-6} ${cy-14} l6 14 -16 -2 z" fill="${PRIMARY}"/>
     <text x="${cx}" y="${cy-4}" font-size="15" fill="${PRIMARY}" text-anchor="middle" font-weight="600">스프린트</text>
     <text x="${cx}" y="${cy+16}" font-size="11" fill="${MUTED}" text-anchor="middle">2~4주 반복</text>
   </g>
   ${loop.map((l,i)=>{const[px,py]=pt(l[2],r);return `<g data-tip-title="${a(l[0]+' ('+l[1]+')')}" data-tip="${a('스프린트 주기의 한 단계')}"><circle cx="${px}" cy="${py}" r="22" fill="${PAPER}" stroke="${PRIMARY}" stroke-width="1.5"/><text x="${px}" y="${py+4}" font-size="11" fill="${INK}" text-anchor="middle" font-weight="600">${a(l[0])}</text></g>`;}).join('')}
-  <path d="M${cx+r+8} 210 l108 0 m-10 -7 l10 7 -10 7" stroke="${MUTED_SOFT}" stroke-width="2" fill="none" pointer-events="none"/>
+  <path d="M${cx+r+30} 210 l96 0 m-10 -7 l10 7 -10 7" stroke="${MUTED_SOFT}" stroke-width="2" fill="none" pointer-events="none"/>
   <g data-tip-title="증분 (Increment)" data-tip="스프린트마다 완성되는 출시 가능한 결과물"><rect x="636" y="160" width="100" height="100" rx="8" fill="${CARD}" stroke="${HAIRLINE}"/><text x="686" y="215" font-size="14" fill="${INK}" text-anchor="middle" font-weight="600">증분</text></g>
   </svg><div class="viz-caption">백로그에서 출발해 짧은 스프린트를 반복하며 매번 완성된 증분을 내놓는다.</div></div>`;
   };
