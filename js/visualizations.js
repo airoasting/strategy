@@ -1051,7 +1051,7 @@ window.VIZ = (() => {
         <text x="662" y="356" text-anchor="middle" font-size="11" fill="${MUTED}">기능 충족도 →</text>
         <text x="474" y="118" font-size="10" fill="${MUTED}" transform="rotate(-90,474,118)">고객 만족도 ↑</text>
         <text x="690" y="60" font-size="11" fill="${PRIMARY}" font-weight="700">매력</text>
-        <text x="690" y="128" font-size="11" fill="${INK}" font-weight="700">성능</text>
+        <text x="690" y="131" font-size="11" fill="${INK}" font-weight="700">성능</text>
         <text x="690" y="180" font-size="11" fill="${AMBER}" font-weight="700">기본</text>
       </svg>
       <div class="viz-caption">기본 기능 결함 제거 → 성능 기능 강화 → 매력 기능으로 차별화 순서로 우선순위를 설정합니다</div>
@@ -1582,7 +1582,7 @@ window.VIZ = (() => {
      ============================================================ */
   const posMapThumb = () => {
     const brands = [
-      { x: 210, y: 35,  r: 8,  fill: PRIMARY,     label: 'A' },
+      { x: 210, y: 38,  r: 8,  fill: PRIMARY,     label: 'A' },
       { x: 155, y: 55,  r: 6,  fill: CARD,        label: 'B' },
       { x: 60,  y: 130, r: 7,  fill: CARD,        label: 'C' },
       { x: 100, y: 75,  r: 5,  fill: PAPER,       label: 'D' },
@@ -1597,7 +1597,7 @@ window.VIZ = (() => {
       <text x="140" y="8"  text-anchor="middle" font-size="8" fill="${MUTED}">프리미엄</text>
       <text x="140" y="178" text-anchor="middle" font-size="8" fill="${MUTED}">간편</text>
       <rect x="148" y="16" width="118" height="68" rx="3" fill="${PRIMARY}" opacity="0.06"/>
-      <text x="207" y="40" text-anchor="middle" font-size="7.5" fill="${PRIMARY}" font-weight="600">기회 영역</text>
+      <text x="207" y="44" text-anchor="middle" font-size="7.5" fill="${PRIMARY}" font-weight="600">기회 영역</text>
       ${brands.map(b => `
         <circle cx="${b.x}" cy="${b.y}" r="${b.r}" fill="${b.fill}" stroke="${INK}" stroke-width="0.8"/>
         <text x="${b.x + b.r + 3}" y="${b.y + 4}" font-size="7.5" fill="${INK}">${b.label}</text>
