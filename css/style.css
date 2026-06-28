@@ -211,7 +211,7 @@ body {
 .brand-text {
   font-family: var(--mono);
   font-weight: 700;
-  font-size: 11px;
+  font-size: 13px;
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--ink);
