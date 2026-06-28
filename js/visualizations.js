@@ -1015,8 +1015,8 @@ window.VIZ = (() => {
   const kanoThumb = () => {
     const curves = [
       { pts:[20,100,80,60,140,40,200,30,260,25], stroke:PRIMARY, label:'매력', lx:200, ly:24 },
-      { pts:[20,140,80,100,140,80,200,60,260,40], stroke:INK, label:'성능', lx:200, ly:38 },
-      { pts:[20,160,80,155,140,155,200,155,260,100], stroke:AMBER, label:'기본', lx:200, ly:98 }
+      { pts:[20,140,80,100,140,80,200,60,260,40], stroke:INK, label:'성능', lx:202, ly:54 },
+      { pts:[20,160,80,155,140,155,200,155,260,100], stroke:AMBER, label:'기본', lx:158, ly:149 }
     ];
     return `
     <svg class="thumb-svg" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
@@ -1044,14 +1044,14 @@ window.VIZ = (() => {
             <text x="40" y="${t.y+50}" font-size="11" letter-spacing="0.06em" fill="${MUTED}">${t.en}</text>
           </g>`).join('')}
         <rect x="460" y="20" width="280" height="340" rx="8" fill="${PAPER}" stroke="${INK}" stroke-width="1.2"/>
-        <text x="600" y="48" text-anchor="middle" font-size="13" font-weight="700" fill="${INK}">만족도 곡선</text>
+        <text x="600" y="36" text-anchor="middle" font-size="13" font-weight="700" fill="${INK}">만족도 곡선</text>
         <line x1="480" y1="200" x2="730" y2="200" stroke="${HAIRLINE}" stroke-width="1"/>
-        <line x1="595" y1="40" x2="595" y2="350" stroke="${HAIRLINE}" stroke-width="1"/>
+        <line x1="595" y1="54" x2="595" y2="350" stroke="${HAIRLINE}" stroke-width="1"/>
         ${types.map(t=>`<path d="${t.curve}" fill="none" stroke="${t.color}" stroke-width="2.5"/>`).join('')}
-        <text x="600" y="360" text-anchor="middle" font-size="11" fill="${MUTED}">기능 충족도 →</text>
-        <text x="470" y="200" font-size="10" fill="${MUTED}" transform="rotate(-90,470,200)">고객 만족도 ↑</text>
+        <text x="662" y="356" text-anchor="middle" font-size="11" fill="${MUTED}">기능 충족도 →</text>
+        <text x="474" y="118" font-size="10" fill="${MUTED}" transform="rotate(-90,474,118)">고객 만족도 ↑</text>
         <text x="690" y="60" font-size="11" fill="${PRIMARY}" font-weight="700">매력</text>
-        <text x="690" y="98" font-size="11" fill="${AMBER}" font-weight="700">성능</text>
+        <text x="690" y="130" font-size="11" fill="${AMBER}" font-weight="700">성능</text>
         <text x="690" y="180" font-size="11" fill="${MUTED}" font-weight="700">기본</text>
       </svg>
       <div class="viz-caption">기본 기능 결함 제거 → 성능 기능 강화 → 매력 기능으로 차별화 순서로 우선순위를 설정합니다</div>
