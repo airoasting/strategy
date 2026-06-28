@@ -7,7 +7,7 @@
 맥킨지·베인·BCG 현장 도구 70개를 한 자리에 모았습니다.
 카드로 탐색하고, AI가 상황에 맞는 도구를 골라줍니다.
 
-**[airoasting.github.io/strategy](https://airoasting.github.io/strategy/)**
+**[airoasting-strategy.vercel.app](https://airoasting-strategy.vercel.app/)**
 
 ---
 
