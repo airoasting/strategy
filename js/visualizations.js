@@ -1,6 +1,6 @@
 /**
  * 16개 프레임워크 시각 템플릿 (SVG)
- * Editorial palette — cream paper + warm ink + coral accent.
+ * Editorial palette · cream paper + warm ink + coral accent.
  *
  *  thumb(): 갤러리 카드용 (구조만, 텍스트 최소)
  *  full():  모달용 (라벨 + 모든 영역에 hover 툴팁)
@@ -9,27 +9,27 @@
  * (글로벌 툴팁 시스템이 app.js에서 자동으로 표시)
  */
 window.VIZ = (() => {
-  const INK = '#141413';
-  const BODY = '#3d3d3a';
-  const MUTED = '#6c6a64';
-  const MUTED_SOFT = '#8e8b82';
-  const HAIRLINE = '#e6dfd8';
-  const PAPER = '#faf9f5';
-  const CARD = '#efe9de';
-  const CREAM_STR = '#e8e0d2';
-  const PRIMARY = '#cc785c';
-  const PRIMARY_SOFT = '#f0d4c8';
-  const AMBER = '#e8a55a';
-  const AMBER_SOFT = '#fbe5c2';
-  const TEAL = '#5db8a6';
-  const DARK = '#181715';
-  const ON_DARK = '#faf9f5';
+  const INK = '#1A1A1A';
+  const BODY = '#2C2C2A';
+  const MUTED = '#6B6B66';
+  const MUTED_SOFT = '#8E8E88';
+  const HAIRLINE = '#DCDCD3';
+  const PAPER = '#FFFFFF';
+  const CARD = '#EFEFE7';
+  const CREAM_STR = '#E3E3DA';
+  const PRIMARY = '#E85D4E';
+  const PRIMARY_SOFT = '#F5B895';
+  const AMBER = '#F2D160';
+  const AMBER_SOFT = '#FAEAB6';
+  const TEAL = '#A8E6CF';
+  const DARK = '#1A1A1A';
+  const ON_DARK = '#F5F5F0';
 
   // SVG 안전 escape
   const a = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
   /* ============================================================
-     1. BMC — 9블록 표준 캔버스
+     1. BMC · 9블록 표준 캔버스
      ============================================================ */
   const bmcThumb = () => `
     <svg class="thumb-svg" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
@@ -180,7 +180,7 @@ window.VIZ = (() => {
     </div>`;
 
   /* ============================================================
-     4. 3C — 3원 Venn
+     4. 3C · 3원 Venn
      ============================================================ */
   const tcThumb = () => `
     <svg class="thumb-svg" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
@@ -225,7 +225,7 @@ window.VIZ = (() => {
     </div>`;
 
   /* ============================================================
-     5. SWOT — 2×2
+     5. SWOT · 2×2
      ============================================================ */
   const swotThumb = () => `
     <svg class="thumb-svg" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
@@ -433,7 +433,7 @@ window.VIZ = (() => {
     </div>`;
 
   /* ============================================================
-     9. STP — 깔때기
+     9. STP · 깔때기
      ============================================================ */
   const stpThumb = () => `
     <svg class="thumb-svg" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
@@ -1570,9 +1570,9 @@ window.VIZ = (() => {
         <rect x="20" y="272" width="720" height="90" rx="6" fill="${CARD}" stroke="${HAIRLINE}" stroke-width="1"/>
         <text x="380" y="295" text-anchor="middle" font-size="13" font-weight="700" fill="${INK}">MECE 원칙 적용</text>
         <circle cx="50" cy="320" r="5" fill="${PRIMARY}"/>
-        <text x="66" y="325" font-size="12" fill="${BODY}">Mutually Exclusive · 논거 간 중복 없음 — A, B, C가 각각 독립적인 이유를 다룹니다.</text>
+        <text x="66" y="325" font-size="12" fill="${BODY}">Mutually Exclusive · 논거 간 중복 없음. A, B, C가 각각 독립적인 이유를 다룹니다.</text>
         <circle cx="50" cy="347" r="5" fill="${PRIMARY}"/>
-        <text x="66" y="352" font-size="12" fill="${BODY}">Collectively Exhaustive · 누락 없음 — A + B + C를 합치면 핵심 메시지를 완전히 지지합니다.</text>
+        <text x="66" y="352" font-size="12" fill="${BODY}">Collectively Exhaustive · 누락 없음. A + B + C를 합치면 핵심 메시지를 완전히 지지합니다.</text>
       </svg>
       <div class="viz-caption">SCQA로 맥락을 열고 → 핵심 메시지를 먼저 → 논거와 데이터로 뒷받침합니다</div>
     </div>`;
@@ -1724,7 +1724,7 @@ window.VIZ = (() => {
         ${cols}
         <path d="M ${sx + total} ${arcTop} Q ${sx + total / 2} ${arcBot} ${sx} ${arcTop}" stroke="${PRIMARY}" stroke-width="1.8" fill="none" stroke-dasharray="6 4"/>
         <polygon points="${sx},${arcTop - 4} ${sx - 5},${arcTop + 3} ${sx + 5},${arcTop + 3}" fill="${PRIMARY}"/>
-        <text x="380" y="${arcBot + 20}" text-anchor="middle" font-size="12" font-weight="600" fill="${PRIMARY}">반복 (Iteration) — 테스트 결과로 Define 또는 Ideate 단계로 되돌아갑니다</text>
+        <text x="380" y="${arcBot + 20}" text-anchor="middle" font-size="12" font-weight="600" fill="${PRIMARY}">반복 (Iteration). 테스트 결과로 Define 또는 Ideate 단계로 되돌아갑니다</text>
         <rect x="${sx}" y="${arcBot + 36}" width="${total}" height="28" rx="5" fill="${CARD}" stroke="${HAIRLINE}" stroke-width="1"/>
         <text x="380" y="${arcBot + 54}" text-anchor="middle" font-size="10.5" fill="${BODY}">인간 중심(Desirable) × 기술 가능성(Feasible) × 비즈니스 타당성(Viable)의 교차점에서 혁신이 탄생합니다</text>
       </svg>
@@ -1733,7 +1733,7 @@ window.VIZ = (() => {
   };
 
   /* ============================================================
-     AARRR — 해적 지표 (5단계 깔때기)
+     AARRR · 해적 지표 (5단계 깔때기)
      ============================================================ */
   const aarrrThumb = () => {
     const rows = [200, 168, 136, 104, 72];
@@ -1776,7 +1776,7 @@ window.VIZ = (() => {
   };
 
   /* ============================================================
-     AIDA — 4단계 역삼각 깔때기
+     AIDA · 4단계 역삼각 깔때기
      ============================================================ */
   const aidaThumb = () => {
     const rows = [220, 168, 116, 64];
@@ -1818,7 +1818,7 @@ window.VIZ = (() => {
   };
 
   /* ============================================================
-     Tuckman — 팀 발달 5단계 + 성과 곡선
+     Tuckman · 팀 발달 5단계 + 성과 곡선
      ============================================================ */
   const tuckmanThumb = () => {
     const labels = ['F', 'S', 'N', 'P', 'A'];
@@ -1865,7 +1865,7 @@ window.VIZ = (() => {
   };
 
   /* ============================================================
-     EJM — 직원 여정 지도 + 감정 곡선
+     EJM · 직원 여정 지도 + 감정 곡선
      ============================================================ */
   const ejmThumb = () => {
     return `
@@ -1880,7 +1880,7 @@ window.VIZ = (() => {
   const ejmFull = () => {
     const S = [
       { ko: '채용', en: 'Hiring', tip: '접점: 채용 공고·면접·오퍼. 페인포인트: 느린 회신, 불투명한 처우 안내로 후보 경험이 나빠질 수 있다.' },
-      { ko: '온보딩', en: 'Onboarding', tip: '접점: 입사 첫 주·장비·멘토. 핵심 순간 — 첫인상이 잔류 의사를 좌우한다. 페인포인트: 준비 안 된 환경, 방치된 신규 입사자.' },
+      { ko: '온보딩', en: 'Onboarding', tip: '접점: 입사 첫 주·장비·멘토. 핵심 순간. 첫인상이 잔류 의사를 좌우한다. 페인포인트: 준비 안 된 환경, 방치된 신규 입사자.' },
       { ko: '성장', en: 'Growth', tip: '접점: 교육·평가·승진. 페인포인트: 불공정한 평가, 막힌 성장 경로가 동기를 꺾는다.' },
       { ko: '유지', en: 'Retention', tip: '접점: 보상·1on1·복지. 페인포인트: 번아웃과 인정 부족이 조용한 이탈로 이어진다.' },
       { ko: '이탈', en: 'Exit', tip: '접점: 퇴사 면담·오프보딩. 페인포인트: 형식적 절차로 끝나면 회고와 알럼나이 관계를 잃는다.' }
@@ -1911,7 +1911,7 @@ window.VIZ = (() => {
   };
 
   /* ============================================================
-     VSM — 가치 흐름 지도
+     VSM · 가치 흐름 지도
      ============================================================ */
   const vsmThumb = () => {
     return `
@@ -2856,7 +2856,7 @@ window.VIZ = (() => {
     <div class="viz">
       <svg class="viz-svg" viewBox="0 0 760 400" xmlns="http://www.w3.org/2000/svg">
         <text x="40" y="36" font-size="17" font-weight="700" fill="${INK}">파레토 차트 · 80/20 법칙</text>
-        <text x="40" y="56" font-size="12" fill="${MUTED}">소수의 원인이 다수의 결과를 만듭니다 — 상위 2개가 누적 70%</text>
+        <text x="40" y="56" font-size="12" fill="${MUTED}">소수의 원인이 다수의 결과를 만듭니다. 상위 2개가 누적 70%</text>
         <line x1="${x0}" y1="${y0 - plotH}" x2="${x0}" y2="${y0}" stroke="${HAIRLINE}" stroke-width="1.5" pointer-events="none"/>
         <line x1="${x0}" y1="${y0}" x2="${x0 + plotW}" y2="${y0}" stroke="${HAIRLINE}" stroke-width="1.5" pointer-events="none"/>
         <line x1="${x0 + plotW}" y1="${y0 - plotH}" x2="${x0 + plotW}" y2="${y0}" stroke="${HAIRLINE}" stroke-width="1.5" pointer-events="none"/>
@@ -2910,13 +2910,13 @@ window.VIZ = (() => {
         <text x="${xr}" y="${y0 + 22}" text-anchor="end" font-size="11" fill="${MUTED}">시간 →</text>
         <g data-tip-title="H1 · 현재 핵심 사업" data-tip="지금 매출과 이익의 대부분을 책임지는 사업입니다. 방어와 효율화로 수익을 유지하되, 장기적으로는 성숙·하강합니다.">
           <path d="M${x0} ${y0 - h * 0.78} C${x0 + 120} ${y0 - h * 0.82} ${x0 + 240} ${y0 - h * 0.55} ${xr} ${y0 - h * 0.12}" fill="none" stroke="${MUTED}" stroke-width="3"/>
-          <text x="${x0 + 30}" y="${y0 - h * 0.78 - 12}" font-size="14" font-weight="700" fill="${INK}">H1 현재 핵심</text>
-          <text x="${x0 + 30}" y="${y0 - h * 0.78 + 6}" font-size="11" fill="${MUTED}">방어 · 수익 극대화</text>
+          <text x="${x0 + 18}" y="108" font-size="14" font-weight="700" fill="${INK}">H1 현재 핵심</text>
+          <text x="${x0 + 18}" y="125" font-size="11" fill="${MUTED}">방어 · 수익 극대화</text>
         </g>
         <g data-tip-title="H2 · 신흥 성장 사업" data-tip="이미 검증되기 시작한 차세대 성장 동력입니다. 중기에 빠르게 매출을 키워 H1의 둔화를 메우는 역할을 합니다.">
           <path d="M${x0} ${y0 - h * 0.08} C${x0 + 200} ${y0 - h * 0.12} ${x0 + 360} ${y0 - h * 0.75} ${xr} ${y0 - h * 0.82}" fill="none" stroke="${AMBER}" stroke-width="3"/>
-          <text x="${x0 + 300}" y="${y0 - h * 0.5}" font-size="14" font-weight="700" fill="${INK}">H2 신흥 성장</text>
-          <text x="${x0 + 300}" y="${y0 - h * 0.5 + 18}" font-size="11" fill="${MUTED}">투자 · 규모화</text>
+          <text x="${x0 + 120}" y="236" font-size="14" font-weight="700" fill="${INK}">H2 신흥 성장</text>
+          <text x="${x0 + 120}" y="253" font-size="11" fill="${MUTED}">투자 · 규모화</text>
         </g>
         <g data-tip-title="H3 · 미래 옵션" data-tip="아직 불확실하지만 판을 바꿀 수 있는 미래 베팅입니다. 작은 실험과 옵션 투자로 후기에 폭발적 성장 가능성을 확보합니다.">
           <path d="M${x0 + 200} ${y0 - h * 0.02} C${x0 + 400} ${y0 - h * 0.04} ${x0 + 500} ${y0 - h * 0.45} ${xr} ${y0 - h * 0.95}" fill="none" stroke="${PRIMARY}" stroke-width="3.5"/>
@@ -2996,7 +2996,7 @@ window.VIZ = (() => {
     <div class="viz">
       <svg class="viz-svg" viewBox="0 0 760 430" xmlns="http://www.w3.org/2000/svg">
         <text x="40" y="36" font-size="17" font-weight="700" fill="${INK}">제약 이론 · Theory of Constraints</text>
-        <text x="40" y="56" font-size="12" fill="${MUTED}">사슬의 강도는 가장 약한 고리가 결정합니다 — 병목에 집중하세요</text>
+        <text x="40" y="56" font-size="12" fill="${MUTED}">사슬의 강도는 가장 약한 고리가 결정합니다. 병목에 집중하세요</text>
         <g data-tip-title="사슬 · 전체 시스템" data-tip="각 고리는 하나의 공정·부서입니다. 전체 처리량은 가장 약한 고리(제약)를 넘을 수 없으므로, 비병목을 강화해도 산출은 늘지 않습니다.">
           ${links.slice(0, -1).map((_, i) => `<line x1="${x0 + i * step + rx - 6}" y1="${y}" x2="${x0 + (i + 1) * step - rx + 6}" y2="${y}" stroke="${HAIRLINE}" stroke-width="2" pointer-events="none"/>`).join('')}
         </g>
@@ -3117,7 +3117,7 @@ window.VIZ = (() => {
     const rowH=58,gap=10,y0=78;
     return `<div class="viz"><svg class="viz-svg" viewBox="0 0 760 420" xmlns="http://www.w3.org/2000/svg">
   <text x="380" y="44" font-size="18" fill="${INK}" text-anchor="middle" font-weight="600">SMART 목표 설정</text>
-  ${items.map((it,i)=>{const y=y0+i*(rowH+gap);const last=i===4;return `<g data-tip-title="${a(it[0]+' · '+it[2]+' ('+it[1]+')')}" data-tip="${a(it[3])}"><rect x="120" y="${y}" width="520" height="${rowH}" rx="6" fill="${last?PRIMARY_SOFT:CARD}" stroke="${last?PRIMARY:HAIRLINE}"/><rect x="120" y="${y}" width="58" height="${rowH}" rx="6" fill="${last?PRIMARY:CREAM_STR}"/><text x="149" y="${y+38}" font-size="26" fill="${last?ON_DARK:PRIMARY}" text-anchor="middle" font-weight="700">${it[0]}</text><text x="198" y="${y+26}" font-size="16" fill="${INK}" font-weight="600">${a(it[2])}</text><text x="198" y="${y+46}" font-size="12" fill="${MUTED}">${a(it[1])} — ${a(it[3])}</text></g>`;}).join('')}
+  ${items.map((it,i)=>{const y=y0+i*(rowH+gap);const last=i===4;return `<g data-tip-title="${a(it[0]+' · '+it[2]+' ('+it[1]+')')}" data-tip="${a(it[3])}"><rect x="120" y="${y}" width="520" height="${rowH}" rx="6" fill="${last?PRIMARY_SOFT:CARD}" stroke="${last?PRIMARY:HAIRLINE}"/><rect x="120" y="${y}" width="58" height="${rowH}" rx="6" fill="${last?PRIMARY:CREAM_STR}"/><text x="149" y="${y+38}" font-size="26" fill="${last?ON_DARK:PRIMARY}" text-anchor="middle" font-weight="700">${it[0]}</text><text x="198" y="${y+26}" font-size="16" fill="${INK}" font-weight="600">${a(it[2])}</text><text x="198" y="${y+46}" font-size="12" fill="${MUTED}">${a(it[1])} · ${a(it[3])}</text></g>`;}).join('')}
   </svg><div class="viz-caption">좋은 목표는 구체적이고 측정 가능하며 달성 가능하고 관련 있고 기한이 있다.</div></div>`;
   };
 
@@ -3182,7 +3182,7 @@ window.VIZ = (() => {
     return `
     <div class="viz">
       <svg class="viz-svg" viewBox="0 0 760 380" xmlns="http://www.w3.org/2000/svg">
-        <text x="380" y="42" text-anchor="middle" font-size="18" font-weight="700" fill="${INK}">간트 차트 — 일정·진척 관리</text>
+        <text x="380" y="42" text-anchor="middle" font-size="18" font-weight="700" fill="${INK}">간트 차트 · 일정·진척 관리</text>
         <text x="380" y="64" text-anchor="middle" font-size="12" fill="${MUTED}">작업별 시작~종료를 계단식으로 배치하고 진척을 추적합니다</text>
         ${[...Array(weeks + 1)].map((_, i) => `
           <line x1="${X0 + i * W}" y1="${Y0 - 10}" x2="${X0 + i * W}" y2="${Y0 + 5 * RH - 4}" stroke="${HAIRLINE}" stroke-width="1" pointer-events="none"/>
@@ -3441,14 +3441,14 @@ window.VIZ = (() => {
     const SX = 90, SY = 110, SS = 200;
     const CX = 560, CY = 210, CR = 130;
     const sqRows = [
-      { y: SY, h: SS / 3, title: '제품·서비스', tip: '가치 지도 — 제공하는 제품과 서비스의 목록입니다. 고객의 할 일을 돕는 핵심입니다.' },
-      { y: SY + SS / 3, h: SS / 3, title: '고통 해소제', tip: '가치 지도 — 고객의 고통(Pain)을 어떻게 없애거나 줄이는지를 정의합니다.' },
-      { y: SY + 2 * SS / 3, h: SS / 3, title: '이득 창출제', tip: '가치 지도 — 고객이 기대하는 이득(Gain)을 어떻게 만들어내는지를 정의합니다.' }
+      { y: SY, h: SS / 3, title: '제품·서비스', tip: '가치 지도 · 제공하는 제품과 서비스의 목록입니다. 고객의 할 일을 돕는 핵심입니다.' },
+      { y: SY + SS / 3, h: SS / 3, title: '고통 해소제', tip: '가치 지도 · 고객의 고통(Pain)을 어떻게 없애거나 줄이는지를 정의합니다.' },
+      { y: SY + 2 * SS / 3, h: SS / 3, title: '이득 창출제', tip: '가치 지도 · 고객이 기대하는 이득(Gain)을 어떻게 만들어내는지를 정의합니다.' }
     ];
     const circSecs = [
-      { title: '할 일 (Jobs)', tip: '고객 프로파일 — 고객이 해결하려는 과업·문제·욕구입니다.', angle: -90 },
-      { title: '고통 (Pains)', tip: '고객 프로파일 — 과업 수행 중 겪는 불편·위험·부정적 결과입니다.', angle: 30 },
-      { title: '이득 (Gains)', tip: '고객 프로파일 — 고객이 바라는 긍정적 결과와 혜택입니다.', angle: 150 }
+      { title: '할 일 (Jobs)', tip: '고객 프로파일 · 고객이 해결하려는 과업·문제·욕구입니다.', angle: -30 },
+      { title: '고통 (Pains)', tip: '고객 프로파일 · 과업 수행 중 겪는 불편·위험·부정적 결과입니다.', angle: 90 },
+      { title: '이득 (Gains)', tip: '고객 프로파일 · 고객이 바라는 긍정적 결과와 혜택입니다.', angle: 210 }
     ];
     return `
     <div class="viz">
@@ -3482,6 +3482,136 @@ window.VIZ = (() => {
       </svg>
       <div class="viz-caption">가치 지도(사각형)와 고객 프로파일(원)을 맞춰 제품-시장 적합성을 점검합니다</div>
     </div>`;
+  };
+
+  /* ============================================================
+     OODA 루프 · 관찰·판단·결정·행동 순환 (속도 중심)
+     ============================================================ */
+  const oodaThumb = () => {
+    const S = [
+      { l: 'O', hi: false }, { l: 'O', hi: true }, { l: 'D', hi: false }, { l: 'A', hi: false }
+    ];
+    const bw = 44, gap = 18, x0 = 24, y = 52, h = 48;
+    const boxes = S.map((s, i) => {
+      const x = x0 + i * (bw + gap);
+      const arr = i < S.length - 1
+        ? `<line x1="${x + bw + 2}" y1="${y + h / 2}" x2="${x + bw + gap - 2}" y2="${y + h / 2}" stroke="${MUTED}" stroke-width="1.4" marker-end="url(#oodaThumbArr)" pointer-events="none"/>`
+        : '';
+      return `<rect x="${x}" y="${y}" width="${bw}" height="${h}" rx="6" fill="${s.hi ? PRIMARY : PAPER}" stroke="${INK}" stroke-width="1.2"/><text x="${x + bw / 2}" y="${y + h / 2 + 7}" text-anchor="middle" font-size="20" font-weight="700" fill="${s.hi ? ON_DARK : INK}">${s.l}</text>${arr}`;
+    }).join('');
+    const firstCx = x0 + bw / 2;
+    const lastCx = x0 + 3 * (bw + gap) + bw / 2;
+    const loop = `<path d="M ${lastCx} ${y + h + 2} C ${lastCx} ${y + h + 36}, ${firstCx} ${y + h + 36}, ${firstCx} ${y + h + 2}" stroke="${MUTED}" stroke-width="1.4" fill="none" marker-end="url(#oodaThumbArr)" pointer-events="none"/>`;
+    return `<svg class="thumb-svg" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg"><defs><marker id="oodaThumbArr" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="${MUTED}"/></marker></defs>${boxes}${loop}</svg>`;
+  };
+
+  const oodaFull = () => {
+    const S = [
+      { n: 'Observe / 관찰', k: 'O', l: '관찰', e: 'Observe', q: '무슨 일이 벌어지는가?', hi: false, tip: '시장·경쟁·고객·내부 지표에서 변화 신호를 실시간으로 수집한다.' },
+      { n: 'Orient / 판단', k: 'O', l: '판단', e: 'Orient', q: '이것을 어떻게 해석할까?', hi: true, tip: '수집한 정보를 경험·가정·문화에 비춰 재해석한다. 보이드가 가장 중요하게 본 단계다.' },
+      { n: 'Decide / 결정', k: 'D', l: '결정', e: 'Decide', q: '무엇을 할 것인가?', hi: false, tip: '재해석을 바탕으로 가장 합리적인 행동 가설을 빠르게 선택한다.' },
+      { n: 'Act / 행동', k: 'A', l: '행동', e: 'Act', q: '실행하고 다시 본다', hi: false, tip: '결정을 작게 실행하고, 그 결과가 곧바로 관찰의 입력이 된다.' }
+    ];
+    const bw = 150, gap = 24, x0 = 38, y = 150, h = 140;
+    const cards = S.map((s, i) => {
+      const x = x0 + i * (bw + gap);
+      const arr = i < S.length - 1
+        ? `<line x1="${x + bw + 2}" y1="${y + h / 2}" x2="${x + bw + gap - 2}" y2="${y + h / 2}" stroke="${MUTED}" stroke-width="1.6" marker-end="url(#oodaFullArr)" pointer-events="none"/>`
+        : '';
+      return `<g data-tip-title="${a(s.n)}" data-tip="${a(s.tip)}"><rect x="${x}" y="${y}" width="${bw}" height="${h}" rx="6" fill="${s.hi ? PRIMARY : PAPER}" stroke="${INK}" stroke-width="1.4"/><text x="${x + bw / 2}" y="${y + 52}" text-anchor="middle" font-size="42" font-weight="700" fill="${s.hi ? ON_DARK : PRIMARY}">${a(s.k)}</text><text x="${x + bw / 2}" y="${y + 82}" text-anchor="middle" font-size="16" font-weight="700" fill="${s.hi ? ON_DARK : INK}">${a(s.l)}</text><text x="${x + bw / 2}" y="${y + 104}" text-anchor="middle" font-size="10.5" letter-spacing="0.06em" fill="${s.hi ? ON_DARK : MUTED}">${a(s.e.toUpperCase())}</text><text x="${x + bw / 2}" y="${y + 126}" text-anchor="middle" font-size="11" fill="${s.hi ? ON_DARK : BODY}">${a(s.q)}</text></g>${arr}`;
+    }).join('');
+    const firstCx = x0 + bw / 2;
+    const lastCx = x0 + 3 * (bw + gap) + bw / 2;
+    const loopY = y + h + 30;
+    const loop = `<g data-tip-title="루프 속도(Tempo)" data-tip="상대보다 이 순환을 더 빠르게 돌리는 것 자체가 경쟁우위다. 행동 결과는 즉시 다음 관찰로 되돌아온다."><path d="M ${lastCx} ${y + h + 2} C ${lastCx} ${loopY + 18}, ${firstCx} ${loopY + 18}, ${firstCx} ${y + h + 2}" stroke="${AMBER}" stroke-width="1.8" fill="none" marker-end="url(#oodaFullArr2)" pointer-events="none"/><text x="${(firstCx + lastCx) / 2}" y="${loopY + 34}" text-anchor="middle" font-size="12" fill="${MUTED}" pointer-events="none">행동 결과가 다시 관찰로 돌아가 상대보다 빠르게 반복</text></g>`;
+    return `<div class="viz"><svg class="viz-svg" viewBox="0 0 760 380" xmlns="http://www.w3.org/2000/svg"><defs><marker id="oodaFullArr" markerWidth="9" markerHeight="9" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="${MUTED}"/></marker><marker id="oodaFullArr2" markerWidth="9" markerHeight="9" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="${AMBER}"/></marker></defs><text x="380" y="44" text-anchor="middle" font-size="18" font-weight="700" fill="${INK}" pointer-events="none">OODA 루프</text><text x="380" y="72" text-anchor="middle" font-size="13" fill="${MUTED}" pointer-events="none">관찰 → 판단 → 결정 → 행동을 상대보다 빠르게 순환한다</text>${cards}${loop}</svg><div class="viz-caption">네 단계를 빠르게 돌리는 것이 핵심이다. 특히 판단(Orient)에서 기존 정신 모델을 깨고 상황을 재해석하는 것이 승부를 가른다.</div></div>`;
+  };
+
+  /* ============================================================
+     유닛 이코노믹스 · LTV vs CAC
+     ============================================================ */
+  const unitEconThumb = () => `
+    <svg class="thumb-svg" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
+      <line x1="40" y1="150" x2="240" y2="150" stroke="${INK}" stroke-width="1.2"/>
+      <rect x="74" y="42" width="48" height="108" fill="${PRIMARY}" stroke="${INK}" stroke-width="1.2"/>
+      <rect x="160" y="112" width="48" height="38" fill="${CARD}" stroke="${INK}" stroke-width="1.2"/>
+      <text x="98" y="34" text-anchor="middle" font-size="13" font-weight="700" fill="${INK}">LTV</text>
+      <text x="184" y="104" text-anchor="middle" font-size="13" font-weight="700" fill="${MUTED}">CAC</text>
+      <text x="140" y="172" text-anchor="middle" font-size="12" font-style="italic" fill="${BODY}">LTV / CAC ≥ 3</text>
+    </svg>`;
+
+  const unitEconFull = () => {
+    const baseY = 300, bw = 120;
+    const ltvX = 150, cacX = 410;
+    const ltvH = 210, cacH = 64;
+    const ltvY = baseY - ltvH, cacY = baseY - cacH;
+    const seg1 = Math.round(ltvH * 0.55), seg2 = ltvH - seg1;
+    return `<div class="viz"><svg class="viz-svg" viewBox="0 0 760 380" xmlns="http://www.w3.org/2000/svg">
+      <text x="380" y="40" text-anchor="middle" font-size="18" font-weight="700" fill="${INK}" pointer-events="none">유닛 이코노믹스 · 고객 1명의 수익성</text>
+      <line x1="80" y1="${baseY}" x2="560" y2="${baseY}" stroke="${INK}" stroke-width="1.2" pointer-events="none"/>
+      <g data-tip-title="LTV · 고객생애가치" data-tip="ARPU × 매출총이익률 × 평균 고객수명. 한 고객이 떠날 때까지 안겨주는 누적 공헌이익이다. 유지율이 가장 강력한 레버다.">
+        <rect x="${ltvX}" y="${ltvY}" width="${bw}" height="${seg1}" fill="${PRIMARY}" stroke="${INK}" stroke-width="1.2"/>
+        <rect x="${ltvX}" y="${ltvY + seg1}" width="${bw}" height="${seg2}" fill="${PRIMARY_SOFT}" stroke="${INK}" stroke-width="1.2"/>
+        <text x="${ltvX + bw / 2}" y="${ltvY - 12}" text-anchor="middle" font-size="22" font-weight="700" fill="${INK}">LTV</text>
+        <text x="${ltvX + bw / 2}" y="${ltvY + seg1 / 2 + 5}" text-anchor="middle" font-size="12" fill="${ON_DARK}">생애가치</text>
+        <text x="${ltvX + bw / 2}" y="${ltvY + seg1 + seg2 / 2 + 5}" text-anchor="middle" font-size="12" fill="${BODY}">공헌이익 누적</text>
+        <text x="${ltvX + bw / 2}" y="${baseY + 24}" text-anchor="middle" font-size="13" font-weight="600" fill="${MUTED}">예: 160만 원</text>
+      </g>
+      <g data-tip-title="CAC · 고객획득비용" data-tip="획득 마케팅·영업비를 신규 고객 수로 나눈 값. 고객 한 명을 데려오는 데 든 비용이다.">
+        <rect x="${cacX}" y="${cacY}" width="${bw}" height="${cacH}" fill="${CARD}" stroke="${INK}" stroke-width="1.2"/>
+        <text x="${cacX + bw / 2}" y="${cacY - 12}" text-anchor="middle" font-size="22" font-weight="700" fill="${INK}">CAC</text>
+        <text x="${cacX + bw / 2}" y="${cacY + cacH / 2 + 5}" text-anchor="middle" font-size="12" fill="${BODY}">획득비용</text>
+        <text x="${cacX + bw / 2}" y="${baseY + 24}" text-anchor="middle" font-size="13" font-weight="600" fill="${MUTED}">예: 40만 원</text>
+      </g>
+      <g data-tip-title="LTV / CAC 비율" data-tip="3 이상이면 건강, 1~3은 개선 필요, 1 미만이면 팔수록 손해다. 사업 건강을 한눈에 보여주는 핵심 비율.">
+        <rect x="600" y="118" width="130" height="92" rx="10" fill="${DARK}"/>
+        <text x="665" y="156" text-anchor="middle" font-size="14" fill="${ON_DARK}">LTV / CAC</text>
+        <text x="665" y="190" text-anchor="middle" font-size="30" font-weight="700" fill="${AMBER}">≥ 3</text>
+      </g>
+      <g data-tip-title="CAC 회수기간 (Payback)" data-tip="CAC를 월 공헌이익으로 나눈 회수 개월 수. 짧을수록 현금 흐름이 건강하다.">
+        <rect x="600" y="226" width="130" height="74" rx="10" fill="${PAPER}" stroke="${INK}" stroke-width="1.2"/>
+        <text x="665" y="252" text-anchor="middle" font-size="12" fill="${MUTED}">회수기간</text>
+        <text x="665" y="282" text-anchor="middle" font-size="22" font-weight="700" fill="${INK}">10개월</text>
+      </g>
+      </svg><div class="viz-caption">고객 한 명이 안겨주는 생애가치(LTV)가 획득비용(CAC)의 3배 이상이면 건강한 사업이다. 비율과 회수기간을 함께 본다.</div></div>`;
+  };
+
+  /* ============================================================
+     밸류 스틱 · WTP·가격·비용·WTS 가치 분배
+     ============================================================ */
+  const valueStickThumb = () => {
+    const x = 152, w = 56, top = 26, yPrice = 70, yCost = 116, bot = 156;
+    return `<svg class="thumb-svg" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
+      <rect x="${x}" y="${top}" width="${w}" height="${yPrice - top}" fill="${PRIMARY_SOFT}" stroke="${INK}" stroke-width="1.2"/>
+      <rect x="${x}" y="${yPrice}" width="${w}" height="${yCost - yPrice}" fill="${PRIMARY}" stroke="${INK}" stroke-width="1.2"/>
+      <rect x="${x}" y="${yCost}" width="${w}" height="${bot - yCost}" fill="${CARD}" stroke="${INK}" stroke-width="1.2"/>
+      <text x="${x - 10}" y="${top + 4}" text-anchor="end" font-size="11" font-weight="700" fill="${INK}">WTP</text>
+      <text x="${x - 10}" y="${yPrice + 4}" text-anchor="end" font-size="11" fill="${BODY}">가격</text>
+      <text x="${x - 10}" y="${yCost + 4}" text-anchor="end" font-size="11" fill="${BODY}">비용</text>
+      <text x="${x - 10}" y="${bot + 4}" text-anchor="end" font-size="11" font-weight="700" fill="${INK}">WTS</text>
+    </svg>`;
+  };
+
+  const valueStickFull = () => {
+    const x = 300, w = 150;
+    const yWTP = 78, yPrice = 156, yCost = 252, yWTS = 320;
+    const tick = (y, label, en, bold) => `<line x1="${x - 28}" y1="${y}" x2="${x + w + 28}" y2="${y}" stroke="${INK}" stroke-width="${bold ? 1.6 : 1}" pointer-events="none"/><text x="${x - 38}" y="${y + 4}" text-anchor="end" font-size="15" font-weight="${bold ? 700 : 600}" fill="${INK}">${a(label)}</text><text x="${x - 38}" y="${y + 21}" text-anchor="end" font-size="10" letter-spacing="0.04em" fill="${MUTED}">${a(en)}</text>`;
+    const band = (y1, y2, color, title, formula, tip) => `<g data-tip-title="${a(title)}" data-tip="${a(tip)}"><rect x="${x}" y="${y1}" width="${w}" height="${y2 - y1}" fill="${color}" stroke="${INK}" stroke-width="1.2"/><text x="${x + w / 2}" y="${(y1 + y2) / 2 - 2}" text-anchor="middle" font-size="14" font-weight="700" fill="${INK}">${a(title)}</text><text x="${x + w / 2}" y="${(y1 + y2) / 2 + 18}" text-anchor="middle" font-size="11" fill="${BODY}">${a(formula)}</text></g>`;
+    return `<div class="viz"><svg class="viz-svg" viewBox="0 0 760 400" xmlns="http://www.w3.org/2000/svg"><defs><marker id="vsCap" markerWidth="10" markerHeight="10" refX="5" refY="5"><line x1="0" y1="5" x2="10" y2="5" stroke="${AMBER}" stroke-width="2"/></marker></defs>
+      <text x="380" y="40" text-anchor="middle" font-size="18" font-weight="700" fill="${INK}" pointer-events="none">밸류 스틱 · 가치의 창출과 분배</text>
+      ${band(yWTP, yPrice, PRIMARY_SOFT, '고객 기쁨', 'WTP − 가격', '고객이 가져가는 잉여. 지불의향(WTP)보다 싸게 사서 얻는 만족이다. WTP를 올리면 이 칸이 커진다.')}
+      ${band(yPrice, yCost, PRIMARY, '기업 마진', '가격 − 비용', '기업이 가져가는 몫. 가격에서 비용을 뺀 이익이다.')}
+      ${band(yCost, yWTS, CARD, '공급자 잉여', '비용 − WTS', '공급자·직원이 가져가는 몫. 받아들이는 최소 보상(WTS)보다 더 받는 부분이다. WTS를 낮추면 이 칸이 커진다.')}
+      ${tick(yWTP, 'WTP', 'Willingness to Pay', true)}
+      ${tick(yPrice, '가격', 'Price', false)}
+      ${tick(yCost, '비용', 'Cost', false)}
+      ${tick(yWTS, 'WTS', 'Willingness to Sell', true)}
+      <g data-tip-title="창출된 총가치" data-tip="WTP에서 WTS까지의 전체 길이가 사업이 만들어낸 총가치다. 경쟁은 가격을 깎는 싸움이 아니라 이 막대를 늘리는 게임이다.">
+        <line x1="${x + w + 80}" y1="${yWTP}" x2="${x + w + 80}" y2="${yWTS}" stroke="${AMBER}" stroke-width="2" marker-start="url(#vsCap)" marker-end="url(#vsCap)" pointer-events="none"/>
+        <text x="${x + w + 96}" y="${(yWTP + yWTS) / 2 - 8}" font-size="13" font-weight="700" fill="${INK}">총가치</text>
+        <text x="${x + w + 96}" y="${(yWTP + yWTS) / 2 + 12}" font-size="10" fill="${MUTED}">WTP − WTS</text>
+      </g>
+      </svg><div class="viz-caption">WTP에서 WTS까지가 창출된 총가치다. 가격을 깎는 대신 WTP를 올리거나(차별화) WTS를 낮춰(좋은 공급·직원 조건) 막대 자체를 늘리는 것이 가치 기반 전략이다.</div></div>`;
   };
 
   const REG = {
@@ -3551,7 +3681,10 @@ window.VIZ = (() => {
     'aida':             { thumb: aidaThumb,    full: aidaFull },
     'tuckman':          { thumb: tuckmanThumb, full: tuckmanFull },
     'ejm':              { thumb: ejmThumb,     full: ejmFull },
-    'vsm':              { thumb: vsmThumb,     full: vsmFull }
+    'vsm':              { thumb: vsmThumb,     full: vsmFull },
+    'ooda':             { thumb: oodaThumb,        full: oodaFull },
+    'unit-economics':   { thumb: unitEconThumb,    full: unitEconFull },
+    'value-stick':      { thumb: valueStickThumb,  full: valueStickFull }
   };
 
   return {

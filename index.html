@@ -3,15 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI ROASTING · Dart 재무 분석</title>
-  <meta name="description" content="컨설팅 현장에서 가장 많이 쓰이는 67개 전략 사고 도구를 카테고리별로 정리한 에디토리얼 갤러리." />
+  <title>전략 도구 | AI ROASTING</title>
+  <link rel="icon" type="image/png" href="assets/logo.png" />
+  <link rel="apple-touch-icon" href="assets/logo.png" />
+  <meta name="description" content="컨설팅 현장에서 가장 많이 쓰이는 70개 전략 사고 도구를 카테고리별로 정리한 에디토리얼 갤러리." />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
+
+  <div class="grain-overlay" aria-hidden="true"></div>
 
   <!-- Top nav -->
   <nav class="top-nav">
@@ -20,23 +25,13 @@
         <span class="brand-logo-wrap">
           <img src="assets/logo.png" alt="AI Roasting" class="brand-logo" />
         </span>
-        <span class="brand-text">AI ROASTING</span>
+        <span class="brand-text">STRATEGY FRAMEWORKS<span class="brand-secondary"> <span class="brand-sep">|</span> AI ROASTING</span></span>
       </a>
       <input type="search" id="search-input" class="search-input nav-search" placeholder="프레임워크 검색…" autocomplete="off" />
       <div class="nav-right">
-        <a href="https://github.com/airoasting/strategy" target="_blank" rel="noopener" class="btn btn-primary">스킬 받기</a>
-        <button id="theme-toggle" class="btn-theme" type="button" aria-label="테마 전환">
-          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="5"/>
-            <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
-            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-            <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
-            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-          </svg>
-          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-          </svg>
-        </button>
+        <a href="https://github.com/airoasting/strategy" target="_blank" rel="noopener" class="btn-github" aria-label="GitHub 저장소 열기">
+          <svg class="gh-mark" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .5C5.37.5 0 5.78 0 12.29c0 5.21 3.44 9.63 8.2 11.19.6.11.82-.25.82-.56v-2c-3.34.71-4.04-1.58-4.04-1.58-.55-1.36-1.34-1.73-1.34-1.73-1.09-.73.08-.72.08-.72 1.2.08 1.84 1.21 1.84 1.21 1.07 1.8 2.81 1.28 3.5.98.11-.76.42-1.28.76-1.57-2.67-.3-5.47-1.31-5.47-5.83 0-1.29.47-2.34 1.24-3.17-.12-.3-.54-1.52.12-3.16 0 0 1.01-.32 3.3 1.21a11.6 11.6 0 0 1 6.01 0c2.29-1.53 3.3-1.21 3.3-1.21.66 1.64.24 2.86.12 3.16.77.83 1.24 1.88 1.24 3.17 0 4.53-2.81 5.53-5.49 5.82.43.36.82 1.09.82 2.2v3.26c0 .31.22.68.83.56A12.02 12.02 0 0 0 24 12.29C24 5.78 18.63.5 12 .5z"/></svg>
+        </a>
         <button id="hamburger" class="btn-hamburger" type="button" aria-label="메뉴 열기" aria-expanded="false">
           <span class="ham-bar"></span>
           <span class="ham-bar"></span>
@@ -50,21 +45,6 @@
   <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
     <div class="mobile-menu-inner">
       <input type="search" id="mobile-search" class="search-input mobile-search" placeholder="프레임워크 검색…" autocomplete="off" />
-      <div class="mobile-menu-row">
-        <span class="mobile-menu-label">테마</span>
-        <button id="theme-toggle-mobile" class="btn-theme" type="button" aria-label="테마 전환">
-          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="5"/>
-            <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
-            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-            <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
-            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-          </svg>
-          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-          </svg>
-        </button>
-      </div>
       <div class="mobile-menu-label">카테고리</div>
       <div class="mobile-filter-chips" id="mobile-filter-chips"></div>
     </div>
@@ -74,10 +54,10 @@
   <header class="hero">
     <div class="container">
       <div class="hero-copy">
-        <p class="hero-eyebrow">67 Strategy Frameworks</p>
+        <p class="hero-eyebrow">70 Strategy Frameworks</p>
         <h1>
           가장 중요한 비즈니스 질문에<br/>
-          답하는 <em>67가지 전략 도구</em>
+          답하는 <em>70가지 전략 도구</em>
         </h1>
         <p class="hero-sub">비즈니스 현장에서 쓰는 전략 프레임워크를 6개 카테고리로 정리했습니다.</p>
       </div>
@@ -123,7 +103,7 @@
         <div>
           <h2>어떤 문제인지만 말씀하세요.<br/>맞는 도구를 바로 찾아드립니다.</h2>
           <p>
-            67개 프레임워크 중 지금 상황에 가장 정확한 도구 하나를 고르는 일,
+            70개 프레임워크 중 지금 상황에 가장 정확한 도구 하나를 고르는 일,
             생각보다 어렵습니다. 상황을 자연어로 설명하시면 1순위 도구와 보조 도구 한두 개,
             그리고 첫 적용 단계까지 함께 제안드립니다.
           </p>
@@ -143,22 +123,31 @@
           <span class="brand-text">AI ROASTING <span class="brand-sep">/</span> 전략 프레임워크</span>
         </a>
         <p class="footer-tag">
-          맥킨지·베인·BCG 등 글로벌 컨설팅 현장에서 표준으로 쓰이는 전략 사고 도구 67개를 한 자리에 모았습니다. 각 도구를 카테고리별로 시각화하고, 자연어로 도구를 골라주는 스킬도 함께 제공합니다.
+          맥킨지·베인·BCG 등 글로벌 컨설팅 현장에서 표준으로 쓰이는 전략 사고 도구 70개를 한 자리에 모았습니다. 각 도구를 카테고리별로 시각화하고, 자연어로 도구를 골라주는 스킬도 함께 제공합니다.
         </p>
       </div>
       <div class="footer-col">
         <h4>카테고리</h4>
         <ul>
-          <li><a href="#cat-problem-solving" data-scroll-cat="problem-solving">문제 해결·사고 도구 <span class="footer-count">10</span></a></li>
+          <li><a href="#cat-problem-solving" data-scroll-cat="problem-solving">문제 해결·사고 도구 <span class="footer-count">11</span></a></li>
           <li><a href="#cat-market" data-scroll-cat="market">시장·경쟁 분석 <span class="footer-count">10</span></a></li>
           <li><a href="#cat-marketing" data-scroll-cat="marketing">마케팅 전략 <span class="footer-count">9</span></a></li>
-          <li><a href="#cat-business-model" data-scroll-cat="business-model">비즈니스 모델·수익 구조 분석 <span class="footer-count">5</span></a></li>
+          <li><a href="#cat-business-model" data-scroll-cat="business-model">비즈니스 모델 <span class="footer-count">7</span></a></li>
           <li><a href="#cat-organization" data-scroll-cat="organization">조직·인사 <span class="footer-count">17</span></a></li>
           <li><a href="#cat-process" data-scroll-cat="process">프로세스·실행 <span class="footer-count">16</span></a></li>
         </ul>
       </div>
       <div class="footer-bottom" style="grid-column:1/-1">
-        © 2026 AI ROASTING
+        <span class="footer-copy">© 2026 AI ROASTING. ALL RIGHTS RESERVED.</span>
+        <span class="footer-author">
+          <span class="footer-name">강정구 · JAYDEN KANG</span>
+          <a href="https://www.linkedin.com/in/jayden-kang/" class="footer-social" aria-label="LinkedIn" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+          </a>
+          <a href="https://www.facebook.com/jayden.kang" class="footer-social" aria-label="Facebook" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07c0 6.03 4.39 11.03 10.13 11.93v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.25h3.33l-.53 3.49h-2.8v8.44C19.61 23.1 24 18.1 24 12.07z"/></svg>
+          </a>
+        </span>
       </div>
     </div>
   </footer>

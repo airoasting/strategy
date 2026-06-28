@@ -1,10 +1,10 @@
-# 67개 전략 프레임워크
+# 70개 전략 프레임워크
 
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Frameworks](https://img.shields.io/badge/frameworks-67-coral.svg)](https://github.com/airoasting/strategy)
+[![Frameworks](https://img.shields.io/badge/frameworks-70-coral.svg)](https://github.com/airoasting/strategy)
 [![Static](https://img.shields.io/badge/build-static-brightgreen.svg)](index.html)
 
-맥킨지·베인·BCG 현장 도구 67개를 한 자리에 모았습니다.
+맥킨지·베인·BCG 현장 도구 70개를 한 자리에 모았습니다.
 카드로 탐색하고, AI가 상황에 맞는 도구를 골라줍니다.
 
 **[airoasting.github.io/strategy](https://airoasting.github.io/strategy/)**
@@ -15,7 +15,7 @@
 
 전략 프레임워크는 많은데, 지금 내 상황에 뭘 써야 할지 모르겠는 경우가 더 많습니다.
 
-갤러리에서 67개를 직접 훑어보거나, AI 스킬에 상황을 말하면 맞는 도구를 골라줍니다.
+갤러리에서 70개를 직접 훑어보거나, AI 스킬에 상황을 말하면 맞는 도구를 골라줍니다.
 
 ---
 
@@ -35,7 +35,7 @@ npx http-server . -p 8000
 
 ```bash
 git clone https://github.com/airoasting/strategy.git
-ln -s "$(pwd)/strategy/skill" ~/.claude/skills/strategy
+ln -s "$(pwd)/strategy/strategy" ~/.claude/skills/strategy
 ```
 
 설치하고 나면 상황을 말하는 것만으로 도구 추천이 됩니다.
@@ -50,7 +50,7 @@ ln -s "$(pwd)/strategy/skill" ~/.claude/skills/strategy
 
 | 기능 | 설명 |
 |---|---|
-| 67개 프레임워크 | 6개 카테고리, SVG 시각화 포함 |
+| 70개 프레임워크 | 6개 카테고리, SVG 시각화 포함 |
 | 카테고리 필터 + 검색 | 실시간 필터링, 스크롤 스파이 연동 |
 | 모달 상세 | 개요·구성·절차·예시·한계·관련 도구 |
 | 라이트 / 다크 모드 | 시스템 설정 감지, 수동 전환 가능 |
@@ -70,8 +70,8 @@ ln -s "$(pwd)/strategy/skill" ~/.claude/skills/strategy
 ### 마케팅 전략
 ![마케팅 전략](assets/screenshots/marketing.png)
 
-### 비즈니스 모델·수익 구조
-![비즈니스 모델·수익 구조](assets/screenshots/business-model.png)
+### 비즈니스 모델
+![비즈니스 모델](assets/screenshots/business-model.png)
 
 ### 조직·인사
 ![조직·인사](assets/screenshots/organization.png)
@@ -81,13 +81,13 @@ ln -s "$(pwd)/strategy/skill" ~/.claude/skills/strategy
 
 ---
 
-## 67개 프레임워크
+## 70개 프레임워크
 
 <details>
 <summary>전체 목록 보기</summary>
 
-### 문제 해결·사고 도구 (10)
-`#1` 이슈 트리 / MECE &nbsp; `#2` 시나리오 플래닝 &nbsp; `#3` 피라미드 원칙 &nbsp; `#4` 디자인 씽킹 &nbsp; `#5` 5 Whys &nbsp; `#6` 특성요인도 &nbsp; `#7` 파레토 분석 &nbsp; `#8` 6색 사고모자 &nbsp; `#9` 아이젠하워 매트릭스 &nbsp; `#10` 리스크 매트릭스
+### 문제 해결·사고 도구 (11)
+`#1` 이슈 트리 / MECE &nbsp; `#2` 시나리오 플래닝 &nbsp; `#3` 피라미드 원칙 &nbsp; `#4` 디자인 씽킹 &nbsp; `#5` 5 Whys &nbsp; `#6` 특성요인도 &nbsp; `#7` 파레토 분석 &nbsp; `#8` 6색 사고모자 &nbsp; `#9` 아이젠하워 매트릭스 &nbsp; `#10` 리스크 매트릭스 &nbsp; `#70` OODA 루프
 
 ### 시장·경쟁 분석 (10)
 `#11` 3C 분석 &nbsp; `#12` SWOT &nbsp; `#13` 5 Forces &nbsp; `#14` BCG 매트릭스 &nbsp; `#15` Ansoff &nbsp; `#16` PESTEL &nbsp; `#17` GE-McKinsey 9Box &nbsp; `#18` 블루오션 전략 &nbsp; `#19` 3대 성장 지평 &nbsp; `#20` 포터 본원적 경쟁전략
@@ -95,8 +95,8 @@ ln -s "$(pwd)/strategy/skill" ~/.claude/skills/strategy
 ### 마케팅 전략 (9)
 `#21` STP &nbsp; `#22` 4P &nbsp; `#23` Customer Journey Map &nbsp; `#24` JTBD &nbsp; `#25` Kano 모델 &nbsp; `#26` 포지셔닝 맵 &nbsp; `#27` AARRR &nbsp; `#28` RFM &nbsp; `#29` AIDA
 
-### 비즈니스 모델·수익 구조 (5)
-`#30` BMC &nbsp; `#31` 이익 방정식 &nbsp; `#32` 수익 모델 &nbsp; `#33` Lean Canvas &nbsp; `#34` 가치 제안 캔버스
+### 비즈니스 모델 (7)
+`#30` BMC &nbsp; `#31` 이익 방정식 &nbsp; `#32` 수익 모델 &nbsp; `#33` Lean Canvas &nbsp; `#34` 가치 제안 캔버스 &nbsp; `#68` 유닛 이코노믹스 &nbsp; `#69` 밸류 스틱
 
 ### 조직·인사 (17)
 `#35` 가치 사슬 &nbsp; `#36` BSC &nbsp; `#37` 맥킨지 7S &nbsp; `#38` 역량 성숙도 &nbsp; `#39` OKR &nbsp; `#40` VRIO &nbsp; `#41` 핵심역량 &nbsp; `#42` SMART 목표 &nbsp; `#43` 9박스 인재 매트릭스 &nbsp; `#44` Ulrich HR 모델 &nbsp; `#45` 역량 모델 &nbsp; `#46` Tuckman 팀 발달 &nbsp; `#47` 허즈버그 2요인 &nbsp; `#48` 커크패트릭 4단계 &nbsp; `#49` 직원 여정 지도 &nbsp; `#50` GROW 코칭 &nbsp; `#51` 매슬로 욕구단계
@@ -138,8 +138,9 @@ AI      추천: 3C 분석 (#11)
 │   └── visualizations.js
 ├── data/frameworks.js
 ├── assets/
-├── skill/
+├── strategy/              # /strategy 추천 스킬
 │   ├── SKILL.md
+│   ├── README.md
 │   └── references/
 │       ├── frameworks.md
 │       └── decision-tree.md

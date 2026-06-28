@@ -55,7 +55,15 @@
     </button>
   `).join('');
 
-  const scrollOffset = () => window.innerWidth <= 768 ? 72 : 132;
+  // 스티키 바(상단 내비 + 필터) 높이를 실측해, 그보다 살짝 더 스크롤시켜
+  // 카테고리 섹션 상단 경계선이 바 밑으로 숨도록 한다.
+  const scrollOffset = () => {
+    const nav = document.querySelector('.top-nav');
+    const filters = document.querySelector('.filters');
+    const navH = nav ? nav.offsetHeight : 64;
+    const fH = (filters && getComputedStyle(filters).display !== 'none') ? filters.offsetHeight : 0;
+    return Math.max(56, navH + fH - 12);
+  };
 
   const bindChipClicks = (container, closeMobile) => {
     container.querySelectorAll('.chip[data-cat]').forEach(btn => {
@@ -83,7 +91,8 @@
     const total = state.data.frameworks.length;
     const cats = state.data.categories.map(x => ({ ...x, count: c[x.id] || 0 }));
     const html = chipHTML(cats);
-    el.chips.innerHTML = html;
+    const allChip = `<button class="chip chip-all" type="button" data-cat="all" aria-selected="false">전체<span class="chip-count">${total}</span></button>`;
+    el.chips.innerHTML = allChip + html;
     const mobileChips = document.getElementById('mobile-filter-chips');
     if (mobileChips) {
       const allHTML = `<button class="chip chip-all" type="button" data-cat="all" aria-selected="false">전체<span class="chip-count">${total}</span></button>`;
@@ -101,15 +110,28 @@
         });
       }
     }
-    const firstCat = cats[0] && cats[0].id;
-    if (firstCat) setActiveChip(firstCat);
+    setActiveChip('all');
     bindChipClicks(el.chips, false);
     if (mobileChips) bindChipClicks(mobileChips, true);
+
+    // 데스크톱 '전체' 칩: 라이브러리 최상단으로 스크롤
+    const deskAll = el.chips.querySelector('[data-cat="all"]');
+    if (deskAll) {
+      deskAll.addEventListener('click', () => {
+        if (state.sort !== 'default') setSort('default');
+        document.querySelectorAll('.chip').forEach(b => b.setAttribute('aria-selected', 'false'));
+        deskAll.setAttribute('aria-selected', 'true');
+        const target = document.getElementById('library');
+        if (target) smoothScrollTo(target, scrollOffset());
+      });
+    }
   };
 
   let _spyObserver = null;
+  let _spyScroll = null;
   const initScrollSpy = () => {
     if (_spyObserver) _spyObserver.disconnect();
+    if (_spyScroll) window.removeEventListener('scroll', _spyScroll);
     const sections = el.gallery.querySelectorAll('.cat-section');
     if (!sections.length) return;
     _spyObserver = new IntersectionObserver((entries) => {
@@ -121,6 +143,16 @@
       });
     }, { rootMargin: '-112px 0px -50% 0px', threshold: 0 });
     sections.forEach(s => _spyObserver.observe(s));
+
+    // 첫 섹션보다 위(히어로 영역)로 스크롤하면 '전체' 칩을 활성화
+    const firstSection = sections[0];
+    _spyScroll = () => {
+      if (firstSection.getBoundingClientRect().top > window.innerHeight * 0.5) {
+        setActiveChip('all');
+      }
+    };
+    window.addEventListener('scroll', _spyScroll, { passive: true });
+    _spyScroll();
   };
 
   // sticky 헤더(top-nav 64px + filter ~76px) 보정 후 부드럽게 스크롤
@@ -262,8 +294,8 @@
         </section>
         <aside class="m-side">
           <div class="m-cat-row">
-            <span class="cat-dot"></span>
-            ${esc(c.name)} · ${String(f.id).padStart(2,'0')}번
+            <span class="m-cat-tag" data-cat="${f.category}">${esc(c.name)}</span>
+            <span class="m-cat-num">${String(f.id).padStart(2,'0')}</span>
           </div>
           <h2 class="m-title">${esc(f.name)}</h2>
           <p class="m-alt">${esc(f.altName || '')}</p>
@@ -447,21 +479,6 @@
     return { show, hide, move };
   })();
 
-  const toggleTheme = () => {
-    const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', next);
-    localStorage.setItem('theme', next);
-  };
-
-  const initTheme = () => {
-    const saved = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    document.documentElement.setAttribute('data-theme', saved || (prefersDark ? 'dark' : 'light'));
-    document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
-    const mobileToggle = document.getElementById('theme-toggle-mobile');
-    if (mobileToggle) mobileToggle.addEventListener('click', toggleTheme);
-  };
-
   const closeMobileMenu = () => {
     const menu = document.getElementById('mobile-menu');
     const btn  = document.getElementById('hamburger');
@@ -503,7 +520,7 @@
       a.addEventListener('click', e => {
         e.preventDefault();
         const target = document.getElementById('cat-' + a.dataset.scrollCat);
-        if (target) smoothScrollTo(target);
+        if (target) smoothScrollTo(target, scrollOffset());
       });
     });
   };
@@ -513,7 +530,6 @@
       el.gallery.innerHTML = '<p style="padding:24px;color:#c00">데이터가 로드되지 않았습니다.</p>';
       return;
     }
-    initTheme();
     renderChips();
     renderGallery();
     initScrollSpy();
