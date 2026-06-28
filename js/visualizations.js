@@ -1607,7 +1607,7 @@ window.VIZ = (() => {
   const posMapFull = () => {
     const a = (s) => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
     const brands = [
-      { x: 560, y: 80,  r: 18, fill: PRIMARY,      label: '스타벅스',   tip: '고가·프리미엄 포지션. 브랜드·경험 중심 전략으로 높은 LTV와 충성도를 구축했습니다.' },
+      { x: 560, y: 82,  r: 18, fill: PRIMARY,      label: '스타벅스',   tip: '고가·프리미엄 포지션. 브랜드·경험 중심 전략으로 높은 LTV와 충성도를 구축했습니다.' },
       { x: 430, y: 110, r: 13, fill: AMBER_SOFT,   label: '투썸',       tip: '중고가·프리미엄 영역. 디저트 결합 전략으로 차별화합니다.' },
       { x: 130, y: 290, r: 16, fill: CARD,          label: '메가커피',   tip: '저가·간편 포지션. 가격 경쟁력으로 급성장했습니다.' },
       { x: 200, y: 240, r: 11, fill: PAPER,         label: '컴포즈',     tip: '저가 영역의 신흥 경쟁자. 메가커피와 포지션이 인접합니다.' },
