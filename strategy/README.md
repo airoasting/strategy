@@ -1,5 +1,7 @@
 # strategy · 전략 프레임워크 추천 스킬
 
+**[github.com/airoasting/strategy/tree/main/strategy](https://github.com/airoasting/strategy/tree/main/strategy)**
+
 자연어로 비즈니스 상황을 말하면, 컨설팅 전략 프레임워크 70개 중 가장 맞는 **1순위 도구**와 보조 1~2개를 골라 적용 첫 단계까지 안내하는 Claude 스킬입니다.
 
 ## 무엇을 하나
