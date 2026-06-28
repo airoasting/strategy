@@ -1268,11 +1268,11 @@ window.VIZ = (() => {
           <g data-tip-title="${a(factors[i].replace('\n',' '))}" data-tip="${a('자사 제공 수준: '+v+'/100  ·  경쟁사: '+competitor[i]+'/100. 전략 캔버스는 어느 요소를 제거·감소·증가·창조할지 결정하는 근거가 됩니다.')}">
             <circle cx="${ox+i*stepX}" cy="${scaleY(v)}" r="7" fill="${PRIMARY}"/>
           </g>`).join('')}
-        <rect x="560" y="28" width="140" height="34" rx="4" fill="${PAPER}" stroke="${HAIRLINE}" stroke-width="1"/>
-        <line x1="572" y1="40" x2="596" y2="40" stroke="${PRIMARY}" stroke-width="3"/>
-        <text x="602" y="44" font-size="11" fill="${INK}">자사 (블루오션)</text>
-        <line x1="572" y1="54" x2="596" y2="54" stroke="${MUTED}" stroke-width="2" stroke-dasharray="4,3"/>
-        <text x="602" y="58" font-size="11" fill="${MUTED}">경쟁사 평균</text>
+        <rect x="540" y="12" width="150" height="34" rx="4" fill="${PAPER}" stroke="${INK}" stroke-width="1"/>
+        <line x1="554" y1="24" x2="578" y2="24" stroke="${PRIMARY}" stroke-width="3"/>
+        <text x="586" y="28" font-size="11" fill="${INK}">자사 (블루오션)</text>
+        <line x1="554" y1="38" x2="578" y2="38" stroke="${MUTED}" stroke-width="2" stroke-dasharray="4,3"/>
+        <text x="586" y="42" font-size="11" fill="${MUTED}">경쟁사 평균</text>
         <text x="${ox-10}" y="${oy-8}" font-size="11" font-weight="600" fill="${INK}">제공 수준</text>
       </svg>
       <div class="viz-caption">전략 캔버스 · 선이 다르게 그려지는 곳이 차별화 지점 · ERRC 그리드로 각 요소를 제거·감소·증가·창조합니다</div>
@@ -1384,18 +1384,18 @@ window.VIZ = (() => {
       { x: 100, y: 30,  w: 80, h: 28, fill: PRIMARY_SOFT, label: '핵심 질문' },
       { x: 55,  y: 90,  w: 70, h: 24, fill: CARD, label: '이슈 A' },
       { x: 155, y: 90,  w: 70, h: 24, fill: CARD, label: '이슈 B' },
-      { x: 27,  y: 142, w: 54, h: 22, fill: PAPER, label: 'A-1' },
-      { x: 89,  y: 142, w: 54, h: 22, fill: PAPER, label: 'A-2' },
-      { x: 133, y: 142, w: 54, h: 22, fill: PAPER, label: 'B-1' },
-      { x: 195, y: 142, w: 54, h: 22, fill: PAPER, label: 'B-2' }
+      { x: 46,  y: 142, w: 40, h: 22, fill: PAPER, label: 'A-1' },
+      { x: 94,  y: 142, w: 40, h: 22, fill: PAPER, label: 'A-2' },
+      { x: 146, y: 142, w: 40, h: 22, fill: PAPER, label: 'B-1' },
+      { x: 194, y: 142, w: 40, h: 22, fill: PAPER, label: 'B-2' }
     ];
     const paths = [
       `M 140 58 L 140 74 L 90 74 L 90 90`,
       `M 140 58 L 140 74 L 190 74 L 190 90`,
-      `M 90 114 L 90 128 L 54 128 L 54 142`,
-      `M 90 114 L 90 128 L 116 128 L 116 142`,
-      `M 190 114 L 190 128 L 160 128 L 160 142`,
-      `M 190 114 L 190 128 L 222 128 L 222 142`
+      `M 90 114 L 90 128 L 66 128 L 66 142`,
+      `M 90 114 L 90 128 L 114 128 L 114 142`,
+      `M 190 114 L 190 128 L 166 128 L 166 142`,
+      `M 190 114 L 190 128 L 214 128 L 214 142`
     ];
     return `
     <svg class="thumb-svg" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
@@ -2788,8 +2788,8 @@ window.VIZ = (() => {
         <line x1="${ex}" y1="${ey}" x2="${sx}" y2="${sy}" stroke="${MUTED}" stroke-width="2.5"/>
         <line x1="${ex + 20}" y1="${ey + 30}" x2="${ex + 36}" y2="${ey + 18}" stroke="${HAIRLINE}" stroke-width="2" pointer-events="none"/>
         <line x1="${ex + 36}" y1="${ey + 54}" x2="${ex + 52}" y2="${ey + 42}" stroke="${HAIRLINE}" stroke-width="2" pointer-events="none"/>
-        <text x="${ex - 6}" y="${ey - 8}" font-size="15" font-weight="700" fill="${INK}">${b.label}</text>
-        <text x="${ex - 6}" y="${ey + 9}" font-size="11" fill="${MUTED}">${b.ko}</text>
+        <text x="${ex - 6}" y="${ey - 26}" font-size="15" font-weight="700" fill="${INK}">${b.label}</text>
+        <text x="${ex - 6}" y="${ey - 10}" font-size="11" fill="${MUTED}">${b.ko}</text>
       </g>`;
     };
     const boneBottom = (b) => {
