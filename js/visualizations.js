@@ -829,8 +829,8 @@ window.VIZ = (() => {
           <rect class="vc-hover" x="${x}" y="${Y0}" width="${w}" height="${H}" fill="${isP?PRIMARY_SOFT:PAPER}"/>
           <rect x="${x}" y="${Y0}" width="${w}" height="${hdrH}" fill="${isP?PRIMARY:DARK}" pointer-events="none"/>
           ${i>0?`<line x1="${x}" y1="${Y0}" x2="${x}" y2="${Y0+H}" stroke="${INK}" stroke-width="1" pointer-events="none"/>`:''}
-          <text x="${x+w/2}" y="${Y0+38}" text-anchor="middle" font-size="26" font-weight="700" fill="${ON_DARK}" pointer-events="none">${c.l}</text>
-          <text x="${x+w/2}" y="${Y0+56}" text-anchor="middle" font-size="11" fill="rgba(255,255,255,0.85)" pointer-events="none">${c.n}</text>
+          <text x="${x+w/2}" y="${Y0+34}" text-anchor="middle" font-size="24" font-weight="700" fill="${ON_DARK}" pointer-events="none">${c.l}</text>
+          <text x="${x+w/2}" y="${Y0+50}" text-anchor="middle" font-size="11" fill="rgba(255,255,255,0.85)" pointer-events="none">${c.n}</text>
           ${c.items.map((it,ii)=>`
             <text x="${x+16}" y="${Y0+hdrH+32+ii*30}" font-size="${isP?'15':'14'}" font-weight="500" fill="${INK}" pointer-events="none">· ${it}</text>
           `).join('')}
@@ -1498,8 +1498,6 @@ window.VIZ = (() => {
         <text x="380" y="192" text-anchor="middle" font-size="13" font-weight="700" fill="${ON_DARK}">Vision &</text>
         <text x="380" y="210" text-anchor="middle" font-size="13" font-weight="700" fill="${ON_DARK}">Strategy</text>
         <text x="380" y="226" text-anchor="middle" font-size="10" fill="${ON_DARK}" opacity="0.7">비전과 전략</text>
-        ${[[340,154,314,130],[420,154,446,130],[340,246,314,270],[420,246,446,270]].map(([x1,y1,x2,y2]) =>
-          `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${INK}" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr)"/>`).join('')}
       </svg>
       <div class="viz-caption">4개 관점이 전략을 중심으로 인과관계로 연결됩니다 · 아래에서 위로 역량→프로세스→고객→재무</div>
     </div>`;
