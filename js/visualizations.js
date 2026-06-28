@@ -1582,7 +1582,7 @@ window.VIZ = (() => {
      ============================================================ */
   const posMapThumb = () => {
     const brands = [
-      { x: 210, y: 38,  r: 8,  fill: PRIMARY,     label: 'A' },
+      { x: 210, y: 43,  r: 8,  fill: PRIMARY,     label: 'A' },
       { x: 155, y: 55,  r: 6,  fill: CARD,        label: 'B' },
       { x: 60,  y: 130, r: 7,  fill: CARD,        label: 'C' },
       { x: 100, y: 75,  r: 5,  fill: PAPER,       label: 'D' },
