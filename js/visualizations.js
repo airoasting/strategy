@@ -1527,48 +1527,51 @@ window.VIZ = (() => {
   };
   const pyramidFull = () => {
     const a = (s) => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-    const layers = [
-      { y: 88,  w: 260, h: 52, fill: PRIMARY,      textFill: ON_DARK, label: '핵심 메시지 (So What?)', sub: '구독 모델 도입으로 18개월 내 점유율 2위 달성', tipTitle:'피라미드 정점', tip:'단 하나의 결론. 독자가 이 보고서를 다 읽지 않아도 알아야 할 핵심 메시지입니다.' },
-      { y: 152, w: 740, h: 52, fill: PRIMARY_SOFT,  textFill: INK,    label: '키 라인 (Why So? · 논거 3개)', sub: '논거 A: LTV 3.2배  ·  논거 B: 경쟁사 공백  ·  논거 C: 파일럿 NPS 72', tipTitle:'키 라인', tip:'핵심 메시지를 직접 지지하는 2~4개 논거. 각 논거는 MECE해야 합니다.' },
-      { y: 216, w: 740, h: 52, fill: CARD,          textFill: INK,    label: '서포팅 데이터 (How So?)', sub: '시장 분석  ·  고객 인터뷰  ·  파일럿 결과  ·  경쟁사 벤치마크', tipTitle:'서포팅 레이어', tip:'각 논거를 뒷받침하는 구체적 사실·분석·사례입니다.' }
-    ];
     const scqa = [
       { label: 'S', title: 'Situation', desc: '국내 커피 시장 3위, 점유율 정체 2년째' },
       { label: 'C', title: 'Complication', desc: '1위·2위 격차 확대, 가격 경쟁 심화' },
       { label: 'Q', title: 'Question', desc: '어떻게 2위권으로 진입할 수 있는가?' },
       { label: 'A', title: 'Answer', desc: '구독 모델 도입으로 LTV를 높여 18개월 내 달성' }
     ];
+    const rlayers = [
+      { w: 220, h: 50, fill: PRIMARY,      tf: ON_DARK, label: '핵심 메시지 (So What?)', sub: '구독 모델로 18개월 내 점유율 2위', tt:'피라미드 정점', tp:'단 하나의 결론. 독자가 다 읽지 않아도 알아야 할 핵심 메시지입니다.' },
+      { w: 430, h: 50, fill: PRIMARY_SOFT, tf: INK,     label: '키 라인 (Why So? · 논거 3개)', sub: 'LTV 3.2배 · 경쟁사 공백 · 파일럿 NPS 72', tt:'키 라인', tp:'핵심 메시지를 직접 지지하는 2~4개 논거. 각 논거는 MECE해야 합니다.' },
+      { w: 430, h: 50, fill: CARD,         tf: INK,     label: '서포팅 데이터 (How So?)', sub: '시장 분석 · 고객 인터뷰 · 파일럿 결과', tt:'서포팅 레이어', tp:'각 논거를 뒷받침하는 구체적 사실·분석·사례입니다.' }
+    ];
+    const sx = 20, sw = 248, sh = 48, sgap = 10, sy0 = 52;
+    const rcx = 516, ly0 = 52, lh = 50, lgap = 12;
     return `
     <div class="viz">
-      <svg class="viz-svg" viewBox="0 0 760 420" xmlns="http://www.w3.org/2000/svg">
-        <text x="380" y="22" text-anchor="middle" font-size="11" font-weight="600" fill="${MUTED}" letter-spacing="1">SCQA 도입부</text>
+      <svg class="viz-svg" viewBox="0 0 760 430" xmlns="http://www.w3.org/2000/svg">
+        <text x="${sx + sw / 2}" y="36" text-anchor="middle" font-size="11" font-weight="600" fill="${MUTED}" letter-spacing="1">SCQA 도입부</text>
+        <text x="${rcx}" y="36" text-anchor="middle" font-size="11" font-weight="600" fill="${MUTED}" letter-spacing="1">피라미드 구조</text>
         ${scqa.map((s, i) => {
-          const x = 20 + i * 180;
+          const y = sy0 + i * (sh + sgap);
           return `
             <g data-tip-title="${a(s.title)}" data-tip="${a(s.desc)}">
-              <rect x="${x}" y="28" width="168" height="44" rx="5" fill="${i === 3 ? PRIMARY_SOFT : PAPER}" stroke="${INK}" stroke-width="1"/>
-              <text x="${x+16}" y="46" font-size="13" font-weight="700" fill="${PRIMARY}">${s.label}</text>
-              <text x="${x+32}" y="46" font-size="12" font-weight="600" fill="${INK}">${s.title}</text>
-              <text x="${x+16}" y="63" font-size="10" fill="${MUTED}">${s.desc}</text>
+              <rect x="${sx}" y="${y}" width="${sw}" height="${sh}" rx="6" fill="${i === 3 ? PRIMARY_SOFT : PAPER}" stroke="${INK}" stroke-width="1"/>
+              <text x="${sx + 14}" y="${y + 22}" font-size="14" font-weight="700" fill="${PRIMARY}">${s.label}</text>
+              <text x="${sx + 32}" y="${y + 22}" font-size="12" font-weight="600" fill="${INK}">${s.title}</text>
+              <text x="${sx + 14}" y="${y + 40}" font-size="10" fill="${MUTED}">${s.desc}</text>
             </g>
-            ${i < 3 ? `<text x="${x+174}" y="53" font-size="13" fill="${MUTED}">→</text>` : ''}
-          `;
+            ${i < 3 ? `<text x="${sx + sw / 2}" y="${y + sh + 8}" text-anchor="middle" font-size="11" fill="${MUTED_SOFT}" pointer-events="none">↓</text>` : ''}`;
         }).join('')}
-        ${layers.map(l => {
-          const x = (760 - l.w) / 2;
+        ${rlayers.map((l, i) => {
+          const x = rcx - l.w / 2;
+          const y = ly0 + i * (lh + lgap);
           return `
-            <g data-tip-title="${a(l.tipTitle)}" data-tip="${a(l.tip)}">
-              <rect x="${x}" y="${l.y}" width="${l.w}" height="${l.h}" rx="5" fill="${l.fill}" stroke="${INK}" stroke-width="1.2"/>
-              <text x="380" y="${l.y + l.h/2 - 6}" text-anchor="middle" font-size="13" font-weight="700" fill="${l.textFill}">${l.label}</text>
-              <text x="380" y="${l.y + l.h/2 + 12}" text-anchor="middle" font-size="10" fill="${l.fill === PRIMARY ? ON_DARK : MUTED}">${l.sub}</text>
+            <g data-tip-title="${a(l.tt)}" data-tip="${a(l.tp)}">
+              <rect x="${x}" y="${y}" width="${l.w}" height="${l.h}" rx="5" fill="${l.fill}" stroke="${INK}" stroke-width="1.2"/>
+              <text x="${rcx}" y="${y + l.h / 2 - 5}" text-anchor="middle" font-size="13" font-weight="700" fill="${l.tf}">${l.label}</text>
+              <text x="${rcx}" y="${y + l.h / 2 + 13}" text-anchor="middle" font-size="10" fill="${l.fill === PRIMARY ? ON_DARK : MUTED}">${l.sub}</text>
             </g>`;
         }).join('')}
-        <rect x="20" y="272" width="720" height="90" rx="6" fill="${CARD}" stroke="${HAIRLINE}" stroke-width="1"/>
-        <text x="380" y="295" text-anchor="middle" font-size="13" font-weight="700" fill="${INK}">MECE 원칙 적용</text>
-        <circle cx="50" cy="320" r="5" fill="${PRIMARY}"/>
-        <text x="66" y="325" font-size="12" fill="${BODY}">Mutually Exclusive · 논거 간 중복 없음. A, B, C가 각각 독립적인 이유를 다룹니다.</text>
-        <circle cx="50" cy="347" r="5" fill="${PRIMARY}"/>
-        <text x="66" y="352" font-size="12" fill="${BODY}">Collectively Exhaustive · 누락 없음. A + B + C를 합치면 핵심 메시지를 완전히 지지합니다.</text>
+        <rect x="20" y="290" width="720" height="118" rx="6" fill="${CARD}" stroke="${HAIRLINE}" stroke-width="1"/>
+        <text x="380" y="316" text-anchor="middle" font-size="13" font-weight="700" fill="${INK}">MECE 원칙 적용</text>
+        <circle cx="58" cy="346" r="5" fill="${PRIMARY}"/>
+        <text x="74" y="351" font-size="12" fill="${BODY}">Mutually Exclusive · 논거 간 중복 없음. A, B, C가 각각 독립적인 이유를 다룹니다.</text>
+        <circle cx="58" cy="378" r="5" fill="${PRIMARY}"/>
+        <text x="74" y="383" font-size="12" fill="${BODY}">Collectively Exhaustive · 누락 없음. A + B + C를 합치면 핵심 메시지를 완전히 지지합니다.</text>
       </svg>
       <div class="viz-caption">SCQA로 맥락을 열고 → 핵심 메시지를 먼저 → 논거와 데이터로 뒷받침합니다</div>
     </div>`;
