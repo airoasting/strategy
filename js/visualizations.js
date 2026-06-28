@@ -1031,8 +1031,8 @@ window.VIZ = (() => {
   const kanoFull = () => {
     const types = [
       { y:40, fill:PRIMARY_SOFT, ko:'매력 기능', en:'Attractive / Delighter', tip:'있으면 크게 기쁘지만 없어도 불만이 없습니다. 경쟁 차별화의 핵심. 시간이 지나면 성능 기능으로 이동합니다. 예: 스마트폰 무선 충전 (초기)', curve:'M480,256 C580,244 662,128 724,68', color:PRIMARY },
-      { y:140, fill:AMBER_SOFT, ko:'성능 기능', en:'Performance / Linear', tip:'충족될수록 만족도가 선형으로 올라갑니다. 더 빠를수록, 더 클수록, 더 저렴할수록 좋습니다. 예: 배터리 지속 시간', curve:'M480,300 L724,108', color:AMBER },
-      { y:240, fill:CARD, ko:'기본 기능', en:'Must-be / Basic', tip:'없으면 극심한 불만이지만 있어도 당연히 여깁니다. 자원을 집중할 영역이 아니라 결함이 없어야 할 영역입니다. 예: 화장실의 온수', curve:'M480,322 C572,302 652,206 724,188', color:MUTED }
+      { y:140, fill:CARD, ko:'성능 기능', en:'Performance / Linear', tip:'충족될수록 만족도가 선형으로 올라갑니다. 더 빠를수록, 더 클수록, 더 저렴할수록 좋습니다. 예: 배터리 지속 시간', curve:'M480,300 L724,108', color:INK },
+      { y:240, fill:AMBER_SOFT, ko:'기본 기능', en:'Must-be / Basic', tip:'없으면 극심한 불만이지만 있어도 당연히 여깁니다. 자원을 집중할 영역이 아니라 결함이 없어야 할 영역입니다. 예: 화장실의 온수', curve:'M480,322 C572,302 652,206 724,188', color:AMBER }
     ];
     return `
     <div class="viz">
@@ -1051,8 +1051,8 @@ window.VIZ = (() => {
         <text x="662" y="356" text-anchor="middle" font-size="11" fill="${MUTED}">기능 충족도 →</text>
         <text x="474" y="118" font-size="10" fill="${MUTED}" transform="rotate(-90,474,118)">고객 만족도 ↑</text>
         <text x="690" y="60" font-size="11" fill="${PRIMARY}" font-weight="700">매력</text>
-        <text x="690" y="130" font-size="11" fill="${AMBER}" font-weight="700">성능</text>
-        <text x="690" y="180" font-size="11" fill="${MUTED}" font-weight="700">기본</text>
+        <text x="690" y="128" font-size="11" fill="${INK}" font-weight="700">성능</text>
+        <text x="690" y="180" font-size="11" fill="${AMBER}" font-weight="700">기본</text>
       </svg>
       <div class="viz-caption">기본 기능 결함 제거 → 성능 기능 강화 → 매력 기능으로 차별화 순서로 우선순위를 설정합니다</div>
     </div>`;
