@@ -1015,7 +1015,7 @@ window.VIZ = (() => {
   const kanoThumb = () => {
     const curves = [
       { pts:[20,100,80,60,140,40,200,30,260,25], stroke:PRIMARY, label:'매력', lx:200, ly:24 },
-      { pts:[20,140,80,100,140,80,200,60,260,40], stroke:INK, label:'성능', lx:202, ly:54 },
+      { pts:[20,140,80,100,140,80,200,60,260,40], stroke:INK, label:'성능', lx:202, ly:52 },
       { pts:[20,160,80,155,140,155,200,155,260,100], stroke:AMBER, label:'기본', lx:158, ly:149 }
     ];
     return `
