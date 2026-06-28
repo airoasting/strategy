@@ -3034,7 +3034,7 @@ window.VIZ = (() => {
 
   const kotterThumb = () => `<svg class="thumb-svg" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
   ${[0,1,2,3,4,5,6,7].map(i=>{const w=26,h=14,x=18+i*30,y=150-i*16;const last=i===7;return `<rect x="${x}" y="${y}" width="${w}" height="${h+ (150-y)}" rx="2" fill="${last?PRIMARY:CARD}" stroke="${last?PRIMARY:HAIRLINE}"/><text x="${x+w/2}" y="${y-4}" font-size="9" fill="${last?PRIMARY:MUTED}" text-anchor="middle">${i+1}</text>`;}).join('')}
-  <line x1="14" y1="166" x2="266" y2="166" stroke="${HAIRLINE}" pointer-events="none"/>
+  <line x1="14" y1="164" x2="266" y2="164" stroke="${HAIRLINE}" pointer-events="none"/>
 </svg>`;
 
   const kotterFull = () => {
@@ -3083,8 +3083,8 @@ window.VIZ = (() => {
   <path d="M135 45 L145 50 L135 55 Z" fill="${PRIMARY}" pointer-events="none"/>
   <text x="140" y="94" font-size="10" fill="${PRIMARY}" text-anchor="middle">스프린트</text>
   <rect x="226" y="72" width="40" height="40" rx="4" fill="${CARD}" stroke="${HAIRLINE}"/><text x="246" y="96" font-size="9" fill="${MUTED}" text-anchor="middle">증분</text>
-  <path d="M56 92 l24 0 m-5 -4 l5 4 -5 4" stroke="${MUTED}" fill="none" pointer-events="none"/>
-  <path d="M186 92 l38 0 m-5 -4 l5 4 -5 4" stroke="${MUTED}" fill="none" pointer-events="none"/>
+  <path d="M62 92 l30 0 m-5 -4 l5 4 -5 4" stroke="${MUTED}" fill="none" pointer-events="none"/>
+  <path d="M188 92 l30 0 m-5 -4 l5 4 -5 4" stroke="${MUTED}" fill="none" pointer-events="none"/>
 </svg>`;
 
   const scrumFull = () => {
@@ -3175,11 +3175,11 @@ window.VIZ = (() => {
     </svg>`;
   };
   const ganttFull = () => {
-    const W = 56, X0 = 150, Y0 = 90, RH = 50, BH = 26;
+    const W = 56, X0 = 150, Y0 = 116, RH = 50, BH = 26;
     const weeks = 10;
     return `
     <div class="viz">
-      <svg class="viz-svg" viewBox="0 0 760 380" xmlns="http://www.w3.org/2000/svg">
+      <svg class="viz-svg" viewBox="0 0 760 412" xmlns="http://www.w3.org/2000/svg">
         <text x="380" y="42" text-anchor="middle" font-size="18" font-weight="700" fill="${INK}">간트 차트 · 일정·진척 관리</text>
         <text x="380" y="64" text-anchor="middle" font-size="12" fill="${MUTED}">작업별 시작~종료를 계단식으로 배치하고 진척을 추적합니다</text>
         ${[...Array(weeks + 1)].map((_, i) => `
