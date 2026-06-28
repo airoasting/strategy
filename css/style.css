@@ -1299,6 +1299,13 @@ body.no-scroll { overflow: hidden; }
   .hero h1 { font-size: 30px; }
 }
 
+/* 히어로 제목 줄바꿈: 데스크톱은 "질문에" 뒤, 모바일은 "70가지" 앞 */
+.hero h1 .br-m { display: none; }
+@media (max-width: 640px) {
+  .hero h1 .br-d { display: none; }
+  .hero h1 .br-m { display: inline; }
+}
+
 /* =====================================================
    v3 개선: 정렬 툴바 · 히어로 추천 데모 · 접근성 · 모션
    ===================================================== */
