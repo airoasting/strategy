@@ -2409,14 +2409,14 @@ window.VIZ = (() => {
       { n: '책임', tip: '권한과 자율의 확대. 일에 대한 주인의식을 높인다.' },
       { n: '성장', tip: '발전과 승진의 기회. 장기적인 동기의 핵심이다.' }
     ];
-    const cx = 380, top = 70, rowH = 50, gap = 10;
+    const cx = 380, top = 92, rowH = 50, gap = 10;
     const maxW = 230;
     return `
     <div class="viz">
       <svg class="viz-svg" viewBox="0 0 760 400" xmlns="http://www.w3.org/2000/svg">
         <text x="380" y="28" text-anchor="middle" font-size="17" font-weight="700" fill="${INK}" pointer-events="none">Herzberg 2요인 이론</text>
-        <text x="${cx - maxW / 2}" y="52" text-anchor="middle" font-size="13" font-weight="700" fill="${MUTED}" pointer-events="none">위생요인 · 불만족 방지</text>
-        <text x="${cx + maxW / 2}" y="52" text-anchor="middle" font-size="13" font-weight="700" fill="${PRIMARY}" pointer-events="none">동기요인 · 만족 유발</text>
+        <text x="${cx - maxW / 2}" y="74" text-anchor="middle" font-size="13" font-weight="700" fill="${MUTED}" pointer-events="none">위생요인 · 불만족 방지</text>
+        <text x="${cx + maxW / 2}" y="74" text-anchor="middle" font-size="13" font-weight="700" fill="${PRIMARY}" pointer-events="none">동기요인 · 만족 유발</text>
         <line x1="${cx}" y1="60" x2="${cx}" y2="${top + 4 * (rowH + gap) - gap + 6}" stroke="${MUTED}" stroke-width="1.6" pointer-events="none"/>
         <text x="${cx}" y="${top + 4 * (rowH + gap) + 14}" text-anchor="middle" font-size="11" fill="${MUTED_SOFT}" pointer-events="none">← 불만족   0 (중립)   만족 →</text>
         ${hygiene.map((h, i) => {
@@ -2482,12 +2482,12 @@ window.VIZ = (() => {
             <text x="${x + bw / 2}" y="${ytop + 32}" text-anchor="middle" font-size="20" font-weight="800" fill="${INK}">${a(s.k)}</text>
             <text x="${x + bw / 2}" y="${ytop + 56}" text-anchor="middle" font-size="12" fill="${BODY}">${a(s.q)}</text>
           </g>
-          ${i < steps.length - 1 ? `<text x="${x + bw + gap / 2}" y="${arrowY - 8}" text-anchor="middle" font-size="10" font-weight="700" fill="${TEAL}" pointer-events="none">Yes</text><line x1="${x + bw}" y1="${arrowY}" x2="${x + bw + gap}" y2="${arrowY}" stroke="${INK}" stroke-width="1.4" marker-end="url(#vrioAr)" pointer-events="none"/>` : ''}
+          ${i < steps.length - 1 ? `<text x="${x + bw + gap / 2}" y="${arrowY - 8}" text-anchor="middle" font-size="10" font-weight="700" fill="${INK}" pointer-events="none">Yes</text><line x1="${x + bw}" y1="${arrowY}" x2="${x + bw + gap}" y2="${arrowY}" stroke="${INK}" stroke-width="1.4" marker-end="url(#vrioAr)" pointer-events="none"/>` : ''}
           <line x1="${x + bw / 2}" y1="${ytop + bh}" x2="${x + bw / 2}" y2="${ytop + bh + 34}" stroke="${MUTED}" stroke-width="1.2" stroke-dasharray="3 3" marker-end="url(#vrioAr)" pointer-events="none"/>
           <text x="${x + bw / 2}" y="${ytop + bh + 14}" text-anchor="middle" font-size="10" font-weight="700" fill="${MUTED}" pointer-events="none">No</text>
           <text x="${x + bw / 2}" y="${ytop + bh + 50}" text-anchor="middle" font-size="11" fill="${MUTED}" pointer-events="none">${a(s.no)}</text>`;
         }).join('')}
-        <text x="${outX - gap / 2}" y="${arrowY - 8}" text-anchor="middle" font-size="10" font-weight="700" fill="${TEAL}" pointer-events="none">Yes</text>
+        <text x="${outX - gap / 2}" y="${arrowY - 8}" text-anchor="middle" font-size="10" font-weight="700" fill="${INK}" pointer-events="none">Yes</text>
         <line x1="${outX - gap}" y1="${arrowY}" x2="${outX}" y2="${arrowY}" stroke="${INK}" stroke-width="1.4" marker-end="url(#vrioAr)" pointer-events="none"/>
         <g data-tip-title="지속적 경쟁우위" data-tip="네 질문에 모두 Yes일 때 도달한다. 모방·대체가 어렵고 조직이 충분히 활용하는 자원이다.">
           <rect x="${outX}" y="${ytop}" width="${outW}" height="${bh}" rx="8" fill="${PRIMARY}" stroke="${PRIMARY}" stroke-width="1.5"/>
@@ -2530,16 +2530,16 @@ window.VIZ = (() => {
       { n: '이탈 위험', tip: '과거엔 우량했으나 최근성이 떨어졌다. 재활성화 캠페인이 필요하다.' },
       { n: '휴면 고객', tip: 'R·F·M 모두 낮다. 오래 비활성. 저비용 윈백 또는 정리 대상으로 본다.' }
     ];
-    const bx = 56, barW = 280, y0 = 78, rh = 30, vgap = 34;
-    const chipX = 440, chipY0 = 64, chipW = 270, chipH = 44, chipGap = 12;
+    const bx = 56, barW = 280, y0 = 96, rh = 30, vgap = 34;
+    const chipX = 440, chipY0 = 82, chipW = 270, chipH = 44, chipGap = 12;
     return `
     <div class="viz">
       <svg class="viz-svg" viewBox="0 0 760 380" xmlns="http://www.w3.org/2000/svg">
         <text x="40" y="30" font-size="17" font-weight="700" fill="${INK}" pointer-events="none">RFM 분석</text>
-        <text x="40" y="56" font-size="12" font-weight="700" fill="${MUTED}" pointer-events="none">점수 (1 → 5)</text>
+        <text x="40" y="74" font-size="12" font-weight="700" fill="${MUTED}" pointer-events="none">점수 (1 → 5)</text>
         ${[1, 2, 3, 4, 5].map((s) => {
           const x = bx + barW * (s - 0.5) / 5;
-          return `<text x="${x}" y="56" text-anchor="middle" font-size="10" fill="${MUTED_SOFT}" pointer-events="none">${s}</text>`;
+          return `<text x="${x}" y="74" text-anchor="middle" font-size="10" fill="${MUTED_SOFT}" pointer-events="none">${s}</text>`;
         }).join('')}
         ${bars.map((b, i) => {
           const y = y0 + i * (rh + vgap);
@@ -2551,7 +2551,7 @@ window.VIZ = (() => {
             <text x="${bx + 8}" y="${y - 6}" font-size="11" fill="${MUTED}">${a(b.n)}</text>
           </g>`;
         }).join('')}
-        <text x="${chipX}" y="56" font-size="12" font-weight="700" fill="${MUTED}" pointer-events="none">대표 세그먼트</text>
+        <text x="${chipX}" y="74" font-size="12" font-weight="700" fill="${MUTED}" pointer-events="none">대표 세그먼트</text>
         ${segs.map((s, i) => {
           const y = chipY0 + i * (chipH + chipGap);
           const fill = s.hi ? PRIMARY : PAPER;
