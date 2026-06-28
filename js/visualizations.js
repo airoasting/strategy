@@ -1051,7 +1051,7 @@ window.VIZ = (() => {
         <text x="662" y="356" text-anchor="middle" font-size="11" fill="${MUTED}">기능 충족도 →</text>
         <text x="474" y="118" font-size="10" fill="${MUTED}" transform="rotate(-90,474,118)">고객 만족도 ↑</text>
         <text x="690" y="60" font-size="11" fill="${PRIMARY}" font-weight="700">매력</text>
-        <text x="690" y="131" font-size="11" fill="${INK}" font-weight="700">성능</text>
+        <text x="690" y="134" font-size="11" fill="${INK}" font-weight="700">성능</text>
         <text x="690" y="180" font-size="11" fill="${AMBER}" font-weight="700">기본</text>
       </svg>
       <div class="viz-caption">기본 기능 결함 제거 → 성능 기능 강화 → 매력 기능으로 차별화 순서로 우선순위를 설정합니다</div>
