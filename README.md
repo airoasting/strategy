@@ -1,8 +1,8 @@
 # 70개 전략 프레임워크
 
-[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Frameworks](https://img.shields.io/badge/frameworks-70-coral.svg)](https://github.com/airoasting/strategy)
-[![Static](https://img.shields.io/badge/build-static-brightgreen.svg)](index.html)
+[![Frameworks](https://img.shields.io/badge/frameworks-70-E85D4E?style=flat)](https://github.com/airoasting/strategy)
+[![Categories](https://img.shields.io/badge/categories-6-3f8fb5?style=flat)](index.html)
+[![License](https://img.shields.io/badge/license-MIT-dfb317?style=flat)](LICENSE)
 
 맥킨지·베인·BCG 현장 도구 70개를 한 자리에 모았습니다.
 카드로 탐색하고, AI가 상황에 맞는 도구를 골라줍니다.
@@ -50,10 +50,11 @@ ln -s "$(pwd)/strategy/strategy" ~/.claude/skills/strategy
 
 | 기능 | 설명 |
 |---|---|
-| 70개 프레임워크 | 6개 카테고리, SVG 시각화 포함 |
+| 70개 프레임워크 | 6개 카테고리, 도구마다 SVG 시각화 |
 | 카테고리 필터 + 검색 | 실시간 필터링, 스크롤 스파이 연동 |
 | 모달 상세 | 개요·구성·절차·예시·한계·관련 도구 |
-| 라이트 / 다크 모드 | 시스템 설정 감지, 수동 전환 가능 |
+| Pastel Card 디자인 | 본 배경, 파스텔 캡슐, Bodoni 디스플레이, 그레인 질감 |
+| 반응형 + 모바일 | 데스크톱 3열 그리드, 모바일 단일 열·햄버거 메뉴 |
 | AI 추천 스킬 | 상황 설명하면 1순위 도구 추천 |
 | 제로 의존성 | 바닐라 JS, 빌드 없음 |
 
