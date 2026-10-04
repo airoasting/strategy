@@ -178,7 +178,7 @@ AI      추천: 유닛 이코노믹스 (#68). 매출이 늘수록 적자가 커�
 
 ## 배포
 
-정적 파일이라 `docs/` 폴더를 그대로 배포하면 됩니다. 운영 사이트([strategy.airoasting.com](https://strategy.airoasting.com))는 Vercel이 `vercel.json` 설정에 따라 `docs/`를 배포합니다.
+정적 파일이라 `docs/` 폴더를 그대로 배포하면 됩니다. 운영 사이트([strategy.airoasting.com](https://strategy.airoasting.com))는 Vercel 프로젝트의 Root Directory를 `docs`로 지정해 배포합니다.
 
 ---
 
