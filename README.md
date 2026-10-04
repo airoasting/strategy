@@ -21,16 +21,6 @@
 
 ## 시작하기
 
-### 갤러리 로컬 실행
-
-```bash
-git clone https://github.com/airoasting/strategy.git
-cd strategy
-npx http-server docs -p 8000
-```
-
-[http://localhost:8000](http://localhost:8000)
-
 ### AI 추천 스킬 설치
 
 Claude Code에서 아래 두 줄을 입력합니다.
