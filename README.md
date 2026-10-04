@@ -1,13 +1,13 @@
 # 70개 전략 프레임워크
 
 [![Frameworks](https://img.shields.io/badge/frameworks-70-E85D4E?style=flat)](https://github.com/airoasting/strategy)
-[![Categories](https://img.shields.io/badge/categories-6-3f8fb5?style=flat)](index.html)
+[![Categories](https://img.shields.io/badge/categories-6-3f8fb5?style=flat)](docs/index.html)
 [![License](https://img.shields.io/badge/license-MIT-dfb317?style=flat)](LICENSE)
 
 맥킨지·베인·BCG 현장 도구 70개를 한 자리에 모았습니다.
 카드로 탐색하고, AI가 상황에 맞는 도구를 골라줍니다.
 
-**[airoasting-strategy.vercel.app](https://airoasting-strategy.vercel.app/)**
+**[strategy.airoasting.com](https://strategy.airoasting.com)**
 
 ---
 
@@ -26,23 +26,37 @@
 ```bash
 git clone https://github.com/airoasting/strategy.git
 cd strategy
-npx http-server . -p 8000
+npx http-server docs -p 8000
 ```
 
 [http://localhost:8000](http://localhost:8000)
 
 ### AI 추천 스킬 설치
 
+저장소 자체가 Claude 스킬입니다. 루트의 `SKILL.md`가 스킬 본문이므로 `~/.claude/skills/`에 그대로 클론하면 됩니다.
+
 ```bash
-git clone https://github.com/airoasting/strategy.git
-ln -s "$(pwd)/strategy/strategy" ~/.claude/skills/strategy
+git clone https://github.com/airoasting/strategy.git ~/.claude/skills/strategy
 ```
 
-설치하고 나면 상황을 말하는 것만으로 도구 추천이 됩니다.
+이미 다른 곳에 클론했다면 링크만 걸어도 됩니다(저장소 루트에서 실행).
 
+```bash
+ln -s "$(pwd)" ~/.claude/skills/strategy
 ```
-신사업 초기 시장 분석을 해야 하는데 어떤 프레임워크부터 써야 할지 모르겠어.
-```
+
+이후 `/strategy` 또는 "어떤 프레임워크 써야 해" 같은 표현으로 발동합니다.
+
+### 스킬이 하는 일
+
+비즈니스 상황을 자연어로 말하면, 70개 프레임워크 중 지금 가장 먼저 쓸 **1순위 도구** 하나를 골라, 앞뒤로 붙일 도구와 적용 첫 단계까지 안내합니다.
+
+- 입력: "신사업, 시장부터 보고 싶어요", "팀 동기부여가 잘 안 돼요" 같은 한 줄 상황.
+- 출력: 핵심 질문과 초기 가설, 1순위 도구와 이유, 준비물이 붙은 첫 3단계, 앞뒤 도구 순서, 한계, 차점 도구를 고르지 않은 이유, 갤러리 카드 링크.
+
+설명이 아니라 "내 상황에 맞는 선택"이 핵심입니다. 단순 정의 검색("SWOT이 뭐야")이나 산출물(보고서·PPT) 작성은 다루지 않습니다.
+
+`SKILL.md` 본문은 자주 쓰는 매핑만 요약하고, 전체 인벤토리와 결정 트리는 `references/`가 단일 출처입니다. 모든 `#N`은 데이터(`docs/data/frameworks.js`)·갤러리 카드 번호와 정확히 일치합니다.
 
 ---
 
@@ -112,19 +126,34 @@ ln -s "$(pwd)/strategy/strategy" ~/.claude/skills/strategy
 ## 스킬 예시
 
 ```
-사용자  신사업 검토 중인데 어떤 프레임워크부터 써야 할지 모르겠어
+사용자  우리 SaaS 매출은 느는데 적자가 커져. 뭘 봐야 해?
 
-AI      추천: 3C 분석 (#11)
-        이유: 세부 분석으로 내려가기 전에 시장·고객·경쟁 전체 구도를 먼저
-              잡아야 합니다. 3C로 큰 그림부터 정리하세요.
+AI      **추천: 유닛 이코노믹스 (#68).** 매출이 늘수록 적자가 커진다면 고객 한 명을
+        데려오는 비용이 그 고객이 남기는 돈보다 큰지부터 확인해야 합니다.
 
-        첫 단계
-        1. 자사(Company): 보유 자원과 핵심 강점 정리
-        2. 고객(Customer): 타깃 세그먼트와 핵심 니즈 정의
-        3. 경쟁(Competitor): 주요 플레이어와 포지셔닝 비교
+        **핵심 질문**: "매출은 느는데 적자가 커지는" 이유가 고객 획득비(CAC)에 있는가,
+        고객당 남기는 돈(LTV)에 있는가?
+        **초기 가설**: 획득비가 큰 채널(예: 유료 광고)에서 CAC가 LTV를 넘었다.
 
-        보조 도구: BMC(#30)로 사업 모델 초안, PESTEL(#16)로 거시환경 점검
+        **첫 3단계** (준비물: 채널별 마케팅비·신규 고객·이탈 데이터, 1~2주, 재무와 그로스 담당)
+        1. 최근 2개 분기 신규 고객을 채널별로 나눠 CAC를 계산합니다.
+        2. 같은 고객군의 월 공헌이익과 이탈률로 LTV를 추정합니다.
+        3. 채널별 LTV/CAC와 회수 기간을 비교해 줄일 채널을 고릅니다.
+
+        **뼈대와 순서**: LTV / CAC / LTV·CAC 비율 / 회수 기간.
+        AARRR(획득에서 추천까지 단계별 지표, #27) → **유닛 이코노믹스(#68)**
+        → 수익 모델(#32).
+        채널을 정리한 뒤 과금 구조를 손볼지 판단합니다.
+
+        **주의**: 초기 데이터가 적으면 LTV 추정이 크게 흔들립니다.
+        **이익 방정식(#31)이 아닌 이유**: 회사 전체 손익보다 고객 단위 수익 구조가 먼저입니다.
+        반복 구매가 없는 사업이라면 #31이 1순위가 됩니다.
+
+        카드 보기: https://strategy.airoasting.com/#68
+        원하시면 채널별 CAC 계산표를 같이 만들어 보겠습니다.
 ```
+
+응답은 질문 형태에 따라 네 가지입니다. 추천형(기본), 판단형("대응해야 하나", "A안이냐 B안이냐"), 비교형("SWOT이랑 3C 중 뭐가"), 빈 입력형("도와줘", "전략")입니다. 규칙은 [`SKILL.md`](SKILL.md)에 있습니다.
 
 ---
 
@@ -132,19 +161,22 @@ AI      추천: 3C 분석 (#11)
 
 ```
 .
-├── index.html
-├── css/style.css
-├── js/
-│   ├── app.js
-│   └── visualizations.js
-├── data/frameworks.js
-├── assets/
-├── strategy/              # /strategy 추천 스킬
-│   ├── SKILL.md
-│   ├── README.md
-│   └── references/
-│       ├── frameworks.md
-│       └── decision-tree.md
+├── docs/                  # 웹 갤러리(배포 루트)
+│   ├── index.html
+│   ├── css/style.css
+│   ├── js/
+│   │   ├── app.js
+│   │   └── visualizations.js
+│   ├── data/frameworks.js
+│   └── assets/logo.png
+├── SKILL.md               # /strategy 추천 스킬 본문
+├── references/
+│   ├── decision-tree.md   # 상황 → 1순위 매핑
+│   └── frameworks.md      # 70개 전수 인벤토리
+├── assets/screenshots/    # README 스크린샷
+├── scripts/
+│   ├── build-skill-refs.js # SSOT → references/frameworks.md 생성 + 정합성 검사
+│   └── capture.js          # 스크린샷 재생성
 └── LICENSE
 ```
 
@@ -152,17 +184,17 @@ AI      추천: 3C 분석 (#11)
 
 ## 배포
 
-정적 파일이라 루트 폴더 그대로 올리면 됩니다.
+정적 파일이라 `docs/` 폴더를 그대로 올리면 됩니다.
 
 ```bash
 # Vercel
 vercel --prod
 
 # Netlify
-netlify deploy --prod --dir .
+netlify deploy --prod --dir docs
 ```
 
-GitHub Pages는 Settings → Pages에서 root 브랜치를 소스로 지정하면 됩니다.
+운영 사이트([strategy.airoasting.com](https://strategy.airoasting.com))는 Vercel이 `vercel.json`의 `outputDirectory` 설정으로 `docs/`를 배포합니다. GitHub Pages는 Settings → Pages에서 `main` 브랜치의 `/docs` 폴더를 소스로 지정하면 됩니다.
 
 ---
 
@@ -171,9 +203,10 @@ GitHub Pages는 Settings → Pages에서 root 브랜치를 소스로 지정하�
 프레임워크 추가, 번역, 시각화 개선 모두 PR로 올려주세요.
 
 1. Fork 후 브랜치 생성
-2. `data/frameworks.js`에 프레임워크 추가
-3. `js/visualizations.js`에 시각화 추가
-4. PR 제출
+2. `docs/data/frameworks.js`에 프레임워크 추가
+3. `docs/js/visualizations.js`에 시각화 추가
+4. `references/decision-tree.md`에 추천 매핑을 넣고 `node scripts/build-skill-refs.js` 실행(frameworks.md 재생성 + 정합성 검사)
+5. PR 제출
 
 ---
 

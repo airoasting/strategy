@@ -374,11 +374,24 @@
 
     el.modal.setAttribute('aria-hidden', 'false');
     document.body.classList.add('no-scroll');
+    if (location.hash !== '#' + id) history.replaceState(null, '', '#' + id);
   };
 
   const closeModal = () => {
     el.modal.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('no-scroll');
+    if (/^#\d+$/.test(location.hash)) history.replaceState(null, '', location.pathname + location.search);
+  };
+
+  // strategy.airoasting.com/#11 처럼 카드 번호 해시로 들어오면 그 카드를 연다(/strategy 스킬의 카드 링크).
+  const openFromHash = () => {
+    const m = location.hash.match(/^#(\d{1,3})$/);
+    if (m && fw(Number(m[1]))) openModal(Number(m[1]));
+  };
+
+  const bindDeepLink = () => {
+    window.addEventListener('hashchange', openFromHash);
+    openFromHash();
   };
 
   const bindModal = () => {
@@ -539,6 +552,7 @@
     bindHeroDemo();
     bindFooterLinks();
     initMobileMenu();
+    bindDeepLink();
   };
 
   init();
