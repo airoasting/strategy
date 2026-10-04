@@ -170,9 +170,7 @@ AI      추천: 유닛 이코노믹스 (#68). 매출이 늘수록 적자가 커�
 │   ├── decision-tree.md   # 상황 → 1순위 매핑
 │   └── frameworks.md      # 70개 전수 인벤토리
 ├── assets/screenshots/    # README 스크린샷
-├── scripts/
-│   ├── build-skill-refs.js # SSOT → references/frameworks.md 생성 + 정합성 검사
-│   └── capture.js          # 스크린샷 재생성
+├── scripts/build-skill-refs.js  # SSOT → references/frameworks.md 생성 + 정합성 검사
 └── LICENSE
 ```
 
@@ -180,17 +178,7 @@ AI      추천: 유닛 이코노믹스 (#68). 매출이 늘수록 적자가 커�
 
 ## 배포
 
-정적 파일이라 `docs/` 폴더를 그대로 올리면 됩니다.
-
-```bash
-# Vercel
-vercel --prod
-
-# Netlify
-netlify deploy --prod --dir docs
-```
-
-운영 사이트([strategy.airoasting.com](https://strategy.airoasting.com))는 Vercel이 `vercel.json`의 `outputDirectory` 설정으로 `docs/`를 배포합니다. GitHub Pages는 Settings → Pages에서 `main` 브랜치의 `/docs` 폴더를 소스로 지정하면 됩니다.
+정적 파일이라 `docs/` 폴더를 그대로 배포하면 됩니다. 운영 사이트([strategy.airoasting.com](https://strategy.airoasting.com))는 Vercel 프로젝트의 Root Directory를 `docs`로 지정해 배포합니다.
 
 ---
 

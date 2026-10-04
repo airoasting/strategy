@@ -2,3 +2,6 @@
 .claude/
 node_modules
 package-lock.json
+vercel.json
+package.json
+scripts/capture.js
