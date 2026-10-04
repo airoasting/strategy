@@ -33,7 +33,14 @@ npx http-server docs -p 8000
 
 ### AI 추천 스킬 설치
 
-저장소 자체가 Claude 스킬입니다. 루트의 `SKILL.md`가 스킬 본문이므로 `~/.claude/skills/`에 그대로 클론하면 됩니다.
+저장소 자체가 Claude 스킬입니다. 가장 간단한 방법은 airoasting 플러그인 마켓플레이스로 설치하는 것입니다. Claude Code에서 아래 두 줄을 입력합니다.
+
+```
+/plugin marketplace add airoasting/skills
+/plugin install strategy@airoasting
+```
+
+직접 설치하려면 루트의 `SKILL.md`가 스킬 본문이므로 `~/.claude/skills/`에 그대로 클론하면 됩니다.
 
 ```bash
 git clone https://github.com/airoasting/strategy.git ~/.claude/skills/strategy
@@ -170,6 +177,7 @@ AI      **추천: 유닛 이코노믹스 (#68).** 매출이 늘수록 적자가 
 │   ├── data/frameworks.js
 │   └── assets/logo.png
 ├── SKILL.md               # /strategy 추천 스킬 본문
+├── .claude-plugin/plugin.json  # 마켓플레이스 설치용 매니페스트
 ├── references/
 │   ├── decision-tree.md   # 상황 → 1순위 매핑
 │   └── frameworks.md      # 70개 전수 인벤토리
